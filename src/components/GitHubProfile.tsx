@@ -1,4 +1,5 @@
 import { Github, MapPin, Link as LinkIcon, Users, Star, GitFork } from 'lucide-react'
+import Image from 'next/image'
 
 interface GitHubProfileProps {
   username?: string
@@ -26,11 +27,9 @@ export default function GitHubProfile({
   return (
     <div className={`bg-card border rounded-lg p-6 ${className}`}>
       <div className="flex items-center gap-4 mb-4">
-        <img
-          src={avatar}
-          alt={username}
-          className="w-16 h-16 rounded-full border-2 border-primary/20"
-        />
+        <div className="relative w-16 h-16 rounded-full overflow-hidden border-2 border-primary/20">
+          <Image src={avatar} alt={username} fill className="object-cover" unoptimized />
+        </div>
         <div>
           <h3 className="text-lg font-semibold">{username}</h3>
           <p className="text-sm text-muted-foreground">{bio}</p>

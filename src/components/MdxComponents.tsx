@@ -1,6 +1,8 @@
 import { MDXComponents } from 'mdx/types'
 // import Image from 'next/image'
 
+import Image from 'next/image'
+
 export const mdxComponents: MDXComponents = {
   h1: ({ children }) => (
     <h1 className="text-3xl font-bold tracking-tight mb-4">{children}</h1>
@@ -37,15 +39,22 @@ export const mdxComponents: MDXComponents = {
       {children}
     </a>
   ),
-  img: (props) => (
-    <div className="my-8">
-      <img
-        {...props}
-        className="rounded-lg border max-w-full h-auto"
-        alt={props.alt || ''}
-      />
-    </div>
-  ),
+  img: (props: any) => {
+    const src = props.src || props['data-src'] || ''
+    const alt = props.alt || ''
+    // 使用固定的宽高作为 fallback，next/image 需要明确宽高或 fill
+    return (
+      <div className="my-8">
+        {src ? (
+          <div className="relative w-full">
+            <Image src={src} alt={alt} width={1200} height={700} className="rounded-lg border max-w-full h-auto" unoptimized />
+          </div>
+        ) : (
+          <img {...props} className="rounded-lg border max-w-full h-auto" alt={alt} />
+        )}
+      </div>
+    )
+  },
   code: ({ children, className }) => {
     const language = className?.replace('language-', '') || ''
     return (

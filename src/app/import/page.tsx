@@ -1,5 +1,6 @@
 'use client'
 import { useState, useMemo } from 'react'
+import Image from 'next/image'
 import matter from 'gray-matter'
 
 export default function ImportPage() {
@@ -209,7 +210,9 @@ export default function ImportPage() {
                 {assets.map((a, index) => (
                   <div key={a.filename} className="border rounded p-2 flex items-center gap-2">
                     <input type="radio" name="cover" checked={selectedCoverIndex === index} onChange={() => setSelectedCoverIndex(index)} className="mr-2" />
-                    <img src={a.preview} alt={a.filename} className="w-12 h-12 object-cover rounded" />
+                    <div className="relative w-12 h-12 rounded overflow-hidden">
+                      <Image src={a.preview} alt={a.filename} width={48} height={48} className="object-cover" unoptimized />
+                    </div>
                     <span className="text-xs text-muted-foreground break-all">{a.filename}</span>
                   </div>
                 ))}

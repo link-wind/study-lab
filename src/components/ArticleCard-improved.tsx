@@ -1,4 +1,4 @@
-// import Image from 'next/image'
+import Image from 'next/image'
 import { Calendar, Clock, Tag, ArrowRight, BookOpen } from 'lucide-react'
 import { formatDate } from '@/lib/utils'
 import Link from 'next/link'
@@ -18,10 +18,13 @@ export default function ArticleCard({ title, description, date, slug, tags = [],
       {/* 图片区域 */}
       {image && (
         <div className="relative h-48 w-full overflow-hidden bg-gradient-to-br from-muted to-muted/50">
-          <img
+          <Image
             src={image}
             alt={title}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            fill
+            className="object-cover group-hover:scale-105 transition-transform duration-300"
+            sizes="(max-width: 768px) 100vw, 800px"
+            unoptimized
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
         </div>
