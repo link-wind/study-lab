@@ -45,7 +45,8 @@ export default function ImportPage() {
       '---',
       '',
     ].filter(Boolean)
-    return `${frontmatterLines.join('\n')}${body}`
+    const imageLines = cover ? `![封面图片](${cover})` : ''
+    return `${frontmatterLines.join('\n')}${imageLines ? imageLines + '\n\n' : ''}${body}`
   }, [title, description, date, tags, body, normalizedSlug, assets, selectedCoverIndex])
 
   const extractTitleFromContent = (content: string) => {

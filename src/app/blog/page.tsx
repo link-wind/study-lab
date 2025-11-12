@@ -5,8 +5,9 @@ export default function BlogPage() {
   const posts = getBlogPosts()
 
   return (
-    <main className="container py-8">
-      <div className="mx-auto max-w-4xl">
+    <main className="py-8">
+      <div className="px-4 lg:px-8">
+        <div className="mx-auto max-w-4xl">
         <h1 className="text-3xl font-bold mb-8">所有文章</h1>
         
         {posts.length > 0 ? (
@@ -23,6 +24,7 @@ export default function BlogPage() {
             </p>
           </div>
         )}
+        </div>
       </div>
     </main>
   )

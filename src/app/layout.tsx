@@ -4,6 +4,7 @@ import type { Metadata } from 'next'
 import { Inter, JetBrains_Mono } from 'next/font/google'
 import Header from '@/components/Header'
 import { ThemeProvider } from '@/components/ThemeProvider'
+import { Github, Twitter } from 'lucide-react'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -45,11 +46,42 @@ export default function RootLayout({
           <div className="relative flex min-h-screen flex-col">
             <Header />
             <main className="flex-1">{children}</main>
-            <footer className="border-t py-6 md:py-0">
-              <div className="container flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
-                <p className="text-center text-sm leading-loose text-muted-foreground md:text-left">
-                  Built with Next.js and Tailwind CSS. Hosted on Vercel.
-                </p>
+            <footer className="border-t py-8 md:py-12">
+              <div className="px-4 lg:px-8">
+                <div className="mx-auto max-w-4xl">
+                  <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
+                    <div className="flex flex-col items-center gap-4 md:items-start">
+                      <p className="text-center text-sm leading-loose text-muted-foreground md:text-left">
+                        Built with Next.js and Tailwind CSS. Hosted on Vercel.
+                      </p>
+                      <div className="flex items-center gap-4">
+                        <a
+                          href="https://github.com/link-wind"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-muted hover:bg-primary hover:text-primary-foreground transition-colors duration-200"
+                          aria-label="GitHub"
+                        >
+                          <Github className="h-5 w-5" />
+                        </a>
+                        <a
+                          href="https://twitter.com/yourusername"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-muted hover:bg-primary hover:text-primary-foreground transition-colors duration-200"
+                          aria-label="Twitter"
+                        >
+                          <Twitter className="h-5 w-5" />
+                        </a>
+                      </div>
+                    </div>
+                    <div className="text-center md:text-right">
+                      <p className="text-sm text-muted-foreground">
+                        © 2024 StudyLab Notebook. All rights reserved.
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </footer>
           </div>
