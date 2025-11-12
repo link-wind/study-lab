@@ -27,6 +27,15 @@ export function getBlogPosts(): BlogPost[] {
       const fullPath = path.join(contentDirectory, fileName)
       const fileContents = fs.readFileSync(fullPath, 'utf8')
       const { data, content } = matter(fileContents)
+      const fallbackImage = (() => {
+        const m = content.match(/!\[[^\]]*\]\(\s*([^\)\s]+)\s*\)/)
+        const url = m?.[1] || ''
+        if (!url) return undefined
+        if (url.startsWith('/images/')) return url
+        const fnameMatch = url.match(/([^\/\\]+\.(png|jpg|jpeg|webp|gif))$/i)
+        if (fnameMatch) return `/images/${fnameMatch[1]}`
+        return undefined
+      })()
 
       return {
         slug,
@@ -34,7 +43,7 @@ export function getBlogPosts(): BlogPost[] {
         description: data.description || '',
         date: data.date || new Date().toISOString(),
         tags: data.tags || [],
-        image: data.image,
+        image: data.image || fallbackImage,
         content,
       }
     })
@@ -44,22 +53,23 @@ export function getBlogPosts(): BlogPost[] {
 }
 
 export function getBlogPost(slug: string): BlogPost | null {
-  const fullPath = path.join(contentDirectory, `${slug}.md`)
-  const mdxPath = path.join(contentDirectory, `${slug}.mdx`)
-  
-  let filePath = fullPath
-  if (!fs.existsSync(fullPath) && fs.existsSync(mdxPath)) {
-    filePath = mdxPath
-  } else if (!fs.existsSync(fullPath)) {
-    return null
-  }
-
   try {
+    if (!fs.existsSync(contentDirectory)) return null
+    const normalized = (() => {
+      try {
+        return decodeURIComponent(slug)
+      } catch {
+        return slug
+      }
+    })()
+    const files = fs.readdirSync(contentDirectory).filter((name) => name.endsWith('.md') || name.endsWith('.mdx'))
+    const target = files.find((name) => name.replace(/\.(md|mdx)$/i, '') === normalized)
+    if (!target) return null
+    const filePath = path.join(contentDirectory, target)
     const fileContents = fs.readFileSync(filePath, 'utf8')
     const { data, content } = matter(fileContents)
-
     return {
-      slug,
+      slug: normalized,
       title: data.title || slug,
       description: data.description || '',
       date: data.date || new Date().toISOString(),
@@ -68,7 +78,6 @@ export function getBlogPost(slug: string): BlogPost | null {
       content,
     }
   } catch (error) {
-    console.error(`Error reading blog post ${slug}:`, error)
     return null
   }
 }

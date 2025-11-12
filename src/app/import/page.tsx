@@ -27,17 +27,24 @@ export default function ImportPage() {
       .split(',')
       .map((t) => t.trim())
       .filter((t) => t.length > 0)
+    const cover = (() => {
+      if (assets.length > 0) return `/images/${assets[0].filename}`
+      const m = body.match(/!\[[^\]]*\]\(\s*(\/images\/[^)\s]+)\s*\)/)
+      if (m) return m[1]
+      return ''
+    })()
     const frontmatterLines = [
       '---',
       `title: "${title || normalizedSlug}"`,
       `description: "${description || ''}"`,
       `date: "${date}"`,
       `tags: [${tagsArray.map((t) => `"${t}"`).join(', ')}]`,
+      cover ? `image: "${cover}"` : '',
       '---',
       '',
     ].filter(Boolean)
     return `${frontmatterLines.join('\n')}${body}`
-  }, [title, description, date, tags, body, normalizedSlug])
+  }, [title, description, date, tags, body, normalizedSlug, assets])
 
   const extractTitleFromContent = (content: string) => {
     const lines = content.split(/\r?\n/)
@@ -116,7 +123,11 @@ export default function ImportPage() {
       const res = await fetch('/api/import', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ slug: normalizedSlug, content: finalContent }),
+        body: JSON.stringify({
+          slug: normalizedSlug,
+          content: finalContent,
+          assets: assets.map((a) => ({ filename: a.filename, content: a.base64, path: `public/images/${a.filename}` })),
+        }),
       })
       if (res.status === 405) {
         setStatus('生产环境不支持直接写入，请使用下载文件并手动添加到 content/blog/')
@@ -127,7 +138,8 @@ export default function ImportPage() {
         return
       }
       const data = await res.json()
-      setStatus(`已保存到本地开发环境: ${data.path || ''}`)
+      const assetInfo = Array.isArray(data.assets) && data.assets.length > 0 ? `，图片 ${data.assets.length} 个` : ''
+      setStatus(`已保存到本地开发环境: ${data.path || ''}${assetInfo}`)
     } catch (e) {
       setStatus('请求失败')
     }
