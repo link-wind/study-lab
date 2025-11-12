@@ -6,7 +6,7 @@ export async function POST(req: Request) {
     const slug: string = body?.slug
     const content: string = body?.content
     const assets: { filename: string; content: string; path?: string }[] = Array.isArray(body?.assets) ? body.assets : []
-    const message: string = body?.message || `chore: publish post ${slug}`
+    const message: string = body?.message || `publish: ${slug}${assets.length > 0 ? ` with ${assets.length} image${assets.length > 1 ? 's' : ''}` : ''}`
     if (!slug || !content) {
       return NextResponse.json({ error: 'missing parameters' }, { status: 400 })
     }

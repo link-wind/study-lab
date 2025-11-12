@@ -13,6 +13,7 @@ export default function ImportPage() {
   const [status, setStatus] = useState('')
   const [publishing, setPublishing] = useState(false)
   const [assets, setAssets] = useState<{ filename: string; preview: string; base64: string }[]>([])
+  const [selectedCoverIndex, setSelectedCoverIndex] = useState<number | null>(null)
 
   const normalizedSlug = useMemo(() => {
     const base = (slug || title || fileName.replace(/\.(md|mdx)$/i, '') || '').toLowerCase()
@@ -28,6 +29,7 @@ export default function ImportPage() {
       .map((t) => t.trim())
       .filter((t) => t.length > 0)
     const cover = (() => {
+      if (selectedCoverIndex !== null && assets[selectedCoverIndex]) return `/images/${assets[selectedCoverIndex].filename}`
       if (assets.length > 0) return `/images/${assets[0].filename}`
       const m = body.match(/!\[[^\]]*\]\(\s*(\/images\/[^)\s]+)\s*\)/)
       if (m) return m[1]
@@ -44,7 +46,7 @@ export default function ImportPage() {
       '',
     ].filter(Boolean)
     return `${frontmatterLines.join('\n')}${body}`
-  }, [title, description, date, tags, body, normalizedSlug, assets])
+  }, [title, description, date, tags, body, normalizedSlug, assets, selectedCoverIndex])
 
   const extractTitleFromContent = (content: string) => {
     const lines = content.split(/\r?\n/)
@@ -103,6 +105,7 @@ export default function ImportPage() {
       }
     }
     setBody(updated)
+    setSelectedCoverIndex(null)
   }
 
   const downloadFile = () => {
@@ -202,8 +205,9 @@ export default function ImportPage() {
             </div>
             {assets.length > 0 && (
               <div className="grid gap-3 grid-cols-2 md:grid-cols-3">
-                {assets.map((a) => (
+                {assets.map((a, index) => (
                   <div key={a.filename} className="border rounded p-2 flex items-center gap-2">
+                    <input type="radio" name="cover" checked={selectedCoverIndex === index} onChange={() => setSelectedCoverIndex(index)} className="mr-2" />
                     <img src={a.preview} alt={a.filename} className="w-12 h-12 object-cover rounded" />
                     <span className="text-xs text-muted-foreground break-all">{a.filename}</span>
                   </div>
