@@ -8,11 +8,11 @@ export default function ImportPage() {
   const [description, setDescription] = useState('')
   const [date, setDate] = useState(new Date().toISOString().slice(0, 10))
   const [tags, setTags] = useState('')
-  const [image, setImage] = useState('')
   const [slug, setSlug] = useState('')
   const [body, setBody] = useState('')
   const [status, setStatus] = useState('')
   const [publishing, setPublishing] = useState(false)
+  const [assets, setAssets] = useState<{ filename: string; preview: string; base64: string }[]>([])
 
   const normalizedSlug = useMemo(() => {
     const base = (slug || title || fileName.replace(/\.(md|mdx)$/i, '') || '').toLowerCase()
@@ -33,12 +33,25 @@ export default function ImportPage() {
       `description: "${description || ''}"`,
       `date: "${date}"`,
       `tags: [${tagsArray.map((t) => `"${t}"`).join(', ')}]`,
-      image ? `image: "${image}"` : '',
       '---',
       '',
     ].filter(Boolean)
     return `${frontmatterLines.join('\n')}${body}`
-  }, [title, description, date, tags, image, body, normalizedSlug])
+  }, [title, description, date, tags, body, normalizedSlug])
+
+  const extractTitleFromContent = (content: string) => {
+    const lines = content.split(/\r?\n/)
+    for (const line of lines) {
+      const m = /^#\s+(.*)$/.exec(line)
+      if (m) return m[1].trim()
+    }
+    for (let i = 0; i < lines.length - 1; i++) {
+      if (lines[i].trim().length > 0 && /^=+$/.test(lines[i + 1].trim())) {
+        return lines[i].trim()
+      }
+    }
+    return ''
+  }
 
   const onFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
@@ -48,13 +61,41 @@ export default function ImportPage() {
     const text = await file.text()
     const parsed = matter(text)
     const data = parsed.data as any
-    setTitle(typeof data?.title === 'string' ? data.title : '')
+    const autoTitle = extractTitleFromContent(parsed.content || '')
+    setTitle(typeof data?.title === 'string' ? data.title : autoTitle)
     setDescription(typeof data?.description === 'string' ? data.description : '')
     setDate(typeof data?.date === 'string' ? data.date : new Date().toISOString().slice(0, 10))
     setTags(Array.isArray(data?.tags) ? data.tags.join(', ') : '')
-    setImage(typeof data?.image === 'string' ? data.image : '')
     setSlug('')
     setBody(parsed.content || '')
+  }
+
+  const onImagesChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files ? Array.from(e.target.files) : []
+    if (files.length === 0) return
+    const next: { filename: string; preview: string; base64: string }[] = []
+    for (const f of files) {
+      const reader = new FileReader()
+      const res: string = await new Promise((resolve) => {
+        reader.onload = () => resolve(String(reader.result))
+        reader.readAsDataURL(f)
+      })
+      next.push({ filename: f.name, preview: res, base64: res })
+    }
+    setAssets(next)
+    const escapeRegex = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+    let updated = body
+    for (const a of next) {
+      const patterns = [
+        new RegExp(`\x5c]\(\s*${escapeRegex(a.filename)}\s*\)`, 'g'),
+        new RegExp(`\x5c]\(\s*\.\/${escapeRegex(a.filename)}\s*\)`, 'g'),
+        new RegExp(`\x5c]\(\s*\.\.\/[^)]*${escapeRegex(a.filename)}\s*\)`, 'g'),
+      ]
+      for (const r of patterns) {
+        updated = updated.replace(r, `](/images/${a.filename})`)
+      }
+    }
+    setBody(updated)
   }
 
   const downloadFile = () => {
@@ -99,7 +140,12 @@ export default function ImportPage() {
       const res = await fetch('/api/publish', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ slug: normalizedSlug, content: finalContent, message: `publish: ${normalizedSlug}` }),
+        body: JSON.stringify({
+          slug: normalizedSlug,
+          content: finalContent,
+          message: `publish: ${normalizedSlug}`,
+          assets: assets.map((a) => ({ filename: a.filename, content: a.base64, path: `public/images/${a.filename}` })),
+        }),
       })
       if (!res.ok) {
         const text = await res.text()
@@ -108,7 +154,8 @@ export default function ImportPage() {
         return
       }
       const data = await res.json()
-      setStatus(`已推送到 GitHub: ${data.url || ''}`)
+      const assetInfo = Array.isArray(data.assets) && data.assets.length > 0 ? `，图片 ${data.assets.length} 个` : ''
+      setStatus(`已推送到 GitHub: ${data.url || ''}${assetInfo}`)
     } catch (e) {
       setStatus('请求失败')
     }
@@ -123,9 +170,34 @@ export default function ImportPage() {
 
         <div className="bg-card border rounded-lg p-6 space-y-4">
           <div className="space-y-2">
-            <label className="text-sm font-medium">选择文件</label>
-            <input type="file" accept=".md,.mdx,text/markdown" onChange={onFileChange} className="block" />
-            {fileName && <p className="text-xs text-muted-foreground">已选择: {fileName}</p>}
+            <label className="text-sm font-medium">选择文章文件</label>
+            <div className="relative">
+              <input id="file-article" type="file" accept=".md,.mdx,text/markdown" onChange={onFileChange} className="sr-only" />
+              <label htmlFor="file-article" className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2 rounded cursor-pointer hover:bg-primary/90">
+                选择文件
+              </label>
+              {fileName && <span className="ml-3 text-xs text-muted-foreground">{fileName}</span>}
+            </div>
+          </div>
+
+          <div className="space-y-2">
+            <label className="text-sm font-medium">选择图片（可多选）</label>
+            <div className="relative">
+              <input id="file-images" type="file" accept="image/*" multiple onChange={onImagesChange} className="sr-only" />
+              <label htmlFor="file-images" className="inline-flex items-center gap-2 border border-border bg-background px-4 py-2 rounded cursor-pointer hover:bg-accent">
+                选择图片
+              </label>
+            </div>
+            {assets.length > 0 && (
+              <div className="grid gap-3 grid-cols-2 md:grid-cols-3">
+                {assets.map((a) => (
+                  <div key={a.filename} className="border rounded p-2 flex items-center gap-2">
+                    <img src={a.preview} alt={a.filename} className="w-12 h-12 object-cover rounded" />
+                    <span className="text-xs text-muted-foreground break-all">{a.filename}</span>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
 
           <div className="grid gap-4 md:grid-cols-2">
@@ -144,15 +216,9 @@ export default function ImportPage() {
             <input value={description} onChange={(e) => setDescription(e.target.value)} className="w-full rounded border px-3 py-2 bg-background" />
           </div>
 
-          <div className="grid gap-4 md:grid-cols-2">
-            <div className="space-y-2">
-              <label className="text-sm font-medium">标签（逗号分隔）</label>
-              <input value={tags} onChange={(e) => setTags(e.target.value)} className="w-full rounded border px-3 py-2 bg-background" />
-            </div>
-            <div className="space-y-2">
-              <label className="text-sm font-medium">封面图片路径</label>
-              <input value={image} onChange={(e) => setImage(e.target.value)} className="w-full rounded border px-3 py-2 bg-background" />
-            </div>
+          <div className="space-y-2">
+            <label className="text-sm font-medium">标签（逗号分隔）</label>
+            <input value={tags} onChange={(e) => setTags(e.target.value)} className="w-full rounded border px-3 py-2 bg-background" />
           </div>
 
           <div className="space-y-2">
@@ -167,9 +233,9 @@ export default function ImportPage() {
           </div>
 
           <div className="flex flex-wrap gap-4">
-            <button onClick={saveToLocal} className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2 rounded hover:bg-primary/90">保存到本地开发环境</button>
+            <button onClick={publishToGithub} disabled={publishing} className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2 rounded hover:bg-primary/90 disabled:opacity-60">发布文章</button>
             <button onClick={downloadFile} className="inline-flex items-center gap-2 border border-border bg-background px-4 py-2 rounded hover:bg-accent">生成并下载 .mdx 文件</button>
-            <button onClick={publishToGithub} disabled={publishing} className="inline-flex items-center gap-2 bg-primary/80 text-primary-foreground px-4 py-2 rounded hover:bg-primary/90 disabled:opacity-60">发布到 GitHub 并触发部署</button>
+            <button onClick={saveToLocal} className="inline-flex items-center gap-2 bg-secondary text-secondary-foreground px-4 py-2 rounded hover:bg-secondary/80">保存到本地开发环境</button>
           </div>
 
           {status && <p className="text-sm text-muted-foreground">{status}</p>}

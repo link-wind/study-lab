@@ -20,6 +20,7 @@ export async function POST(req: Request) {
     const body = await req.json()
     const slug: string = body?.slug
     const content: string = body?.content
+    const assets: { filename: string; content: string; path?: string }[] = Array.isArray(body?.assets) ? body.assets : []
     const message: string = body?.message || `chore: publish post ${slug}`
     if (!slug || !content) {
       return NextResponse.json({ error: 'missing parameters' }, { status: 400 })
@@ -58,7 +59,34 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'publish failed', detail: text }, { status: 500 })
     }
     const data = await res.json()
-    return NextResponse.json({ ok: true, path, url: data.content?.html_url })
+
+    const uploadedAssets: { filename: string; url?: string; path: string }[] = []
+    for (const asset of assets) {
+      const assetPath = asset.path || `public/images/${asset.filename}`
+      const assetSha = await getFileSha(owner, repo, assetPath, branch, token)
+      const assetUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${encodeURIComponent(assetPath)}`
+      const base64 = asset.content.includes('base64,') ? asset.content.split('base64,')[1] : asset.content
+      const putRes = await fetch(assetUrl, {
+        method: 'PUT',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          Accept: 'application/vnd.github+json',
+        },
+        body: JSON.stringify({
+          message: `${message} - asset ${asset.filename}`,
+          content: base64,
+          branch,
+          sha: assetSha || undefined,
+          committer: { name: committerName, email: committerEmail },
+        }),
+      })
+      if (putRes.ok) {
+        const putData = await putRes.json()
+        uploadedAssets.push({ filename: asset.filename, url: putData.content?.html_url, path: assetPath })
+      }
+    }
+
+    return NextResponse.json({ ok: true, path, url: data.content?.html_url, assets: uploadedAssets })
   } catch (e) {
     return NextResponse.json({ error: 'failed' }, { status: 500 })
   }
