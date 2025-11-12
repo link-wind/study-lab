@@ -1,0 +1,23 @@
+{
+  "title": "StudyLab Notebook",
+  "description": "个人技术学习博客 - 基于 Next.js 14、MDX 和 Tailwind CSS 构建的现代化技术博客",
+  "author": "StudyLab",
+  "url": "https://study-lab.vercel.app",
+  "social": {
+    "twitter": "@studylab",
+    "github": "studylab"
+  },
+  "navigation": [
+    { "name": "首页", "href": "/" },
+    { "name": "博客", "href": "/blog" },
+    { "name": "标签", "href": "/tags" }
+  ],
+  "features": [
+    "基于 Next.js 14 的现代博客",
+    "支持 Markdown 和 MDX 语法",
+    "代码高亮和数学公式支持",
+    "响应式设计和暗黑模式",
+    "自动生成 RSS 和 Sitemap",
+    "一键部署到 Vercel"
+  ]
+}

@@ -1,0 +1,189 @@
+/* 自定义滚动条 */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary));
+}
+
+/* 平滑滚动 */
+html {
+  scroll-behavior: smooth;
+}
+
+/* 代码块样式增强 */
+.prose pre {
+  @apply bg-gray-900 text-gray-100 rounded-lg border-0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.prose pre code {
+  @apply bg-transparent p-0 text-inherit;
+}
+
+/* 数学公式样式 */
+.katex {
+  font-size: inherit !important;
+}
+
+.katex-display {
+  @apply my-6;
+}
+
+/* 表格样式增强 */
+.prose table {
+  @apply border-collapse w-full my-6;
+}
+
+.prose th {
+  @apply bg-muted border border-border px-4 py-3 text-left font-semibold;
+}
+
+.prose td {
+  @apply border border-border px-4 py-3;
+}
+
+.prose tr:nth-child(even) {
+  @apply bg-muted/30;
+}
+
+/* 链接样式 */
+.prose a {
+  @apply text-primary hover:text-primary/80 underline underline-offset-4 decoration-2;
+}
+
+/* 引用样式 */
+.prose blockquote {
+  @apply border-l-4 border-primary bg-muted/50 pl-6 py-4 my-6 italic text-lg;
+}
+
+.prose blockquote p:first-child {
+  @apply mt-0;
+}
+
+.prose blockquote p:last-child {
+  @apply mb-0;
+}
+
+/* 列表样式增强 */
+.prose ul {
+  @apply space-y-2;
+}
+
+.prose ol {
+  @apply space-y-2;
+}
+
+.prose li {
+  @apply leading-relaxed;
+}
+
+.prose li::marker {
+  @apply text-primary;
+}
+
+/* 标题样式增强 */
+.prose h1 {
+  @apply text-4xl font-bold mb-6 mt-8;
+}
+
+.prose h2 {
+  @apply text-3xl font-semibold mb-4 mt-10;
+}
+
+.prose h3 {
+  @apply text-2xl font-semibold mb-3 mt-8;
+}
+
+.prose h4 {
+  @apply text-xl font-semibold mb-2 mt-6;
+}
+
+/* 段落样式 */
+.prose p {
+  @apply leading-relaxed mb-4;
+}
+
+/* 图片样式 */
+.prose img {
+  @apply rounded-lg border shadow-md my-6 mx-auto;
+}
+
+/* 内联代码样式 */
+.prose :not(pre) > code {
+  @apply bg-muted text-primary px-2 py-1 rounded text-sm font-mono;
+}
+
+/* 分割线样式 */
+.prose hr {
+  @apply my-8 border-border;
+}
+
+/* 暗黑模式特殊样式 */
+.dark .prose pre {
+  @apply bg-gray-950;
+}
+
+.dark .prose blockquote {
+  @apply bg-muted/30;
+}
+
+.dark .prose tr:nth-child(even) {
+  @apply bg-muted/20;
+}
+
+/* 动画效果 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* 悬停效果增强 */
+.hover-lift {
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* 焦点样式 */
+.focus-visible {
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: 2px;
+}
+
+/* 加载动画 */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}

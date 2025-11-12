@@ -1,0 +1,545 @@
+---
+title: "React Hooks 完全指南"
+description: "深入理解 React Hooks 的原理和最佳实践"
+date: "2024-02-01"
+tags: ["React", "JavaScript", "前端", "Hooks"]
+image: "/images/react-hooks.svg"
+---
+
+# React Hooks 完全指南
+
+React Hooks 彻底改变了我们编写 React 组件的方式。本文将深入探讨 Hooks 的原理、使用方法和最佳实践。
+
+## 🎯 什么是 Hooks？
+
+Hooks 是 React 16.8 引入的新特性，让你在不编写类组件的情况下使用状态和其他 React 特性。
+
+```javascript
+import React, { useState, useEffect } from 'react'
+
+function Example() {
+  // 声明一个新的状态变量，叫做 "count"
+  const [count, setCount] = useState(0)
+
+  // 相当于 componentDidMount 和 componentDidUpdate:
+  useEffect(() => {
+    // 使用浏览器的 API 更新页面标题
+    document.title = `You clicked ${count} times`
+  })
+
+  return (
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>
+        Click me
+      </button>
+    </div>
+  )
+}
+```
+
+## 🪝 基础 Hooks
+
+### useState
+
+`useState` 是 React 中最基本的 Hook，用于在函数组件中添加状态。
+
+```javascript
+const [state, setState] = useState(initialState)
+```
+
+**使用示例：**
+
+```javascript
+function Counter() {
+  const [count, setCount] = useState(0)
+  const [name, setName] = useState('React')
+
+  return (
+    <div>
+      <p>{name} clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>
+        Click
+      </button>
+      <button onClick={() => setName('Hooks')}>
+        Change Name
+      </button>
+    </div>
+  )
+}
+```
+
+**函数式更新：**
+
+```javascript
+function Counter() {
+  const [count, setCount] = useState(0)
+
+  function increment() {
+    setCount(prevCount => prevCount + 1)
+  }
+
+  return (
+    <button onClick={increment}>
+      Clicked {count} times
+    </button>
+  )
+}
+```
+
+### useEffect
+
+`useEffect` 用于处理副作用，相当于类组件中的生命周期方法。
+
+```javascript
+useEffect(effectFunction, dependencyArray)
+```
+
+**基本用法：**
+
+```javascript
+function Example() {
+  const [count, setCount] = useState(0)
+
+  // 每次渲染后都执行
+  useEffect(() => {
+    document.title = `You clicked ${count} times`
+  })
+
+  // 只在挂载时执行一次
+  useEffect(() => {
+    console.log('Component mounted')
+  }, [])
+
+  // 依赖特定变量
+  useEffect(() => {
+    console.log('Count changed:', count)
+  }, [count])
+
+  return (
+    <button onClick={() => setCount(count + 1)}>
+      Click me
+    </button>
+  )
+}
+```
+
+**清理函数：**
+
+```javascript
+function Timer() {
+  const [seconds, setSeconds] = useState(0)
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setSeconds(s => s + 1)
+    }, 1000)
+
+    // 清理函数
+    return () => clearInterval(timer)
+  }, [])
+
+  return <div>Seconds: {seconds}</div>
+}
+```
+
+### useContext
+
+`useContext` 让你无需显式地传递 props，就能在组件树间传递数据。
+
+```javascript
+const value = useContext(MyContext)
+```
+
+**使用示例：**
+
+```javascript
+// 创建 Context
+const ThemeContext = React.createContext('light')
+
+function App() {
+  return (
+    <ThemeContext.Provider value="dark">
+      <Toolbar />
+    </ThemeContext.Provider>
+  )
+}
+
+function Toolbar() {
+  return (
+    <div>
+      <ThemedButton />
+    </div>
+  )
+}
+
+function ThemedButton() {
+  const theme = useContext(ThemeContext)
+  return <button className={theme}>I am styled by theme context!</button>
+}
+```
+
+## 🔧 额外 Hooks
+
+### useReducer
+
+`useReducer` 用于管理复杂的状态逻辑。
+
+```javascript
+const [state, dispatch] = useReducer(reducer, initialArg, init)
+```
+
+**使用示例：**
+
+```javascript
+function reducer(state, action) {
+  switch (action.type) {
+    case 'increment':
+      return { count: state.count + 1 }
+    case 'decrement':
+      return { count: state.count - 1 }
+    default:
+      throw new Error()
+  }
+}
+
+function Counter() {
+  const [state, dispatch] = useReducer(reducer, { count: 0 })
+
+  return (
+    <>
+      Count: {state.count}
+      <button onClick={() => dispatch({ type: 'increment' })}>+</button>
+      <button onClick={() => dispatch({ type: 'decrement' })}>-</button>
+    </>
+  )
+}
+```
+
+### useMemo
+
+`useMemo` 用于性能优化，缓存计算结果。
+
+```javascript
+const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b])
+```
+
+**使用示例：**
+
+```javascript
+function ExpensiveComponent({ data }) {
+  const processedData = useMemo(() => {
+    return data.map(item => {
+      // 复杂的计算
+      return heavyComputation(item)
+    })
+  }, [data])
+
+  return <div>{processedData}</div>
+}
+```
+
+### useCallback
+
+`useCallback` 用于缓存函数引用。
+
+```javascript
+const memoizedCallback = useCallback(() => {
+  doSomething(a, b)
+}, [a, b])
+```
+
+**使用示例：**
+
+```javascript
+function ParentComponent() {
+  const [count, setCount] = useState(0)
+  
+  const handleClick = useCallback(() => {
+    console.log('Button clicked')
+  }, [])
+
+  return (
+    <div>
+      <ExpensiveChildComponent onClick={handleClick} />
+      <button onClick={() => setCount(count + 1)}>
+        Count: {count}
+      </button>
+    </div>
+  )
+}
+```
+
+### useRef
+
+`useRef` 用于访问 DOM 元素或存储可变值。
+
+```javascript
+const refContainer = useRef(initialValue)
+```
+
+**访问 DOM：**
+
+```javascript
+function TextInput() {
+  const inputRef = useRef(null)
+
+  const focusInput = () => {
+    inputRef.current.focus()
+  }
+
+  return (
+    <div>
+      <input ref={inputRef} type="text" />
+      <button onClick={focusInput}>Focus Input</button>
+    </div>
+  )
+}
+```
+
+**存储可变值：**
+
+```javascript
+function Timer() {
+  const [count, setCount] = useState(0)
+  const intervalRef = useRef(null)
+
+  const startTimer = () => {
+    intervalRef.current = setInterval(() => {
+      setCount(c => c + 1)
+    }, 1000)
+  }
+
+  const stopTimer = () => {
+    clearInterval(intervalRef.current)
+  }
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={startTimer}>Start</button>
+      <button onClick={stopTimer}>Stop</button>
+    </div>
+  )
+}
+```
+
+## 🎯 自定义 Hooks
+
+自定义 Hooks 让你将组件逻辑提取到可重用的函数中。
+
+**创建自定义 Hook：**
+
+```javascript
+function useCounter(initialValue = 0) {
+  const [count, setCount] = useState(initialValue)
+
+  const increment = useCallback(() => setCount(c => c + 1), [])
+  const decrement = useCallback(() => setCount(c => c - 1), [])
+  const reset = useCallback(() => setCount(initialValue), [initialValue])
+
+  return { count, increment, decrement, reset }
+}
+```
+
+**使用自定义 Hook：**
+
+```javascript
+function Counter() {
+  const { count, increment, decrement, reset } = useCounter(0)
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={increment}>+</button>
+      <button onClick={decrement}>-</button>
+      <button onClick={reset}>Reset</button>
+    </div>
+  )
+}
+```
+
+**另一个例子 - useLocalStorage：**
+
+```javascript
+function useLocalStorage(key, initialValue) {
+  const [storedValue, setStoredValue] = useState(() => {
+    try {
+      const item = window.localStorage.getItem(key)
+      return item ? JSON.parse(item) : initialValue
+    } catch (error) {
+      return initialValue
+    }
+  })
+
+  const setValue = (value) => {
+    try {
+      setStoredValue(value)
+      window.localStorage.setItem(key, JSON.stringify(value))
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  return [storedValue, setValue]
+}
+```
+
+## 🚀 最佳实践
+
+### 1. 只在顶层调用 Hooks
+
+✅ **正确：**
+
+```javascript
+function Example() {
+  const [count, setCount] = useState(0)  // ✅ 在顶层
+  
+  if (count > 0) {
+    return <div>{count}</div>
+  }
+  
+  return null
+}
+```
+
+❌ **错误：**
+
+```javascript
+function Example() {
+  const [count, setCount] = useState(0)
+  
+  if (count > 0) {
+    const [name, setName] = useState('')  // ❌ 在条件语句中
+    return <div>{name}</div>
+  }
+  
+  return null
+}
+```
+
+### 2. 只在 React 函数中调用 Hooks
+
+✅ **正确：**
+
+```javascript
+function MyComponent() {
+  const [value, setValue] = useState(0)
+  // ...
+}
+
+function useCustomHook() {
+  const [value, setValue] = useState(0)
+  // ...
+}
+```
+
+❌ **错误：**
+
+```javascript
+function regularFunction() {
+  const [value, setValue] = useState(0)  // ❌ 在普通函数中
+  // ...
+}
+```
+
+### 3. 使用 ESLint 插件
+
+安装并配置 `eslint-plugin-react-hooks`：
+
+```bash
+npm install eslint-plugin-react-hooks --save-dev
+```
+
+```javascript
+// .eslintrc
+{
+  "plugins": [
+    "react-hooks"
+  ],
+  "rules": {
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
+  }
+}
+```
+
+### 4. 优化依赖数组
+
+确保依赖数组包含所有在 effect 中使用的值：
+
+```javascript
+function Example({ userId }) {
+  const [user, setUser] = useState(null)
+  
+  useEffect(() => {
+    fetchUser(userId).then(setUser)
+  }, [userId])  // ✅ 包含了所有依赖
+  
+  return <div>{user?.name}</div>
+}
+```
+
+### 5. 避免过度使用 useMemo 和 useCallback
+
+只在真正需要优化时才使用：
+
+```javascript
+// ✅ 只在计算昂贵时使用
+const expensiveValue = useMemo(() => {
+  return computeExpensiveValue(a, b, c)
+}, [a, b, c])
+
+// ✅ 只在需要稳定引用时使用
+const handleClick = useCallback(() => {
+  doSomething(a, b)
+}, [a, b])
+```
+
+## 🧪 测试 Hooks
+
+使用 `@testing-library/react-hooks` 测试自定义 Hooks：
+
+```bash
+npm install @testing-library/react-hooks --save-dev
+```
+
+```javascript
+import { renderHook, act } from '@testing-library/react-hooks'
+import { useCounter } from './useCounter'
+
+test('should increment counter', () => {
+  const { result } = renderHook(() => useCounter(0))
+  
+  act(() => {
+    result.current.increment()
+  })
+  
+  expect(result.current.count).toBe(1)
+})
+```
+
+## 📚 总结
+
+React Hooks 为我们提供了更简洁、更强大的方式来管理组件状态和副作用。掌握 Hooks 的使用将帮助你写出更好的 React 应用。
+
+### 关键点回顾：
+
+1. **useState**: 管理组件状态
+2. **useEffect**: 处理副作用
+3. **useContext**: 跨组件传递数据
+4. **useReducer**: 管理复杂状态
+5. **useMemo/useCallback**: 性能优化
+6. **useRef**: 访问 DOM 和存储可变值
+7. **自定义 Hooks**: 提取和复用逻辑
+
+记住 Hooks 的规则，遵循最佳实践，你的 React 代码将变得更加优雅和高效！
+
+---
+
+> 想要了解更多 React Hooks 的高级用法？继续关注 StudyLab 的后续文章！
+
+参考资料：
+- [React Hooks 官方文档](https://reactjs.org/docs/hooks-intro.html)
+- [Hooks FAQ](https://reactjs.org/docs/hooks-faq.html)
+- [使用 Hooks 的动机](https://reactjs.org/docs/hooks-intro.html#motivation)
