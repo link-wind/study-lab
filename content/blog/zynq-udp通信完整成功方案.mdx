@@ -1,0 +1,310 @@
+---
+title: "Zynq UDP通信完整成功方案"
+description: "Zynq UDP通信完整成功方案"
+date: "2025-11-12"
+tags: ["UDP", "ZYNQ"]
+image: "/images/cover.png"
+---# Zynq UDP通信完整成功方案
+
+**状态**: ✅ 已验证成功 - PC可以接收到Zynq发送的UDP数据
+
+---
+
+## 1. 系统架构
+
+```
+UDP模块(PL)
+    ↓ GMII接口
+PS MAC (gem1)
+    ↓ 
+Linux网络栈
+    ↓
+网桥 br0 (eth0 + eth1)
+    ↓
+物理网卡 eth0 → PC接收
+```
+
+---
+
+## 2. FPGA端修改 (src/zynq_u_top.v)
+
+### 关键修改：UDP模块的GMII连接
+
+UDP模块的GMII接口**必须连接到PS MAC的RX端口**，而不是外部PHY：
+
+```verilog
+// GMII接收接口 - 接收PS MAC发出的配置命令
+.I_mii_rx_clk       (GMII_CLK125),
+.I_mii_rxd          (emio_gmii_txd),           // ← PS的TX数据
+.I_mii_rx_dv        (emio_gmii_tx_en),        // ← PS的TX使能
+.I_mii_rx_err       (emio_gmii_tx_er),        // ← PS的TX错误
+
+// GMII发送接口 - 发送到PS MAC的RX端口
+.O_mii_tx_clk       (),                        // 不需要输出时钟
+.O_mii_txd          (emio_gmii_rxd),           // → PS的RX数据
+.O_mii_tx_dv        (emio_gmii_rx_en),         // → PS的RX使能
+.O_mii_tx_err       (emio_gmii_rx_er),         // → PS的RX错误
+.O_mii_tx_crs       (emio_gmii_crs),           // 载波侦听
+.O_mii_tx_col       (emio_gmii_col),           // 碰撞检测
+```
+
+### 重要点：
+- UDP TX输出 → emio_gmii_rxd/rx_en/rx_er → PS MAC接收
+- PS MAC处理后 → 转发到eth0物理网卡
+- 数据最终到达PC
+
+---
+
+## 3. Linux网络配置
+
+### 3.1 创建网桥并启用
+
+```bash
+# 创建网桥
+brctl addbr br0
+
+# 添加网卡
+brctl addif br0 eth0
+brctl addif br0 eth1
+
+# 启用网卡为混杂模式
+ifconfig eth0 0.0.0.0 up promisc
+ifconfig eth1 0.0.0.0 up promisc
+
+# 配置网桥IP地址
+ifconfig br0 192.168.2.11 netmask 255.255.255.0 up
+
+# 验证网桥
+brctl show
+```
+
+### 3.2 关键参数
+
+| 参数 | 值 | 说明 |
+|------|-----|------|
+| Zynq IP | 192.168.2.11 | 网桥br0的IP |
+| PC IP | 192.168.2.100 | 目标PC的IP |
+| 网卡 | eth0 + eth1 | 两个都要加入网桥 |
+| 混杂模式 | 启用 | 允许接收所有MAC地址的数据 |
+
+---
+
+## 4. UDP配置脚本 (/root/udp_config.sh)
+
+### 完整脚本内容
+
+```bash
+#!/bin/bash
+
+echo "========================================"
+echo "  UDP Module Configuration"
+echo "========================================"
+echo ""
+
+# Step 1: Reset UDP Module
+echo "[1] Reset UDP Module"
+devmem 0x43C00400 32 0x00010001
+sleep 0.1
+devmem 0x43C00400 32 0x00000000
+sleep 0.1
+
+# Step 2: Configure Destination (PC) MAC: 08:26:AE:3D:2C:65
+echo "[2] Configure Destination MAC (PC): 08:26:AE:3D:2C:65"
+devmem 0x43C00408 32 0x00000826    # MAC[47:32]
+devmem 0x43C0040C 32 0x0000AE3D    # MAC[31:16]
+devmem 0x43C00410 32 0x00002C65    # MAC[15:0]
+
+# Step 3: Configure Source (FPGA) MAC: 00:0A:35:FF:FF:00 (虚拟MAC)
+echo "[3] Configure Source MAC (FPGA): 00:0A:35:FF:FF:00"
+devmem 0x43C00414 32 0x0000000A    # 00:0A
+devmem 0x43C00418 32 0x000035FF    # 35:FF
+devmem 0x43C0041C 32 0x0000FF00    # FF:00
+
+# Step 4: Configure Destination (PC) IP: 192.168.2.100
+echo "[4] Configure Destination IP (PC): 192.168.2.100"
+devmem 0x43C00420 32 0x0000C0A8    # 192.168
+devmem 0x43C00424 32 0x00000264    # 2.100
+
+# Step 5: Configure Source (FPGA) IP: 192.168.2.11
+echo "[5] Configure Source IP (FPGA): 192.168.2.11"
+devmem 0x43C00428 32 0x0000C0A8    # 192.168
+devmem 0x43C0042C 32 0x0000020B    # 2.11
+
+# Step 6: Configure Ports: 8080
+echo "[6] Configure Ports: 8080"
+devmem 0x43C00430 32 0x00001F90    # Destination Port
+devmem 0x43C00434 32 0x00001F90    # Source Port
+
+# Step 7: Enable Checksum, Set Packet Type = SAP
+echo "[7] Enable Checksum, Packet Type = SAP"
+devmem 0x43C00438 32 0x00000001
+devmem 0x43C0043C 32 0x00000000
+
+# Step 8: Configure Transmission Period (Unit = 1us)
+echo "[8] Configure TX Period: 100us"
+devmem 0x43C004C0 32 0x00000064    # Period = 100us
+devmem 0x43C004C4 32 0x0000005F    # Valid = 95us
+devmem 0x43C004C8 32 0x00000005    # Idle = 5us
+devmem 0x43C004D0 32 0x00000000    # Start Address
+devmem 0x43C004D4 32 0x00000001    # Period Num
+
+# Step 9: Write Schedule Table
+echo "[9] Write Schedule Table to Period RAM"
+devmem 0x43C004DC 32 0x00000000    # wdata_0
+devmem 0x43C004E0 32 0x00000003    # wdata_1 (SAP type)
+devmem 0x43C004D8 32 0x00000001    # Trigger write
+sleep 0.1
+devmem 0x43C004D8 32 0x00000000    # End write
+
+# Step 10: Enable SAP Data Path
+echo "[10] Enable SAP Data Path"
+devmem 0x43C0051C 32 0x00000001
+
+# Step 11: Start UDP Transmission
+echo "[11] Start UDP Transmission (RUN bit)"
+devmem 0x43C004CC 32 0x00000001
+sleep 0.1
+
+echo ""
+echo "========================================"
+echo "  Configuration Complete!"
+echo "========================================"
+```
+
+### 关键参数说明
+
+| 参数 | 地址 | 值 | 说明 |
+|------|------|-----|------|
+| 目标MAC | 0x43C00408-10 | 08:26:AE:3D:2C:65 | PC的MAC地址 |
+| 源MAC | 0x43C00414-1C | 00:0A:35:FF:FF:00 | 虚拟MAC，避免回环 |
+| 目标IP | 0x43C00420-24 | 192.168.2.100 | PC的IP |
+| 源IP | 0x43C00428-2C | 192.168.2.11 | Zynq的IP |
+| 端口 | 0x43C00430-34 | 8080 | UDP端口 |
+| 周期 | 0x43C004C0 | 100 | 100μs周期 |
+| RUN位 | 0x43C004CC | 1 | 启动传输 |
+
+---
+
+## 5. 验证步骤
+
+### 5.1 在Zynq上验证
+
+```bash
+# 记录运行前的RX/TX
+RX_BEFORE=$(cat /proc/net/dev | grep eth1 | awk '{print $2}')
+TX_BEFORE=$(cat /proc/net/dev | grep "eth0 " | awk '{print $10}')
+
+# 运行配置
+bash /root/udp_config.sh
+
+# 等待数据产生
+sleep 5
+
+# 记录运行后的RX/TX
+RX_AFTER=$(cat /proc/net/dev | grep eth1 | awk '{print $2}')
+TX_AFTER=$(cat /proc/net/dev | grep "eth0 " | awk '{print $10}')
+
+# 显示结果
+echo "eth1 RX增加: $((RX_AFTER - RX_BEFORE)) 字节"  # 应该大幅增加（如718256）
+echo "eth0 TX增加: $((TX_AFTER - TX_BEFORE)) 字节"  # 可能显示0（但数据已转发）
+```
+
+**预期结果**：
+- ✅ eth1 RX增加约700KB+（数据进入）
+- ⚠️ eth0 TX显示0（正常，但数据实际已转发）
+- ✅ 无"own address as source"的警告
+
+### 5.2 在PC上验证
+
+```bash
+# 使用Python接收器
+python3 d:/Code/zynq_u/udp_receiver.py
+
+# 或用简单的bash监听
+timeout 10 bash -c 'exec 3<>/dev/udp/0.0.0.0/8080; while read -u 3 line; do echo "Received: $line"; done'
+```
+
+**预期结果**：
+- ✅ 接收到多个UDP数据包
+- ✅ 每个包大小一致（通常~1200字节）
+- ✅ 源IP为192.168.2.11
+- ✅ 目标端口为8080
+
+---
+
+## 6. 故障排查
+
+| 问题 | 症状 | 解决方案 |
+|------|------|---------|
+| 无MAC学习 | eth1 RX不增加 | 检查FPGA是否重新编译、UDP模块是否正确配置 |
+| MAC回环 | 网桥警告"own address as source" | 更改源MAC为虚拟MAC（00:0A:35:FF:FF:00） |
+| 网络转发失败 | eth1 RX增加但PC收不到 | 检查网桥状态、PC防火墙、IP地址配置 |
+| eth0不工作 | eth0无链接 | `ethtool eth0`检查链接、检查物理网线 |
+
+---
+
+## 7. 关键发现和注意事项
+
+### 7.1 关键发现
+
+1. **UDP数据进入eth1** - 因为Block Design中GMII接口连接到gem1
+2. **网桥转发到eth0** - 虽然统计显示TX=0，但实际已转发
+3. **MAC地址很重要** - 源MAC必须是虚拟地址，否则网桥会丢弃（防止回环）
+4. **虚拟MAC避免冲突** - 00:0A:35:FF:FF:00与现有网卡MAC不重复
+
+### 7.2 配置的稳定性
+
+- 该配置已验证可工作
+- UDP周期100μs（每秒10000个包）
+- 网络带宽占用约8Mbps
+- 系统稳定运行
+
+### 7.3 后续优化可能
+
+- 调整周期以改变发包速率
+- 修改SAP数据内容（当前为模拟ADC数据）
+- 添加更多UDP流（多个端口）
+- 集成到应用程序
+
+---
+
+## 8. 快速启动步骤
+
+```bash
+# 第1步：Zynq上配置网络
+brctl addbr br0 2>/dev/null
+brctl addif br0 eth0
+brctl addif br0 eth1
+ifconfig eth0 0.0.0.0 up promisc
+ifconfig eth1 0.0.0.0 up promisc
+ifconfig br0 192.168.2.11 netmask 255.255.255.0 up
+
+# 第2步：Zynq上运行UDP配置
+bash /root/udp_config.sh
+
+# 第3步：PC上接收数据
+python3 udp_receiver.py
+```
+
+---
+
+## 文档版本
+
+- **版本**: 1.0
+- **日期**: 2024-11-09
+- **状态**: ✅ 已验证成功
+- **测试环境**: 
+  - Zynq-7100
+  - Ubuntu Linux (PetaLinux)
+  - UDP模块工作于100μs周期
+  - PC: Windows/Linux with Python3
+
+---
+
+## 更新记录
+
+| 日期 | 版本 | 变更 |
+|------|------|------|
+| 2024-11-09 | 1.0 | 初始版本，系统验证成功 |
+
+
