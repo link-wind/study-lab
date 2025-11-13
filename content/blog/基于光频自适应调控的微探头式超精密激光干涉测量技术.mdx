@@ -1,0 +1,2837 @@
+---
+title: "基于光频自适应调控的微探头式超精密激光干涉测量技术"
+description: "基于光频自适应调控的微探头式超精密激光干涉测量技术"
+date: "2025-11-13"
+tags: ["光频自适应", "PGC", "相位解调算法"]
+image: "/images/lazer.jpg"
+---![封面图片](/images/lazer.jpg)
+
+# 博士学位论文
+
+# 基于光频自适应调控的微探头式超精密激光干涉测量技术
+
+# ULTRA-PRECISION MICROPROBE LASER INTERFEROMETRYTECHNOLOGYBASED ON ADAPTIVECONTROLOFOPTICAL FREQUENCY
+
+董祎嗣
+
+哈尔滨工业大学
+
+2023年3月
+
+# 工学博士学位论文
+
+# 基于光频自适应调控的微探头式超精密激光干涉测量技术
+
+博士研究生：董祎嗣
+
+导 师：胡鹏程教授
+
+申请学位：工学博士
+
+学科：仪器科学与技术
+
+所在单位：仪器科学与工程学院
+
+答辩日期：2023年3月
+
+授予学位单位：哈尔滨工业大学
+
+# Dissertation for the Doctoral Degree in Engineering
+
+# ULTRA-PRECISION MICROPROBE LASER INTERFEROMETRYTECHNOLOGYBASED ON ADAPTIVECONTROLOFOPTICAL FREQUENCY
+
+Candidate: Dong Yisi
+
+Supervisor: Prof. Hu Pengcheng
+
+Academic Degree Applied for: Doctor of Engineering
+
+Speciality: Instrument Science and Technology
+
+Affiliation: School of Instrumentation Science
+
+and Engineering
+
+Date of Defence: March, 2023
+
+Degree-Conferring-Institution: Harbin Institute of Technology
+
+# 摘要
+
+近年来，随着工业4.0和中国制造2025的提出，在新一代高端装备集成、精密计量测试和基础物理研究领域，对体积极小，易嵌入实验装置或精密装备，能在狭小空间中执行任务的微探头式超精密位移测量技术提出了迫切需求。例如，在光刻机掩模板滑移监测中，仪器可用空间仅为  $10\times 20\times 40\mathrm{mm}^3$  ，传统激光干涉仪体积大、机械漂移因素多、装调复杂，难以实现上述高精度嵌入式测量需求。相较而言，微探头传感器式激光干涉仪是新一代超精密激光干涉测量仪器的代表，具有探头尺寸极小、装调方便、可隔离热污染等优势，在实现狭小空间嵌入式测量等场合具备极大潜力。然而，作为微探头动态位移测量最重要核心手段，相位生成载波(PGC)激光干涉方法面向大量程时，在测量原理、测量基准、测量误差方面存在科学问题和关键技术问题亟待解决。
+
+本博士论文来源于国家02科技重大专项子课题“掩模板滑移抑制与实时测量技术研究”和国家重点研发计划“微探头传感器式激光干涉仪”仪器专项。本文从科学问题的解决、关键技术的攻关到超精密微探头干涉仪样机的实现，分别突破微探头式高分辨力大量程干涉测量、大范围高带宽调频下高精度稳频、信号解调周期非线性误差消除的关键理论和核心技术，以支撑装备制造中的传感式超精密测量需求，为我国高端光刻机研发提供嵌入式在线测量手段，为纳米计量测试提供核心仪器。具体研究内容和实验结果如下：
+
+针对微探头激光干涉仪采用经典PGC测量方法时因光频内调制失配导致存在位移分辨力急剧下降直至测量失效的多个奇点、无法连续大量程工作问题，提出一种基于光频自适应调控的亚纳米分辨力大量程微探头干涉测量方法。建立大量程工作中测量奇点与光频内调制幅度映射关系，自适应调控激光光源光频内调制幅度，动态跟踪系统调制深度最佳工作点，避免测量失效奇点，使仪器在大量程范围内始终保持亚纳米位移分辨力。实验结果表明，该方法可将位移量程从  $\mathrm{mm}$  量级提升至  $376\mathrm{mm}$ ，并在该量程内保持  $0.4\mathrm{nm}$  的有效位移分辨力。
+
+针对微探头激光干涉PGC测量基准难以兼顾大幅度高带宽调频和高精度稳频、导致大量程测量下难以获得高相对精度的问题，提出一种基于鉴频曲线重构的大幅度高带宽调频下高精度激光稳频方法。在大幅度高带宽调制条件下，建立鉴频特征曲线畸变模型和畸变矫正模型，利用矫正模型反馈调节相位补偿并重构鉴频曲线，明确锁定点与稳频基准点的对应关系，实现气体分子吸收基准点锁定跟踪，精准控制大范围高带宽调谐中心频率。实验结果表明，该方法可在1MHz调制带宽、2.61GHz最大调制幅度下将中心激光频率相对精度从  $5\times 10^{-7}$  提升至  $5\times 10^{-8}$  。
+
+针对微探头激光干涉PGC非线性误差校正时其特征参数易缺失或消隐、使测
+
+量结果存在数十 nm 非线性误差的问题，提出一种基于校正特征参数复现的周期非线性误差零位消除方法。建立不同初始边界条件下微探头干涉仪周期非线性模型，据此计算载波相位延迟来局部复现周期非线性特征，利用温度调控激光移频以获得等效位移，来完整恢复周期非线性特征校准参数，将该误差抑制到亚纳米级。实验结果表明，该方法将微探头干涉仪周期非线性误差从数十 nm 抑制到 0.8nm。
+
+通过自主搭建的测试平台对所提出的方法和关键理论可行性进行验证，测试和评价微探头式激光干涉仪整机的线性测量性能，并结合中国计量院校准测试证书对上述结果进行补充。实验可得结论：仪器传感探头尺寸为  $\Phi 4.7\mathrm{mm} \times 17\mathrm{mm}$ ，工作距为  $24\mathrm{mm} - 400\mathrm{mm}$ ，测量量程  $376\mathrm{mm}$ ，有效测量分辨力  $0.4\mathrm{nm}$ ，结合折射率补偿单元，线性测量标准不确定度为  $u(L) = \sqrt{0.23 + 762 \times L^2}\mathrm{nm}$ ，其中  $L$  为测量长度，单位  $\mathrm{m}$ 。综上可满足高端装备集成、精密计量和基础研究对于微探头嵌入式测量的需求。
+
+关键词：微探头式干涉；大量程高分辨力；调谐光源稳频；周期非线性消除
+
+# Abstract
+
+In recent years, with the Industry 4.0 and Made in China 2025 proposals, in the fields of new-generation high-end equipment integration, precision measurement and testing, and fundamental physics research, there has been an urgent need for ultra-precision displacement measurement with microsensor heads that are very small in size, easy to embed in experimental devices or precision equipment, and can perform measurement tasks in a confined space. For instance, the inertial slip of the lithography mask must be monitored in real-time during the process and the instrument's available volume is  $10 \times 20 \times 40\mathrm{mm}^3$ . However, the traditional homodyne and heterodyne interferometers have a large volume and numerous mechanical drift factors, making it challenging to meet the above high-precision embedded measurement requirements. Micro probe sensor laser interferometer is representative of a new generation of ultra precision laser interferometer. It has the advantages of small probe size, convenient installation and adjustment, and thermal pollution isolation. It has great potential in realizing embedded measurement in narrow space and other occasions. However, the existing micro probe laser interference PGC measurement technology has scientific problems and key technical problems in measurement principle, measurement reference (light source wavelength), and error correction when facing large range measurement.
+
+This doctoral dissertation comes from the sub-project of the national 02 science and technology major project "Research on mask slip suppression and real-time measurement technology" and the instrument project of the national key research and development program "Micro probe sensor laser interferometer". From the solution of scientific problems and the tackling of key technologies to the realization of ultra precision micro probe interferometer prototype, the paper advances vital technologies such as optical fiber microprobe design, high-resolution and large range interference signal real-time demodulation method, high-accuracy laser frequency stabilization technology under large range and high bandwidth frequency modulation, and periodic nonlinear error elimination to meet the demand for sensing ultra-precision measurement in equipment manufacturing. It provides embedded online measurement means for high-end lithography machine research and development in China. In addition, it provides essential instruments for nanometer testing and measurement. The specific contents of the research are as follows:
+
+Given the problem that the classical PGC measurement method of micro probe laser interferometry has many singular points that lead to a sharp decline in displacement resolution until measurement failure due to internal modulation mismatch, and can not achieve a large range, a dynamic demodulation method of a large range
+
+displacement signal with the sub-nanometer resolution is proposed. In large range measurement, the mapping relationship between measurement singularity and internal modulation amplitude is established. By adjusting the internal modulation amplitude of the light source adaptively, the modulation depth working point can be tracked, and a high-resolution, long-range position measurement can be achieved. The research results indicate that, based on this method, the measuring range of the fiber optic microprobe interferometer is increased from the  $10\mu \mathrm{m}$  to the  $376\mathrm{mm}$  with  $0.4\mathrm{nm}$  resolution.
+
+Given the problem that the micro probe laser interference PGC measurement standard is difficult to give consideration to large amplitude and high bandwidth frequency modulation and high precision frequency stabilization, which makes it difficult to obtain high relative accuracy in large range measurement, a method for the high-precision stabilization of laser frequency based on the reconstruction of the frequency discrimination characteristic curve under large amplitude and high bandwidth frequency modulation is proposed. First, establish the correction model of characteristic curve distortion under large amplitude and high bandwidth modulation, use the correction model feedback to adjust the phase compensation, re-establish the mapping relationship between the locking point and the frequency stabilization reference point, reconstruct the characteristic curve, reproduce the frequency stabilization reference point, and realize the gas molecule absorption reference point locking and tracking so that the frequency stabilization reference point is locked to the gas molecule absorption reference point. The research findings indicate that this method can improve the relative accuracy of frequency stabilization from  $5 \times 10^{-7}$  to  $5 \times 10^{-8}$  under 1MHz modulation bandwidth and 2.61GHz maximum modulation amplitude.
+
+Given the problem that the characteristic parameters of the classical PGC nonlinear error correction of micro probe laser interference are easy to be missing or hidden, resulting in tens of nm nonlinear errors in the measurement results, a zero position elimination method of periodic nonlinear errors based on the recurrence of the corrected characteristic parameters is proposed. The periodic nonlinear model of the micro probe interferometer under different initial boundary conditions is established, according to which the carrier phase delay is calculated to locally reproduce the periodic nonlinear characteristics, and then the temperature controlled laser frequency shift is used to obtain the equivalent displacement to completely recover the calibration parameters of the periodic nonlinear characteristics, so as to suppress the error to the sub nanometer level. Through this method, the nonlinear error of the fiber optic microprobe interferometer is reduced from tens of nanometers to 0.8nm.
+
+The proposed methods and critical theories are validated and analyzed based on the self-built test platform and experimental design and the relevant calibration certificates and test reports of the China Institute of Metrology. At the same time, the linear measurement performance of the entire optical fiber microprobe laser interferometer is
+
+evaluated. Experiment results indicate that the instrument has an effective measurement resolution of  $0.4\mathrm{nm}$ , a working distance between  $24\mathrm{mm}$  and  $400\mathrm{mm}$ , and a measurement range of  $376\mathrm{mm}$ . In conjunction with the refractive index compensation unit, the linear measurement standard's uncertainty is  $u(L) = \sqrt{0.23 + 762L^2}$  nm, where  $L$  is the measurement length in m. The microprobe interferometer can satisfy the requirements of high-end equipment integration, precise measurement, and fundamental research for the embedded measurement of microprobes.
+
+Keywords: optical fiber microprobe interference, large range and high resolution, laser frequency stabilization, elimination of periodic nonlinearity
+
+# 目录
+
+# 摘要
+
+# Abstract. III
+
+# 第1章绪论 1
+
+1.1 课题背景及研究目的和意义  
+1.2微探头式激光干涉仪研究现状 2
+
+1.2.1 微探头式激光干涉仪整机系统的研究现状 4  
+1.2.2微探头式激光干涉仪动态位移传感解调技术现状 6  
+1.2.3 微探头式激光干涉仪调谐光源中心稳频技术现状 12  
+1.2.4 微探头式激光干涉仪周期非线性误差消除现状 16
+
+1.3本研究领域存在的科学问题与关键技术问题 22  
+1.4本文主要研究内容 23
+
+# 第2章基于光频自适应调控的亚纳米分辨大量程微探头干涉测量方法 25
+
+2.1 引言 25  
+2.2微探头式超精密激光干涉仪位移测量原理与传感方法 25  
+2.3 面向百毫米量程亚纳米分辨力的快速动态位移测量方法 ..... 29
+
+2.3.1光源光频内调制型相位生成载波动态快速解调原理 29  
+2.3.2大量程测量下系统信噪比急剧衰变机理分析 30  
+2.3.3 基于光频自适应调控的动态位移解算方法 33
+
+2.4大量程亚纳米分辨力位移解调模型分析 36  
+2.5 本章小结 39
+
+# 第3章基于鉴频曲线重构的大幅度高带宽调频下的高精度稳频方法 40
+
+3.1 引言 40  
+3.2微探头式激光干涉仪调频光源需求分析 40
+
+3.2.1 光源 GHz 幅度 MHz 带宽频率调制需求 40  
+3.2.2光源中心频率与干涉仪位移准确测量的相关性 43
+
+3.3 GHz 大幅度 MHz 高带宽调频下光源高精度中心稳频方法 43
+
+3.3.1 大幅度高带宽调谐下稳频特征曲线畸变和消隐机理 43  
+3.3.2基于特征曲线重构的大幅度高带宽调谐光源稳频方法 49
+
+3.4光源高带宽调频与中心频率稳定控制方法分析 51  
+3.5 本章小结 53
+
+# 第4章基于校正特征参数复现的数十纳米级周期非线性误差消除方法 54
+
+4.1 引言 54
+
+4.2 微探头式激光干涉仪周期非线性误差全局模型 ..... 54  
+4.3基于校正特征参数复现的周期非线性误差零位消除方法 56
+
+4.3.1 周期非线性误差抑制和椭圆拟合校正的局限性 56  
+4.3.2特征复现的非线性误差粗精双阶段复合修正方法 60  
+4.3.3 温度扫描激光移频的主动相位变化原理与应用 63
+
+4.4 数十纳米级周期非线性误差消除过程仿真验证分析 65  
+4.5 本章小结 66
+
+# 第5章实验验证及结果分析 67
+
+5.1 引言 67  
+5.2微探头式激光干涉的微棱镜式传感头性能测试 67  
+5.3微探头式激光干涉的亚纳米分辨力大量程信号解调实验 70
+
+5.3.1 中国计量院有效分辨力测试结果分析 ..... 70  
+5.3.2基于光频自适应调控的信号解调方法验证 70
+
+5.4微探头式激光干涉大范围高带宽调谐光源中心稳频实验 75
+
+5.4.1 中国计量院大范围高带宽调谐稳频测试结果分析 ..... 75  
+5.4.2基于鉴频特征曲线重构的激光稳频方法验证和测试 75
+
+5.5微探头式激光干涉周期非线性误差消除验证实验 79
+
+5.5.1 中国计量院微位移测试结果分析 ..... 79  
+5.5.2 数十纳米级周期非线性误差消除方法验证和测试 ..... 80
+
+5.6微探头式激光干涉仪整机性能测试实验 84  
+5.7微探头式激光干涉仪不确定度和准确度分析结果 88  
+5.8干涉仪整机与国际同类领跑仪器核心参数对比 91  
+5.9本章小结 92
+
+# 结论 93
+
+# 附录A 95
+
+# 附录B 98
+
+# 参考文献 102
+
+# 攻读博士学位期间发表的论文及其它成果 110
+
+# 哈尔滨工业大学学位论文原创性声明和使用权限 112
+
+# 致谢 113
+
+# 个人简历 114
+
+# Contents
+
+Abstract (In Chinese)
+
+Abstract (In English) III
+
+Chapter 1 Introduction 1
+
+1.1 Background, research objective and significance of the subject 1  
+1.2 Research status of optical fiber microprobe laser interferometer 2
+
+1.2.1 Research status of optical fiber microprobe laser interferometer system..... 4  
+1.2.2 Current status of displacement sensing and demodulation technology for optical fiber microprobe laser interferometer 6  
+1.2.3 Current status of laser frequency stabilization technology of under modulation for optical fiber microprobe laser interferometer 13  
+1.2.4 Current status of period nonlinear error elimination for optical fiber microprobe laser interferometer 16
+
+1.3 Scientific problems and key technical problems in this research area 22  
+1.4 Main research contents of this dissertation 23
+
+# Chapter 2 Sub-nanometer resolution large-range micro-probe interferometry based on optical frequency adaptive control 25
+
+2.1 Introduction 25  
+2.2 Measurement method principle and probe of optical fiber microprobe laser interferometry 25  
+2.3 Dynamic displacement demodulation method for sub nanometer resolution of  $\sim 100\mathrm{mm}$  range 29
+
+2.3.1 Dynamic demodulation principle of phase generation carrier with modulation in light source 29  
+2.3.2 Analysis of the mechanism of the rapid decay of the system signal quality in large range measurement 30  
+2.3.3 Dynamic displacement calculation method based on internal modulation adaptive regulation 33
+
+2.4 Analysis of key modules of displacement demodulation with sub nanometer resolution for optical fiber micro probe 36  
+2.5 Subsections of this chapter 39
+
+# Chapter 3 High precision frequency stabilization method based on frequency discrimination curve reconstruction under large amplitude and high bandwidth frequency modulation. 40
+
+3.1 Introduction 40
+
+3.2 Demand analysis of frequency modulation light source for optical fiber microprobe laser interferometer 40
+
+3.2.1 Demands of light source frequency tuning features for optical fiber microprobe laser interferometry 40  
+3.2.2 The relationship between the center frequency stability of light source and the measurement stability for optical fiber microprobe interferometer 43
+
+3.3 High precision central frequency stabilization of light source under large amplitude and high bandwidth frequency modulation 43
+
+3.3.1 Mechanism of distortion and blanking of frequency stabilization characteristic curve 43  
+3.3.2 Frequency stabilization method of large amplitude and high bandwidth tunable light source based on characteristic curve reconstruction 49
+
+3.4 The key module of high bandwidth frequency modulation and center frequency stabilization control for micro probe interferometer light source 51  
+3.5 Subsections of this chapter 53
+
+# Chapter 4 A Method for Eliminating Periodic Nonlinear Errors of Tens of Nanometers Based on Correction of Characteristic Parameters 54
+
+4.1 Introduction 54  
+4.2 Periodic nonlinear global model and error analysis of optical fiber microprobe laser interferometer 54  
+4.3 Zero elimination method of periodic nonlinear error based on correction parameter recurrence 56
+
+4.3.1 Limitations of periodic nonlinear error source suppression and elliptic fitting nonlinear correction 56  
+4.3.2 Correction of nonlinear error based on combination of pre-compensation and fine correction using correction parameter recurrence 60  
+4.3.3 Principle and application of active phase change of temperature scanning laser frequency shift 63
+
+4.4 Simulation and verification analysis of periodic nonlinear error elimination process 65  
+4.5 Subsections of this chapter 66
+
+# Chapter 5 Experimental Verification and Result Analysis 67
+
+5.1 Introduction 67  
+5.2 Test experiment of optical fiber microprobe 67  
+5.3 Experiment on large range displacement sensing and demodulation of optical fiber microprobe laser interferometry 70
+
+5.3.1 Analysis of the test results of China institute of metrology 70  
+5.3.2 Verification of signal demodulation method based on internal modulation and adaptive regulation 71
+
+5.4 Experiment of laser frequency stabilization under modulation for optical fiber microprobe laser interferometry 75
+
+5.4.1 Analysis of the test results of China institute of metrology 75  
+5.4.2 Test experiment of center frequency stability of large range high bandwidth tuning light source 75
+
+5.5 Verification experiment of nonlinear error elimination for optical fiber microprobe laser interferometer 79
+
+5.5.1 Analysis of the test results of China institute of metrology 79  
+5.5.2 Verification and test of nonlinear error correction method for optical fiber microprobe interference period 80
+
+5.6 Performance comparison test experiment of optical fiber microprobe laser interferometer. 84  
+5.7 Analysis results of standard uncertainty and accuracy for optical fiber microprobe laser interferometer 88  
+5.8 Comparison of core parameters with the most advanced instrument. 91  
+5.9 Subsections of this chapter 92
+
+Conclusions 93  
+Appendix A 95  
+Appendix B 98  
+References 102  
+Papers published and other achievements in the period of Ph.D. education.......110  
+Originality declaration and using permission of dissertation of Harbin Institute of  
+Technology 112  
+Acknowledgements 113  
+Resume 114
+
+# 第1章绪论
+
+# 1.1 课题背景及研究目的和意义
+
+随着航空航天、高精密仪器仪表、惯导平台、光学和激光等技术的迅速发展和多领域的广泛应用，对各种高精度复杂零件、光学零件、高精度平面、曲面和复杂形状的超精密加工需求日益迫切，超精密加工中的超精密测量新技术与新仪器也不断涌现，其技术难度大、技术密集度高，并表现为在线测量、嵌入式测量的发展特征[1-3]。作为超精密位移测量领域中不可或缺的重要技术和核心手段，新一代光纤干涉式位移传感器也向着高集成度、小体积，能方便地嵌入到装备中进行超精密级的在线测量等特点发展。
+
+在光刻领域，对高集成度、一体化、占用空间小、方便调试的嵌入传感头式超精密位移测量提出了迫切需求[4-6]。如图1-1(a)所示，作为高端集成电路制造中的关键设备，光刻机精度严重影响芯片制片质量[7-9]。双工件台工作时，掩模板吸附在微动台上并随其在宏动台上进行高加速度、高加加速度的往复运动，其过程中掩模板的惯性滑移会严重影响曝光精度，需要进行实时监测，然而仪器可用空间狭小仅为  $10\times 20\times 40\mathrm{mm}^3$  。纳米压印作为未来极具前景的光刻技术，要求在极狭小空间下对轴跳动位移进行测量，如图1-1(b)所示[10,11]。在上述应用中，要求传感器能在极小空间下实现亚纳米分辨力测量和纳米级测量精度，传统零差外差干涉仪体积大无法满足此类测量需求，仅能使用微探头激光干涉仪进行测量[12-15]。
+
+(a) 光刻机掩模板滑移测量场景[7]  
+Fig. 1-1 Requirements of micro probe interferometer in very narrow space measurement scenarios[7, 10]  
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/92b9e5f959ca322a243807a897a2161f1f39e3195c23d093be10e70d0d08a021.jpg)  
+(a) Photolithography mask slip measurement scene[7] (b) Measurement scene of nano imprint shaft[10]
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/f30d0d4a284bb926d0253ed68315775cd00af1b0afc7c541e355c36fa46741f5.jpg)  
+(b) 纳米压印轴跳动测量场景[10]  
+图1-1极狭窄空间测量场景对微探头干涉仪的需求[7,10]
+
+在高端设备制造领域，也对小空间下的微探头位移测量提出需求，如图1-2所示，狭小空间下的运动台位置测量和光学材料形变监测，需要纳米级精度传感器嵌入式测量[5,6]。在小卫星的研发中，德国OHB公司拟采用了微探头干涉仪作为监测内部设备进行光-热-力耦合模型实验的光学元件位置监测，在该应用提出
+
+传感器需具备亚纳米测量分辨力，纳米级测量精度，三十厘米量程[16]。
+
+在基础物理研究领域，例如牛顿反平方定律实验检验、洛伦兹对称性检验、casimir效应的实验检验中[17-20]。需要对扫描探针显微镜微悬臂振动位移进行监测，进而实时保证扫描显微镜扫描探针与样品的距离，同时由于上述基础物理验证实验中需要长时间稳定的测量，这就需要一种小型化微探头式的位移传感方法来保证整个测量过程的机械稳定性，并且此场景需要传感器具备亚纳米测量分辨力，纳米测量精度。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/89d8d1385d96e20c622626619ca89c9da881cccad505189c7719024f458870d2.jpg)  
+(a)运动位置测控[5]
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/f9d03092266e1c4f64aa056addea60c97e63853bbd9a0d548aee5c3714290c58.jpg)  
+(a) Motion detection[5]
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/abebf3dd39f8f03457dc1b72b364593b8d575107008b1e244dff5b6617440ae0.jpg)  
+(b) 光学形变监测[6]  
+(b) Deformation monitoring[6]  
+(c) 卫星内部嵌入测量[16]  
+(c) Measurement in satellite[16]  
+图1-2微探头激光干涉仪的典型应用[5,6,16]  
+Fig. 1-2 Typical application of micro probe laser interferometer[5, 6, 16]
+
+现今，以德国等工业强国为首，依托先进的制造技术，在新一代微小型激光测量方面有了一定的进展并推出了相应的商业化产品[21-23]。然而，国内方面，由于缺乏足够的创新能力和系统工业化集成经验，嵌入微探头式激光测量仪器仍处于起步阶段[24-26]。由于中美贸易摩擦，作为新一代超精密激光干涉仪器随时有可能被禁售。因此，具有自主知识产权的国产化新一代微探头式式超精密激光测量和仪器研制迫在眉睫，也是打破西方技术封锁和设备禁运的必经之路。
+
+综上所述，本课题围绕亚纳米分辨力、纳米精度、数十厘米量程的小体积微探头式传感需求展开，研究一种基于微探头式的超精密激光测量技术研究，分别突破光纤导光式微测头设计、大量程高分辨力干涉信号实时解算方法、大范围调频激光的中心波长稳定控制、低周期非线性误差校正等关键技术以支撑装备制造中的传感式超精密测量需求，为我国高端光刻机研发提供嵌入式在线测量手段，为纳米计量测试提供核心仪器。
+
+# 1.2 微探头式激光干涉仪研究现状
+
+微探头传感器式激光干涉仪是新一代超精密激光干涉测量仪器的代表，与传统激光干涉仪相比[3]，具有探头尺寸极小、装调方便、可隔离热污染和易实现嵌入式测量等显著优势，如图1-3所示，为传统干涉仪与微探头干涉仪的对比图，从图中可以明显发现，微探头干涉仪的小尺寸特征[21]，使其更易用，更自由，满
+
+足狭小空间测量“刚性需求”，提升复杂场景“用户体验”。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/407550525a277ef6d2375b8026a007653b14d36445f23ab127fab86de8a4d8ad.jpg)  
+(a) 传统激光干涉仪[3]  
+(a) Traditional interferometer[3]  
+图1-3微探头激光干涉仪与传统干涉仪对比[3,21]  
+Fig. 1-3 Comparison between micro probe laser interferometer and traditional interferometer[3, 21]
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/b5dfb4341fc91891183c1e6a842d35ee7dccdf321097ec5d0d0c1c8addcd1072.jpg)  
+(b) 微探头激光干涉仪[21]  
+(b) Micro probe laser interferometer[21]
+
+相较于传统激光干涉仪，新一代微探头激光干涉仪是在测量方法和关键技术的跨越式发展，传感头尺寸缩小超百倍，故关键单元包括信号解算、波长基准和误差修正，在技术实现方式和难度上存在显著的差异，如表1-1所示，为二者对比后，整理得到的微探头干涉仪关键难题。
+
+表 1-1 微探头干涉仪与传统激光干涉仪关键技术单元比较  
+Table 1-1 Comparison of key technology units between micro probe interferometer and traditional laser interferometer  
+
+<table><tr><td>关键
+单元</td><td>传统激光
+干涉仪</td><td>微探头激光
+干涉仪</td><td>微探头干涉仪
+关键难题</td></tr><tr><td>信号
+解算</td><td>外部相位调制亚
+纳米分辨力</td><td>外部+内部相位调
+制亚纳米分辨力</td><td>调制失配存在分辨力急剧
+下降至测量失效的多个奇
+点，导致“测不了”问题</td></tr><tr><td>波长
+基准</td><td>无频率调制高精
+度稳频</td><td>大幅度高带宽调
+频高精度稳频</td><td>调频背景下激光稳频精度
+急剧下降甚至失锁，导致
+“测不准”问题</td></tr><tr><td>误差
+修正</td><td>李萨如图特征曲
+线为椭圆</td><td>李萨如图特征曲
+线为直线和椭圆</td><td>异于传统椭圆形式的非线
+性特征消隐致校正失效，
+导致“测不精”问题</td></tr></table>
+
+微探头式激光干涉仪是近些年新兴的概念，这个概念起源于光纤干涉仪，光纤干涉仪顾名思义是利用光纤元件实现干涉图样，进行精密测量[27-35]。光纤干涉仪相较于传统空间光路干涉仪具备传感体积小、方便调节安装和嵌入式测量等优势。集成化的微探头式干涉仪真正问世是在2015年，德国Attocube率先推出商业化微探头式干涉仪产品仪器[21, 22]，一经问世，便由于其尺寸小巧，测量方式简单，广受好评，2018年，德国Smaract公司也推出了对应的微探头式干涉产品[23]，其探头尺寸直径4mm却可以实现三四十厘米的测量范围，问世的几年，在国际上集成装备、物理研究、航空航天领域广泛应用。此类干涉仪获得了欧洲评选的
+
+近年来最具创新变革设计奖的仪器之一，该奖项被称为世界三大设计奖之一，如图1-4为产品样机示意图。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/742a8af54823332ffa201575198a8756dcc563837ec65fcc39cc59c81ad69f28.jpg)  
+attocube pioneers of precision
+
+(a) Attocube 微探头干涉仪[21]  
+图1-4微探头传感器式激光干涉仪位移测量产品样机  
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/82686c4d95a098224b33404c4db52f4b23d9b77eca360fd8d9cc01615e3c940f.jpg)  
+(a) Attocube micro probe interferometer[21]
+
+(b) Smaract 微探头干涉仪[23]  
+Fig. 1-4 Displacement measurement product prototype of micro probe laser interference system  
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/6b24e21c191b195dc3f9357a2ddfbf9f8a3aa1d5b1bee07e5cf54d4651249686.jpg)  
+(b) Smaract micro probe interferometer[23]
+
+然而，具备诸多产品优势的微探头干涉仪，技术方面的相关报道少，无法获知更多的技术细节。本课题目的是实现国内的微探头式干涉仪的研发，从系统组成角度，该干涉仪由微传感探头、信号解算单元、调谐稳频光源、核心误差项消除单元组成，其中微传感探头、信号解算单元共同解决测不了的问题，调谐稳频光源解决的是测不准的问题，核心误差项消除单元解决的是测不精的问题，本文的技术现状整理也从这四个方面展开叙述。
+
+# 1.2.1 微探头式激光干涉仪整机系统的研究现状
+
+综上所述，国内国外都分别对微探头式干涉仪进行深入研究。国内以重庆大学、华中科技大学、哈尔滨工业大学团队为代表，国外以德国企业 Attocube 和 Smaract 为代表。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/1d2d95319aa92f0559b327f8d7c37f6f23e3f012a7a497d549a47e967f3e47cb.jpg)  
+图1-5重庆大学微探头式激光干涉系统设计[17]  
+Fig. 1-5 Design of optical fiber micro probe laser interference system in Chongqing University[17]
+
+2013年，重庆大学团队开发了一种微探头式激光干涉用于测量转台平面的振
+
+动情况[17]，如图1-5所示。该仪器采用了基于变折射率透镜的光纤法布里珀罗结构实现微传感，激光光源选择DFB激光管，激光光源中心波长稳定方式选用被动稳频，即恒流驱动和温度控制进而控制激光管输出波长，信号处理单元采用PGC-Atan算法，非线性消除单元选择双通道检测相除的非线性抑制方法。该干涉仪激光光源调制频率低，激光干涉仪测量速度小，同时由于激光波长稳定度不高，因此整体精度较差，非线性误差为  $0.29\%$  ，测量分辨力为  $2.06\mathrm{nm}$  ，测量量程 $10\mu \mathrm{m}$  ，理论测量带宽  $3.5\mathrm{kHz}$  。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/0ae57983e6a431eb3ae76f4616961523faa6f26db96dc313b7e95435d614d236.jpg)  
+图1-6华中科技大学微探头式激光干涉系统设计[18]  
+Fig. 1-6 Design of optical fiber micro probe laser interference system in Huazhong University of Science and Technology[18]
+
+2019年华中科技大学团队开发了一套微探头式激光干涉测量实验原理装置用于扫描显微干涉仪的探针间距控制[18]，如图1-6所示。该团队传感微探头单元采用会聚透镜对光纤出射的光进行会聚，利用光纤端面和反射物构成法布里珀罗腔，将多光束干涉近似成双光束干涉。激光光源单元选择分子吸收稳频的方式，激光波长调制带宽为  $1\mathrm{kHz}$  。信号解调单元采用相位生成载波解调算法，提出基于声光移频器件一级衍射光反馈控制的光强伴随调制抑制方法。实验原理装置经试验证明，测量分辨力优于  $1\mathrm{nm}$ ，非线性误差约为  $1\mathrm{nm}$ ，测量范围未注明但是约为十  $\mu \mathrm{m}$ ，测量理论最大带宽为  $0.5\mathrm{kHz}$ 。
+
+国外关于微探头式激光干涉仪的主要企业厂商为 Attocube 和 Smaract，其中德国 Attocube 的干涉仪原理如图 1-7 所示[21, 22]。该系统沿用会聚透镜为光纤发散出光进行准直，激光光源采用分布式反馈激光器，结合分子吸收作为基准进行稳频。干涉信号的解调依旧使用相位生成载波解调算法，应用等效无穷小替换方法估计实时的相位调制深度值，进而进行反馈控制，虽然实现了大范围位移解调，但是其中决定信噪比的核心参数相位调制深度处于很小的值，远离最佳理想值，
+
+因此导致信噪比较差。同时采用查表法来消除非线性误差，当外界环境或者非线性误差分布发生变化时，无法进行工作。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/6d0d87d53c0c151d25536e36a3a2cd4dcc89f2bd4b12023de790654925e70f19.jpg)  
+图1-7德国Attocube商用微探头式激光干涉系统设计[21]  
+Fig. 1-7 Design of laser interference system for commercial optical fiber micro probe in Attocube, Germany[21]
+
+实验验证可知，工作距离为  $20\mathrm{mm}$  时候的长期稳定度为  $1\mathrm{nm}(3\mathrm{h})$  ，测量范围受限制于探头，用两种不同的谐波解调组合得到的周期非线性误差为  $\pm 4.9\mathrm{nm}$  和  $\pm 17.0\mathrm{nm}$  。德国Smaract公司开发的光纤干涉仪没有相关的文章叙述，根据产品网址给出的测量参数可得[23]，工作距离为  $50\mathrm{mm}$  时，非线性误差峰峰值为  $6\mathrm{nm}$  ，测量速度为  $1\mathrm{m/s}$ ，重复性小于  $1\mathrm{nm}$  。
+
+# 1.2.2 微探头式激光干涉仪动态位移传感解调技术现状
+
+光纤干涉仪的发展主要产生了四大类：光纤迈克尔逊(Michelson)干涉仪[27-30]、光纤马赫-曾德尔(M-Z)干涉仪[31]、光纤塞格纳克(Sagnac)干涉仪[32]以及光纤法布里-珀罗(F-P)干涉仪[33-35]，在光纤位移测量领域，主要为光纤Michelson干涉仪和光纤F-P干涉仪，图1-8为对应的两类光纤干涉仪的原理图。
+
+光纤迈克尔逊激光干涉仪结构如图1-8(a)所示，激光器出射探测激光进入光纤耦合器，经过光纤耦合器出射分成两路光束，一路光束作为参考光，一路光束作为探测光，两束光经过反射物反射重新进入光纤耦合器发生干涉，并由光电探测器探测，根据干涉信号变化规律实现相应物理量的传感。然而由于光纤内部的参考和测量光容易受到外界环境的影响，因此，此类光纤干涉仪相较于传统空间光迈克尔逊干涉仪虽然小巧灵活，但是稳定性和抗干扰性不容乐观，即使研究者前后研究出了双干涉仪、共光路补偿的方法[36,37]，但是实用效果仍然不佳。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/f42b0b0996ee24036fb947fa1c0d1d7df89b4106457183b0b1e5e362a2f952fe.jpg)
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/f21396f30533df629a6892d8bebb4d71631d8caf9510de30096b7a3df0b04968.jpg)  
+(a) 光纤迈克尔逊激光干涉仪[27]  
+(b) 光纤法布里-珀罗激光干涉仪[33]  
+(b) Fiber Fabry-Perot laser interferometer[33]  
+图1-8光纤激光干涉仪位移测量典型结构图[27,33]  
+Fig. 1-8 Typical structure diagram of displacement measurement of fiber interferometer[27, 33]
+
+另一种能够用于位移测量的光纤法布里珀罗激光干涉仪，其原理结构如图1-8(b)所示，激光器出射的激光进入光纤环形器一端口并从二端口出射进入单模光纤，从单模光纤的0度角光纤端面出射，一部分的光经端面反射回到单模光纤，其余的光出射经过反射物反射，与光纤端面形成F-P腔实现干涉，再经由光电探测器探测，实现对于目标物理量的传感。此类干涉仪由于参考光和测量光共光路，光纤只用于传输，因此抗干扰能力更强。由此，以光纤端面和目标物形成F-P腔为传感方式的微探头式干涉仪的概念就产生了。
+
+# 1.2.2.1 光纤位移传感微探头现状
+
+最初的光纤 F-P 干涉仪是由单模光纤端面和目标物构成的，如图 1-9 所示，由于光束从光纤出射后呈现锥角发散的方式出射，因此回光效率很低，难以进行远距离的测量，探测距离一般在  $1\mathrm{mm}$  左右[38]。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/708bb73087f09286d77b9fd72959c1140646bccfd3e075b3c830ab8300d202f8.jpg)
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/b68be36e4167d2756593f7eca9a0fbdb638116666cb27058af8b2e85b1fd497a.jpg)  
+图1-9基于单模光纤端面的光纤F-P激光传感头结构和分析[38]  
+Fig. 1-9 Structure and analysis of fiber F-P laser sensor head based on single-mode fiber end face[38]
+
+西班牙研究者将光纤结构进行了处理，纤芯实现了锥形结构[39]，如图1-10所示，使得光束出射光线的发散角减小，进一步增大微探头式探测距离，将其提高
+
+到了  $80\mathrm{mm}$  。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/2cd8513db7c5ba160ddd31ca2cb1f01534d6d3420853556e3830044d190dc3fe.jpg)  
+图1-10基于单模光纤端面的改进型光纤F-P激光传感头结构[39]  
+Fig. 1-10 Improved fiber F-P laser sensing head structure based on single-mode fiber end face[39]
+
+随后为了进一步增大微传感探头的测量距离，慕尼黑工业大学团队[40]和美国密苏里科技大学团队[41]分别提出了利用凸透镜和变折射率透镜匹配单模光纤参数，如图1-11所示，实现较好的光束准直，探测距离提高到了三四十厘米。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/6e099aff012fc028f6cea354c3c5100635b2146d17a9917b927e7dddcacbcc89.jpg)  
+(a)会聚透镜准直[40]  
+(a) Convergent lens collimation[40]  
+(b) Graded index component collimation[41]  
+图1-11基于其他组件协助准直的微探头结构[40,41]  
+Fig. 1-11 Micro probe structure based on collimation of other components[40, 41]
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/987298ebe89a2b05c94f6be0725a9b9c278db5665d0fc07276abd108506946da.jpg)  
+(b) 变折射率组件准直[41]
+
+通过一系列的努力，微探头式实现了更大的探测距离，但是通过上述分析发现，其核心结构都是将接近  $4\%$  的反射率的光纤端面作为F-P腔的一个端面，试图构成低精细度的F-P腔，并将多光束干涉近似成双光束干涉，在部分非超精密传感领域，这样的原理近似是可以接受的。但是，在超精密位移传感领域，由此产生的高阶周期原理性误差会严重影响激光干涉位移测量精度。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/08d3195372630c35483e657c0f583e9004e5f78d3070421cffb8a542911ab161.jpg)  
+图1-12 Smaract公司的微型传感探头结构设计[23]  
+Fig. 1-12 Structure diagram of Smaract collimating micro probe[23]
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/bd91e4e48a771a5eb6d0210d9d47e319d4db32ffd555fddab0c16050045c1211.jpg)
+
+针对于此类问题，德国专注于精密位移驱动控制的Smaract公司提出一种基
+
+于迈克尔逊双光束干涉原理的微型传感探头[23]，如图1-12所示，图中为德国Smaract公司宣传图样，实现了一种消除高阶非线性误差的微传感探头，但是具体的设计方案和机构未有相关报道。
+
+# 1.2.2.2 微探头式干涉信号解调技术现状
+
+解调算法是影响超精密激光干涉仪测量性能的核心单元之一，与传统干涉仪解调方法不同，光纤干涉仪的解调方法中最常见的手段为基于宽带光源或可调谐激光器的白光干涉测量[42-48]，上述方法可实现亚纳米的测量分辨力。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/c2b97a6b275454ebca1c8336c319abe07cdeed19e914775078c2925064ef9b39.jpg)  
+图1-13白光干涉仪解调算法[44]
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/d36eaceb226dd4a32d6f947bb2c568d53e1d79339318da6cf1a366a64cd03630.jpg)  
+Fig. 1-13 Demodulation algorithm of white light interferometer[44]
+
+然而，受光谱分辨率和光谱获取率的限制，例如互相关算法[44]，最大似然估计[45]，布尼曼频率估计[46]等方法，如图1-13所示，虽然都能实现高精度信号解调，但是其解调手段更多适用于静态或者准静态距离测量，Yue等人提出了零填充快速傅里叶变换与布尼曼频率估计算法相结合，实现了  $70\mathrm{kHz}$  频率的实时解调[47]，但是即使如此仍然不适合高频动态测量需求。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/305d918a9392b3c895d22760b0858488d218fe1a74408d821798caefa1751dd7.jpg)  
+图1-14Q点正交强度解调法[49]
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/2d330af17bd26bd2180762f06e20e8efa314c1f631f09bbe9c6af3810c3702c6.jpg)  
+Fig. 1-14 Q-point intensity demodulation method[49]
+
+正交点强度检测手段也是被广泛用于快速动态解调[49-55]，如图1-14所示，该方法通过将相位检测工作点调整到正弦信号的交点处，该点称之为Q点，此时解调灵敏度最高，该解调方法简单且适用于快速信号处理，但是从图中可以看出，此方法只适合小于四分之一激光波长的位移范围下进行工作，虽能快速解调，但是严重限制了激光干涉仪的测量范围。
+
+为了进一步改善激光干涉仪的测量范围，打破强度检测解调算法四分之一激光波长测量范围限制，提出了一种相位生成载波解调(PGC)方法[56-67]。PGC解调方法从过程上分成两个部分，第一部分为提取出含有目标相位的两个正交信号，第二部分为用特定的算法对目标相位进行计算。由于该技术可以有效地抑制噪声干扰、提高信噪比，因此在高精度光学测量领域具有很高的实用价值。其中，两种主要特定的算法分别为相位生成载波解调微分交叉相乘(PGC-DCM)和相位生成载波解调反正切算法(PGC-Atan)，其原理框图如图1-15所示。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/a9ae879f9c14d740a58e375825550ace8386e75a4daa75f3352fa4b902fc908d.jpg)  
+(a) PGC-DCM 算法的实际原理框图[59]
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/8d8f0c5ed3c7ada1ea11c65c4e4c3cc14adf1e3efadb07c190da512031b379b2.jpg)  
+(a) Principle block diagram of PGC-DCM demodulation algorithm[59]  
+(b)PGC-Atan算法的实际原理框图[63]  
+(b) Principle block diagram of PGC-Atan demodulation algorithm[63]  
+图1-15相位生成载波解调原理框图[59,63]  
+Fig. 1-15 Principle block diagram of phase generation carrier demodulation[59, 63]
+
+对于PGC-DCM算法来说，其实际原理框图如图1-15(a)，系统的输出信号相位与输入干涉信号中的待测相位存在线性关系[59-62]。相位调制深度以及探测的干涉信号中强度变化会对相位解算产生较大的影响，在系统工作时，调节相位调制深度使得获取的信号幅度较大，从而降低解调误差，但是在实际情况中，光路中的传输和干涉过程无法有效的控制光信号强度，同时激光器本身存在的功率漂移都会对系统的相位解调产生重大影响。
+
+比较于上述的 PGC-DCM 算法解调单元，PGC-Arctan 算法的实际原理框图如图 1-15(b)所示。通过两个解调方法的原理框图的比较可以发现，二者获取两个信号的方式相同，区别在于 PGC-Atan 算法是将两组信号通过相除的手段，再经过
+
+反正切运算，得到目标的待测相位,该算法消除了干涉信号质量对结果的影响，由于该方法简单容易实现，同时实时性好不受光强信号变化的影响，因此成为现今主流的研究解算手段[63,64]。
+
+PGC算法的提出和发现，突破了强度正交检测测量范围需要小于四分之一激光波长的限制，大大的增加了激光干涉仪的测量范围，同时动态特性良好，被广泛应用，但是该算法中有一个核心参数相位调制深度，其数值会严重影响信号信噪比，甚至造成信号消隐使得解调算法失效。
+
+对于微探头式干涉仪来说，相位调制深度参数受到测量距离和激光波长调制深度的直接影响，在测量过程中，激光干涉仪测量距离将无可避免发生变化，因此会导致测量过程中信噪比过低导致无法测量，测量量程仅能达到  $\mathrm{mm}$  量级[65-67]。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/4705075da64d59ac9028176cac2f72a531ed16359fa424b9643868b84787bf61.jpg)  
+图1-16基于四次谐波解算的相位调制深度计算和控制方案[69]  
+Fig. 1-16 Phase modulation depth control method based on harmonic demodulation[69]
+
+为了实现PGC-Atan算法中对于相位调制深度的计算和有效控制，进而实现高信噪比的超精密位移测量。德国慕尼黑工业大学KlausThurner研究者提出了一种相位调制深度控制算法[68]，在算法中将相位调制深度设置成很小的值，并应用等效无穷小替换方法估计实时的相位调制深度值，进而进行反馈控制，该方法是有用的，但是由于设置的有效相位调制深度值较小，远离2.37rad和2.63rad的理想值，因此会导致利用该方法从干涉信号提取的谐波振幅非常小，这将得到一个低信噪比的结果，限制整个系统的测量精度。
+
+2017年，俄罗斯圣彼得堡大学研究者提出了基于四次谐波解算的相位调制深度计算和控制方案[69]。该方法原理如图1-16所示，该方法在较多情况是可以有效工作的，然而当待测相位为  $\pi /4$  的整数倍的时候，相位调制深度估值会产生跳变点导致系统失效。同时在大范围位移测量的场景下，当处于特殊位置时候，也就是当贝塞尔系数  $J_{1}(C)$  或  $J_{2}(C)$  为0，相位调制深度估值和待测相位解调系统都会出现跳变点，使得系统失效。同时由于需要使用四次谐波解调，需要四组数字锁
+
+相放大单元，因此占用较多的硬件存储单元。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/7d5b33caf3407c3972f8fc07538cd252fd464f507f46c9fc93d45cf911432a77.jpg)  
+图1-17基于多次谐波正交计算的主动相位调制深度影响消除方法[70]  
+Fig. 1-17 Elimination method of depth effect of active phase modulation based on orthogonal multi harmonic frequency [70]
+
+2019年，浙江理工大学Chen教授等提出了一种基于多次谐波正交计算的主动相位调制深度影响的消除方法[70]，如图1-17所示。该方法没有通过对相位调制深度的估值进而控制相位调制深度稳定，而是利用多次正交谐波解调的结果通过数学运算，得到不受相位调制深度变化影响的结果，解决了当待测相位为  $\pi /4$  的整数倍的时候，相位调制深度估值会产生跳变点导致系统失效的问题，但是仍然存在大范围位移测量的场景下，当处于特殊位置时候，也就是当贝塞尔系数 $J_{1}(C)$ 或  $J_{2}(C)$  为0，相位调制深度估值和待测相位解调系统都会出现跳变点，使得系统失效的问题。同时增加四个正交锁相放大单元，进一步增大了系统硬件资源。
+
+综上所述，现今的微探头式传感和解调单元存在如下问题：第一，传感方面，光纤法布里珀罗微传感探头由于多光束干涉近似成双光束干涉，具备高阶原理误差；第二，对于解调方法方面，无论是正交强度解调还是相位生成载波解调，甚至是优化后的相位生成载波解调都无法满足高分辨力的大量程动态测量。因此，现今缺少能够实现大量程高分辨力的高精度微探头传感器式干涉传感解调方案。
+
+# 1.2.3 微探头式激光干涉仪调谐光源中心稳频技术现状
+
+激光光源作为超精密激光干涉仪的核心技术单元，影响着激光干涉仪的测量准确度和稳定度。在微探头式超精密激光干涉仪中，其光源波长要求大范围高带宽调谐，同时需要满足中心频率稳定，光源的中心输出波长为标尺，因此波长调谐下的中心频率稳定研究是重中之重[71-77]。
+
+由于对于光源可调谐特性的需求，因此研究更多的聚焦于具备可调谐性的半导体激光器类别。半导体激光器的波长稳定主要两个方面，一方面是被动稳频技
+
+术，另一种是主动稳频技术。
+
+半导体激光管的被动稳频主要是通过提高驱动器的驱动电流稳定度和温度控制稳定度，进而提高激光管的波长输出稳定度[78-80]。其中，电流恒流单元主要由恒流芯片或者分立元件构成，温度控制单元通常是利用电桥法测温进而控制激光管子内部的TEC原件实现温度控制。国际上最先进的驱动厂商，例如ILXLightwave、Thorlabs等公司的最先进的产品LDC-3700C、LDX3412、CLD1015的极限电流相对稳定度能达到  $10^{-4}$ ，驱动温度控制稳定度最好为  $0.001^{\circ}$ ，随着研究的深入利用被动稳频技术的半导体激光器的中心稳定度仅能达到  $10^{-5} \sim 10^{-6}$  量级，长期稳定度甚至不足  $10^{-4}$ ，仅靠恒流源和温度驱动的方式是无法满足超精密位移测量对于激光中心稳定度的要求。
+
+除了被动稳频，主动稳频也是一种经典的方式，其核心思想为，将激光器的输出波长控制在一个标准和基准上，并根据待稳定波长与选定的外部基准的差值作为误差信号对激光器实现稳定控制[81-85]。一般来说，通用的外部的参考基准主要有两类，一类是更加稳定和准确波长的激光器作为标准，但更精密的激光器本身难以实现，故难以实现。另一部分为标准F-P腔或者气体原子吸收谱线作为参考标准，下面对这两种方法的发展研究进行阐述。
+
+2014年清华大学的研究团队尝试将F-P腔作为基准[86]，如图1-18所示，以ECDL激光器作为待稳频光源进行频率稳定，短期稳定度达到了  $1.7\times 10^{-9}$ ，但是由于F-P腔作为参考腔体，其中的环境例如温度、湿度、振动、环境空气波动都会对F-P腔产生影响，长期稳定度只能达到  $10^{-7}$  量级。
+
+相比较F-P腔作为基准来说，选择吸收气室，利用气体的吸收光谱特性作为参考的饱和吸收稳频法由于其结构简单，如今商业化的气室集成度和稳定度更好，因此被广泛使用。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/595fcbe0d4815b7c3199792bcb86fdea5e31657005d2a0e4e3c96784e932e16b.jpg)  
+图1-18F-P腔基准ECDL频率稳定控制系统[86]  
+Fig. 1-18 F-P cavity reference ECDL frequency stability control system[86]
+
+2011年山西大学的王杰等人选择铷原子  $\mathrm{D}_2$  线的超精细跃迁线的饱和吸收光谱和偏振光谱作为鉴频曲线[87]，激光器的频率稳定通过电子伺服系统将频率校正
+
+信号反馈给  $780\mathrm{nm}$  光栅反馈半导体激光器的外腔压电陶瓷来实现，如图 1-19。实验结果表明：在激光输出波长稳定范围内，采用该方法得到了稳定的稳频系统；随着泵浦功率增大，稳频效率提高。该激光器在工作约 300s 后就能稳定工作，且该激光器具有较小的频率起伏，最大可调谐范围为  $6.6\mathrm{MHz}$ ，其饱和吸收光谱与偏振光谱均达到了很好的匹配效果，经过长时间的稳频，在工作约 300h 后，该激光器的残余频率从  $1.5\mathrm{MHz}$  左右下降至  $0.6\mathrm{MHz}$  左右。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/49f92a2131c2459dd4f3f1943e2796e7c6d112aed2dcff6dfe0f7ac10cfc549f.jpg)  
+图1-19基于铷原子喷泉钟中的  $780\mathrm{nm}$  商用光栅外腔反馈半导体激光器稳频系统[87]  
+Fig. 1-19 Frequency stabilization system of  $780\mathrm{nm}$  commercial grating external cavity feedback semiconductor laser based on rubidium atomic fountain clock[87]
+
+2020年，上海光机所研究者设计了一种光栅外腔反馈半导体激光器(ECDL)的自动稳频系统[88]，该系统可以实现信号的自动识别，并自动跟踪到相应的铷饱和吸收谱线或对应的目标峰处，从而达到长期锁定频率、防止意外失锁和快速重锁的目的。由于激光器在工作过程中受到温度和器件老化等因素的影响，使得其偏离目标工作点的概率增大。针对以上问题，提出了动态调整的方法。由于采用了这种方法，激光器稳频系统不易失锁，即使失锁，也可以很快重新锁定。相对于铷饱和参考谱线而言，激光频率的长期稳定性约为  $2.3 \times 10^{-13}$  。
+
+通过上述研究现状的分析，可以发现，基于ECDL激光器，借助吸收气室作为标准参考值，能够实现很好的频率稳定度的实验结果。值得关注的是，ECDL这类激光器本身稳定度就很高，但是也因此具有体积大，光路调整更为困难，对环境的要求更加苛刻，波长调谐速度的上限较慢，不利于小型化的系统集成的问题，因此并不适合高集成度、小型化的微探头式传感器进行动态位移测量的使用。与ECDL激光器不同，分布式反馈激光器(DFB)，本身就以其极小体积，利于集成，调谐性能强的优势，被广泛关注[89]，然而该激光管由于自身结构和原理因素，使得自然工作下的频率稳定度较差，因此对于此类激光管稳频研究成为热点问题。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/0df57dec917f40ca66a8548ea1eef3506ba0a2357041cfc25103ef8d6f1fd74d.jpg)  
+图1-20基于DSP控制和分子吸收的DFB稳频方法[90]  
+Fig. 1-20 DFB frequency stabilization method based on DSP control and saturated absorption[90]
+
+2015年中国科学院半导体所和中国科学院授时中心分别提出了基于饱和吸收气室的DFB激光管的稳频系统和方法，如图1-20所示，前者利用DSP作为核心处理器件，提取频率变化的反馈信号，控制驱动电流实现控制闭环[90]，最终根据实验数据可得，稳定度小于  $15\mathrm{MHz}(2\mathrm{h})$  。后者以STM32微控制器作为整个系统的控制器设计了全自动的稳定程序[91]，原理图如图1-21所示，根据报道的实验可知，能够实现一个月的稳定，以及快速的失锁后重锁的能力，锁定后的波动为6MHz上下。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/783047df8fc86ac8baba5a9a13a593e80b17abc53239fbb4e0b8849d1edde7db.jpg)  
+图1-21Rb饱和吸收气室的DFB激光器稳频系统[91]  
+Fig. 1-21 Frequency stabilization system of DFB laser with Rb saturated absorption chamber[91]
+
+上述DFB激光器稳定都可是实现的，基本中心波长稳定波动在6MHz附近，满足激光干涉测量对于稳定度的要求，但是上述DFB激光器稳定控制都是在小范
+
+围调制范围下，同时激光波长调制频率基本上都小于  $10 \mathrm{kHz}$ ，这将导致微探头式激光干涉仪的动态测量性能较差，最大测量速度较低。
+
+2016年，日本长冈技术科学大学团队进行  $633\mathrm{nm}$  附近  $\mathrm{I}_2$  超精细成分的饱和吸收稳频[92]。实现了激光波长调制频率为  $300\mathrm{kHz}$ ，施加  $25\mathrm{MHz}$  的调制范围，大大提高了此类激光干涉测量仪器的最大测量速度上限，但由于调谐范围较小，难以满足激光干涉仪大量程位移测量，具体原因分析在后文中详述。2019年，哈尔滨工业大学实现了基于乙炔吸收气室DFB激光器频率稳定[93]，同时实现了1MHz的激光波长调制范围，最大调制范围高达1.5GHz，但是该方法完全基于传统小范围调制的饱和吸收稳频模型，在部分情况下无法稳频或者稳频效果较差，未考虑由于高速大范围波长调制对激光波长稳频带来的影响和问题。
+
+综上所述，现今的微探头式激光干涉仪调谐激光光源中心频率稳定研究中存在如下问题：基于分子吸收稳频的调谐中心稳频技术中调谐频率和调谐范围较小，无法满足微探头超精密激光干涉仪测量速度和测量范围精度等要求，现有吸收稳频方法和模型只适用于小范围低速光源波长调制下使用，缺少微探头式干涉仪大范围高带宽激光波长调谐下的分子吸收稳频模型和方法，使得微探头式干涉光源在大范围高带宽波长调谐下无法实现中心频率稳定或失锁进而导致干涉仪测不准的问题。
+
+# 1.2.4 微探头式激光干涉仪周期非线性误差消除现状
+
+在超精密纳米级位移测量中，周期非线性误差是微探头式超精密激光干涉仪测量误差中的重要的误差项[94-98]。因此，为了提高微探头式超精密激光干涉仪测量精度，近些年较多研究者专注于激光干涉仪的周期非线性误差的消除，按照周期非线性误差的消除方法的作用机理和单元，可以分为周期非线性误差抑制[99-104]和周期非线性误差修正方法[105-110]两种，下面对这两种消除方法进行详细阐述。非线性误差的抑制方法一般是基于原理来进行，研究相对较晚。通过研究发现，光纤干涉仪的载波相位延迟、光强伴随调制是周期非线性误差的主要原因，详细的理论分析会在第四章进行阐述。因此，大多数的抑制方法是从这两个源头出发的。
+
+# 1.2.4.1 微探头式干涉仪周期非线性误差抑制现状
+
+2009年，清华大学相关研究者[99]提出一个用于补偿光强伴随调制影响的查找表法，其主要思路是推导光强伴随调制导致的影响因子，建立二者之间的映射关系，将映射关系建立在查找表中，在相位生成载波解调反正切算法的输出结果处加入含有映射关系的查找表，实现对于伴随光强调制的影响消除，其原理如图1-
+
+22 所示。但是该方法的问题在于，其数学模型中没有考虑光强调制和频率调制之间由于激光管和调谐频率的特性产生的相位差，同时当载波相位延迟不同时，得到的查找表的数值也不相同，当参数变化时，查找表内信息无法随之变化，这是此方法的不足之处。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/1b353b9d6448863741b6fd7fcc710c842feed39bfd097fdc24025149e1a13801.jpg)  
+图1-22基于查表法的周期非线性误差抑制方法[99]  
+Fig. 1-22 Periodic nonlinear error suppression method based on look-up table method[99]
+
+2013年，K.Wang等研究者提出了[100,101]一种两组双光电信号进行干涉信号和调制幅度信号检测，并将两路信号进行相除进而消除光强伴随调制的影响，该方法被广泛应用。如图1-23所示，其利用光纤分束器将激光出射的光进行分光，再用光电探测器对分光进行探测，实验证明该方法是有效的。但是，对于激光调制频率较大时，双通道同步难以实现，可能会造成误差。对于相同的延时，调制频率越大，延迟相位差越大。2019年华中科技大学研究团队针对此问题进行深入探讨，利用声光移频器进行激光光源出光功率的反馈控制进而消除光强伴随调制的影响[102]，该方法存在的问题也是无法有效应对高速调制频率下的影响，因为声光移频器和整个控制系统的响应跟不上调制的频率。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/e13190a14875791e4594c238a0fc33fe1867435562413b99c040d6e29f1afd16.jpg)  
+图1-23基于双光电检测和信号相除的光强伴随调制消除方法[100]  
+Fig. 1-23 Light intensity adjoint modulation elimination method based on double photoelectric detection and signal division[100]
+
+关于相位载波延迟方面，2017年浙江理工大学陈本永教授课题组提出了一种激光干涉仪相位生成载波解调单元相位载波延迟的计算方法[103]，如图1-24所示。通过不断的连续改变载波相位的延迟量，同时观测对应滤波器的输出信号幅值，当幅值为最大的时候，此时对应的相位载波延迟为实际补偿量。该方法经过实验证实是有效的。但是存在如下不足，比如较为费时，无法进行实时补偿，并且可
+
+以发现的是，当系统进行动态测量，即干涉相位发生变化时，相位延迟计算的结果的精度有待考量，同时该方法只能对相位延迟在  $0^{\circ} - 180^{\circ}$  范围内进行补偿。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/fc12e348ae0cae1c1f0d8ea2ef59dde56cfdbd3eff7538bfde860aface4fcf30.jpg)
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/5b0163828a2d8b69f36f47ff506c103a5a09e8d303ca162d9edc13fa41899d42.jpg)  
+图1-24激光干涉仪相位生成载波解调单元相位载波延迟的计算方法[103]  
+Fig. 1-24 Calculation method of phase carrier delay of phase generation carrier demodulation unit of laser interferometer[103]
+
+2018年圣彼得国立大学团队[104]提出了利用两路一次和二次谐波的正交分量的平方和来计算延迟量，如图1-25所示。该方法在传统相位生成载波解调算法基础上，加入了一次和二次谐波的正交分量的提取单元，提取后的四组分量，通过数学推导和计算可以得出载波相位延迟的数值，进而实现补偿，该方法经过实验验证了正确性。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/b9f6468ac510b4e3d7c4b76b6fa8dcef9e5da54008c885a7fca72471b9d342a2.jpg)  
+图1-25基于正交谐波解调的载波相位延迟计算和补偿方法[104]  
+Fig. 1-25 Carrier phase delay calculation and compensation method based on orthogonal harmonic demodulation[104]
+
+但是，由于在微探头式激光干涉仪中有光强伴随调制的存在，会影响载波相位延迟的计算，同时当待测相位为整周期时，该方法会失效，并且延迟补偿范围
+
+为  $0 - \pi$  。可以预见的是，补偿后的激光干涉仪辨向功能会受到影响或者错误。
+
+# 1.2.4.2 微探头式干涉仪周期非线性误差校正现状
+
+上述周期非线性误差的抑制方法主要是从载波相位延迟和光强伴随调制两个产生周期非线性误差的源头进行展开的。除此之外，还有部分研究者另辟蹊径，尝试在结果上进行周期非线性误差的校正。其中，最经典的方法当属美国国家计量院提出的Heydemann校正算法[105]，其核心原理如图1-26所示，该方法的核心思路是通过最小二乘拟合手段精确获得椭圆的全部信息，即椭圆对应的准确表达式，进而对信号进行校正，校正成李萨如图为圆的形式，该方法迄今为止被认为是最有效最准确的方法，一般研究中以该方法的结果认定为真值，但该方法计算量大，无法进行实时处理。
+
+为了提高周期非线性误差校正的实时性，德国国家联邦物理实验室的研究者提出了一种干涉信号峰值检测的周期非线性误差实时校正方法[106]，如图1-27所示，该方法的核心思路是，计算一个周期内的信号的峰峰值，并构建峰峰值与校正参数的关系，实现对于非线性误差的实时校正，由于此方法简单实用，被较为广泛的使用。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/e28a42c565c62193319c9f290d2edddcb359dd190c734ea7675d7efe1cf404d9.jpg)  
+图1-26Heydemann椭圆拟合周期非线性误差校正算法[105]  
+Fig. 1-26 Heydemann ellipse fitting periodic nonlinear error correction algorithm[105]
+
+通过上述分析，可以发现，周期非线性误差校正方法都是在获取了至少一个周期的干涉信号，通过对干涉信号的特征值进行提取进而实现误差校正。根据干涉仪测量原理，一个周期相当于半个波长，一般为几百纳米，因此当进行纳米范围的位移测量时，由于无法获得完整的李萨如图图样，上述方法无法进行校正。
+
+为了解决纳米级别的小位移测量下周期非线性误差无法进行校正的问题。部分研究者尝试使用合理的方法在待测物位移小于半波长时，主动引入等效位移获取完整的椭圆参数进行校正。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/ceaf802f7d5c0e33a135cd34544a2ed7e0c86e0c16e9ba7b24c84518a4fb3af9.jpg)  
+图1-27基于峰值检测的非线性误差实时校正方法[106]  
+Fig. 1-27 Real time correction method of nonlinear error based on peak detection[106]
+
+如图1-28所示，德国激光干涉仪公司SIOS提出了一种利用压电陶瓷驱动的激光干涉仪非线性误差零位校正方法[107]，在该系统中，在零差干涉仪基本结构中加入了压电陶瓷驱动，主动产生大范围的相位变化进而获取完整的椭圆校正参数，由于本身压电陶瓷器件容易受到外界振动影响，导致出现额外的误差，因此该方案带来的稳定性问题值得关注。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/ea852f4889988c3080ac72e361081cff05c98ea71597d4004863eaf05beb4667.jpg)  
+图1-28基于压电陶瓷驱动的激光干涉仪非线性误差校正方法[107]  
+Fig. 1-28 Nonlinear error correction method of laser interferometer driven by piezoelectric ceramics[107]
+
+2019年，哈尔滨工业大学胡鹏程教授团队的王珂博士提出了一种基于液晶移向器的激光干涉仪周期非线性误差消除方法[108]，如图1-29所示。该方法的核心思路在于，利用液晶相位延迟器，加入到零差干涉仪结构中，引入额外的可计量的相位变化，实现完整椭圆特征参数的获取。该方法由于液晶移相器的加入使得传感部件器件增多，不利于设备小型化，同时液晶移相器自身的稳定度会影响整个干涉仪的测量特性。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/7086fc08e06e77d44cb4602645ddb979ca62914a9164093cc06d3ee922041b78.jpg)  
+图1-29基于液晶移向器的激光干涉仪周期非线性误差消除方法[108]  
+Fig. 1-29 Elimination method of periodic nonlinear error of laser interferometer based on liquid crystal deflector[108]
+
+2019年，浙江理工大学陈本永教授团队提出了一种基于EOM主动三角调制的相位调制干涉仪周期非线性零位校正方法[109]，如图1-30所示。通过在激光干涉仪参考臂一段加入电光相位调制器，在电光相位调制器生成正弦相位调制的同时加入额外的三角波调制，因此可以在待测目标位移小于四分之一波长的情况下实现激光干涉仪周期非线性误差的零位校正。通过实验验证该方法具备良好效果，但是需要在干涉光路中加入调制器等器件，因此无法应用于光纤探头式干涉仪。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/3048042eafb810075f20c1aa84c6aa6ee09475652024850fc4b59d7696554547.jpg)  
+图1-30基于EOM主动三角调制的相位调制干涉仪周期非线性零位校正方法[109]  
+Fig. 1-30 Periodic nonlinear zero position correction method of phase modulation interferometer based on EOM active triangular modulation[109]
+
+因微探头式干涉仪的特殊性，相较于传统零差干涉仪来说，对应周期非线性误差的李萨如图除了椭圆的形貌，还存在李萨如图接近直线的情况，该现象本文将在第四章进行仿真分析和相关内容阐述。在这种情况下，由于非线性特征参数消隐，基于椭圆拟合或者椭圆特征参数的周期非线性误差校正方法都将失效。
+
+综上所述，现今的微探头式激光干涉仪非线性误差消除方法存在如下问题：一方面，现存的周期非线性误差抑制方法只能抑制一种误差源的影响，其他误差
+
+源仍然存在耦合，无法将非线性误差完全有效消除，另一方面，周期非线性误差校正方法在待测物体较小位移下无法进行工作，当微探头式干涉仪的李萨如图为直线或者接近直线时，校正算法失效。
+
+# 1.3 本研究领域存在的科学问题与关键技术问题
+
+综上所述，亚纳米分辨力、纳米精度、数十厘米量程的小体积微探头式传感干涉仪对于新一代集成装备制造有着重要的意义和影响。然而，相较于传统激光干涉仪，新一代微探头激光干涉仪是在测量方法和关键技术的跨越式发展，传感头尺寸缩小超百倍，故关键单元包括信号解算、波长基准和误差修正，实现难度更大，技术更为复杂。综述和整理后，目前，在大量程亚纳米分辨力高精度微探头式超精密激光干涉仪的研究中还存在以下问题亟待研究和解决：
+
+(1)针对微探头激光干涉经典PGC测量方法因光频内调制失配导致存在位移分辨力急剧下降直至测量失效的多个奇点、无法实现大量程问题。
+
+光频内调制型相位生成载波解调算法在大量程位移下，存在光频内调制和多普勒外调制失配导致的测量奇点，核心参数相位调制深度会偏离理想值并急剧降低位移分辨力直至测量失效。现有的核心参数相位调制深度的控制方法无法保证在百毫米量程下实现，其方法在使用过程中仍会产生多个奇点，在奇点附近信噪比极差。该现象限制相位生成载波测量方法的大量程位移传感应用。
+
+(2)针对微探头激光干涉PGC测量基准难以兼顾大幅度高带宽调频和高精度稳频、导致大量程测量下难以获得高相对精度的问题。
+
+现有分子吸收稳频方法和模型只适用于小范围低速光源波长调制下使用，缺少微探头式干涉仪大范围高带宽激光波长调谐下的吸收稳频模型。当激光光源进行大范围高带宽调谐时，相位延迟和光强调制会严重影响气体吸收鉴频曲线函数，使其发生畸变或参考点消隐，导致传统锁零控制方法锁定错误或无法锁定。使得测量基准(波长)失锁进而导致干涉仪测不准的问题。
+
+(3)针对微探头激光干涉经典PGC非线性误差校正时其特征参数易缺失或消隐、使测量结果存在数十nm非线性误差的问题。
+
+相较于传统激光干涉仪，微探头式干涉仪周期非线性误差异于传统干涉仪椭圆三差形式，其李萨如图表示为椭圆和直线的组合，数值通常为数十纳米量级。现存的周期非线性误差抑制方法只能抑制一种误差源的影响，其他误差源仍然存在耦合，现有能够完整消除全部误差的校正方法如椭圆拟合，当李萨如图为直线时或位移小于半个波长时，特征参数易缺失或消隐，校正失效。
+
+# 1.4 本文主要研究内容
+
+本文以新一代高端装备集成、纳米计量测试和基础物理研究领域对高集成度、一体化的嵌入传感头式超精密位移测量提出了迫切需求为背景，针对现今微探头式激光干涉仪难以实现大量程亚纳米分辨力高精度测量的问题，分别从传感、解算、光源、核心误差校正方面展开，搭建完整的高精度微探头式激光干涉仪，为我国高端光刻机研发提供基准级嵌入式在线测量手段，为纳米计量测试提供核心仪器。本文主要研究内容如下：
+
+(1)微探头式激光干涉仪亚纳米分辨力大量程位移解调技术研究
+
+本文首先阐述微探头式超精密激光干涉通用测量方法原理，并推导和仿真分析光纤法布里珀罗干涉仪的局限性，随后研究一种微棱镜式微探头结构的传感方法和模型。接下来，提出面向亚纳米分辨力大量程位移传感的微探头式激光干涉信号解调方法。分析光频内调制相位生成载波解调方法以及相应改进算法在进行大量程测量时的局限性，提出一种基于光频自适应调控的亚纳米分辨力大量程微探头干涉测量方法。建立大量程工作中测量奇点与光频内调制幅度映射关系，自适应调控激光光源光频内调制幅度，动态跟踪系统调制深度最佳工作点，使仪器在大量程范围内始终保持亚纳米位移分辨力。最后建立亚纳米分辨力解调模型和关键模块分析。
+
+(2)微探头式激光干涉仪大幅度高带宽调频下高精度稳频技术
+
+针对大量程、高测速下仪器光源必须大幅度、高带宽调频，使稳频特征曲线畸变，参考点消隐，进而导致测量基准(波长)失锁的问题。本文首先从微探头式干涉仪的光源调频和中心频率稳定需求出发，分析微探头式干涉仪测量特性与光源特性的关系，随后对基于调谐光谱稳频方法的局限性进行分析，接下来，建立大范围高带宽波长调谐下吸收稳频模型，在考虑相位延迟和光强调制的因素下，通过仿真分析大范围高带宽激光波长调谐对吸收稳频的影响，并提出基于鉴频特征曲线重构的大幅度高带宽调频下的高精度激光稳频方法。利用特征曲线畸变矫正模型，重构特征曲线、复现稳频锁定点，实现锁定点与气体分子吸收基准点映射跟踪，精准控制大范围调谐中心频率。最后，对光纤干涉光源的高带宽调频与中心频率稳定控制关键模块进行分析和设计。
+
+(3)微探头式激光干涉数十纳米级周期非线性误差消除方法
+
+针对微探头激光干涉经典PGC非线性误差校正时其特征参数易缺失或消隐、使测量结果存在数十nm非线性误差的问题，本文首先通过公式推导和仿真分析微探头式激光干涉仪的周期非线性误差产生来源和表示形式，建立微探头式激光干涉仪非线性误差传递和推导模型。随后分析微探头式激光干涉仪的现存的周期
+
+非线性误差消除方法的局限性，提出一种基于校正特征参数复现的周期非线性误差零位消除方法，计算载波相位延迟来局部复现周期非线性特征，进而利用温度调控激光移频以获得等效位移，来完整恢复周期非线性特征校准参数，将该误差抑制到亚纳米级。最后，对上述提出的周期非线性误差消除方法进行了仿真验证。
+
+# (4)在上述研究的基础上进行实验验证和分析
+
+通过自主搭建的测试平台对所提出的方法和关键理论可行性进行分析，并结合中国计量院校准测试证书对上述结果补充验证。接下来，通过与商用超精密干涉仪比对，完成对微探头式原理样机的分辨力、稳定度、量程和精度的测试。最后，分析推导微探头式干涉仪的标准不确定度，测试和评价微探头式激光干涉仪整机的线性测量性能，证明大量程亚纳米分辨力的高精度微探头式激光干涉仪的实现。
+
+# 第2章 基于光频自适应调控的亚纳米分辨大量程微探头干涉测量方法
+
+# 2.1 引言
+
+微探头式干涉位移测量作为下一代可嵌入式在线测量手段，是超精密位移测量领域的重中之重。相较于传统激光干涉仪中百毫米级干涉镜组，毫米级微探头干涉仪在干涉测量原理上技术难度更大。传感头方面，现今光纤微传感探头集中在法珀腔干涉结构，将多光束干涉近似为双光束干涉进行传感，未考虑多光束反射带来的原理误差。测量原理方面，光频内调制型相位生成载波解调算法在大量程位移下，因光频内调制失配导致存在位移分辨力急剧下降直至测量失效的多个奇点，故使干涉仪存在大量程下无法测量的问题。
+
+本章首先阐述微探头式超精密激光干涉通用测量方法原理，并推导和仿真分析光纤法布里珀罗干涉仪的局限性，随后研究一种微棱镜式微探头结构的传感方法和模型。接下来，提出面向亚纳米分辨力大量程位移传感的微探头式激光干涉测量方法。分析光频内调制相位生成载波解调方法以及相应改进算法在进行大量程测量时的局限性，提出一种基于光频自适应调控的亚纳米分辨力大量程微探头干涉测量方法。建立大量程工作中测量奇点与光频内调制幅度映射关系，自适应调控激光光源光频内调制幅度，动态跟踪系统调制深度最佳工作点，使仪器在大量程范围内始终保持亚纳米位移分辨力。
+
+# 2.2 微探头式超精密激光干涉仪位移测量原理与传感方法
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/c8b3efee0d66d1da9719d1fff61693e036a61aa8e5ffd15660dcd8bd7c8e86dd.jpg)  
+图2-1 微探头传感器式光纤干涉仪整体原理框图  
+Fig. 2-1 Overall principle block diagram of micro probe sensor optical fiber interferometer
+
+在微探头式激光干涉测量系统中，如图2-1所示，主要核心单元包括光纤微传感探头、相位生成载波信号处理、调谐中心稳频光源和误差校正单元。
+
+微型传感探头是干涉传感的核心结构，光纤仅作为传光组件，不参与干涉测量。微探头结构是支撑微探头干涉仪能够测量的根本单元。微探头存在两种结构：F-P腔式和微棱镜式。F-P腔式微传感头具有多光束干涉原理误差，相较而言，微棱镜式微探头为理想双光束干涉原理，具备高精度传感潜力。
+
+(a) F-P腔式微探头式  
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/9ac2959730900289575d39983395a5d33952ce95972951ebc2a72d25fa4b5bea.jpg)  
+(a) F-P cavity optical fiber microprobe
+
+(b) 微棱镜式微探头式  
+图2-2 光纤微传感探头的分类  
+Fig. 2-2 Classification of optical fiber microsensor probes  
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/a106a6466558ef4d6eaf789c9bff3a1fb2e46a6188cda6cb27093749e36638fa.jpg)  
+(b) Microprism optical fiber microprobe
+
+作为一种经典的应用，低精细度光纤法布里珀罗微传感探头激光干涉仪的结构及测量原理如图 2-2(a)所示。在 F-P 微传感探头中，通常将该端面作为法布里珀罗的干涉结构中第一反射面，待测目标物作为第二反射面，两个反射面构成腔体移动的法布里珀罗腔，腔内光发生干涉，其信号表达式为：
+
+$$
+I _ {\mathrm {F P}} = I _ {0} \cdot \frac {r _ {1} ^ {2} + r _ {2} ^ {2} - 2 r _ {1} r _ {2} \cos \varphi (t)}{\left(1 - r _ {1} r _ {2}\right) ^ {2} + 4 r _ {1} r _ {2} \sin^ {2} (\varphi (t) / 2)} \tag {2-1}
+$$
+
+其中  $r_1$  和  $r_2$  分别为法布里珀罗传感腔体中的两个面的反射率，当  $r_1$  和  $r_2$  为较小的数值时，得到的干涉信号越接近于正弦信号，此时光纤F-P微传感探头是将法珀腔内的多光束干涉近似为双光束干涉进行测量，因此公式(2-1)可以简化为如下表达：
+
+$$
+I _ {\mathrm {F P}} = I _ {0} \cdot \left(r _ {1} ^ {2} + r _ {2} ^ {2} - 2 r _ {1} r _ {2} \cos \varphi (t)\right) \tag {2-2}
+$$
+
+由于干涉信号的近似处理，利用F-P光纤传感探头进行位移测量时，会产生  $17\mathrm{nm}$  的周期性解算误差[21]，因此可以得到结论使用该干涉探头难以实现纳米级精度的测量要求。
+
+另一种微探头式为微棱镜式光纤传感探头，其结构如图2-2(b)所示，顾名思义该探头通过增加了微型棱镜分光器件将光纤出射光分成参考光和测量光，参考光和测量光遇到反射物反射后进入光纤实现干涉，因此属于双光束干涉，干涉信号无需近似就可以得到公式(2-2)的形式。
+
+在本文中，研制了一款基于 GRIN 自聚焦透镜和消偏振分光棱镜(NPBS)组合的微棱镜式准直型传感探头，其结构组成和模型分析如图 2-3 所示，结构上共包含光纤、空心套管、GRIN 自聚焦透镜和侧面镀有反射膜的消偏振分光棱镜。为了更好的分析微探头传感特性，利用等效模型分析手段，将出射光打到目标物反射耦合的过程等效为出射光经过二倍距离和倾角入射进虚拟光纤探头中。其中，
+
+$w_{0}$  为光纤出射光的束腰大小，  $l$  和  $w_{1}$  分别为传感探头出射光的束腰位置和大小， $Z_{\mathrm{wd}}$  和  $\theta$  为待测目标的距离和摆角。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/66a795876edf84d4a18edc666edbecf02ad32453a489ba5b8ba987f1b66f192d.jpg)  
+图2-3微棱镜式微探头式等效分析模型  
+Fig. 2-3 Equivalent analysis model of micro prism optical fiber micro probe
+
+如图2-4(a)所示，以束腰位置  $l$  点处设为原点建立坐标轴，忽略微棱镜的厚度仅做分光使用，则可得到输出光束的电场表达式：
+
+$$
+E (x, y, z) = E _ {0} \alpha_ {1} \frac {w _ {1}}{w (z)} e ^ {- \frac {x ^ {2} + y ^ {2}}{w ^ {2} (z)}} e ^ {- i [ k (z + \frac {x ^ {2} + y ^ {2}}{2 R (z)}) - a r c t g \frac {z}{f} ]} \tag {2-3}
+$$
+
+式中  $E_0$  ——常数；
+
+$\alpha_{1}$  ——微棱镜的分光因子；
+
+$k$  波数  $(\mathrm{m}^{-1})$
+
+$w(z)$  ——z处光斑半径(m);
+
+$R(z)$  ——z处曲率半径(m);
+
+$f$  共焦参数  $(\mathrm{m})$  。
+
+若以探头出射光处设为原点建立坐标轴，此时可求电场表达式：
+
+$$
+E _ {\mathrm {s}} (x, y, z) = E (x, y, z - l) e ^ {- \frac {x ^ {2} + y ^ {2}}{w ^ {2} (z - l)}} e ^ {- i [ k ((z - l) + \frac {x ^ {2} + y ^ {2}}{2 R (z - l)}) - a r c t g \frac {z - l}{f} ]} \tag {2-4}
+$$
+
+如图 2-4(b)所示，同理可在等效探头端面建立新坐标系，并用  $(x', y', z')$  表示，微棱镜分光比 0.5。类比输出光场，等效而来的接收光场可表示为：
+
+$$
+E _ {\mathrm {r}} \left(x ^ {\prime}, y ^ {\prime}, z ^ {\prime}\right) = E _ {0} \alpha_ {2} \frac {w _ {1}}{w \left(z ^ {\prime} + l\right)} e ^ {- \frac {x ^ {\prime 2} + y ^ {2}}{w ^ {2} \left(z ^ {\prime} + l\right)}} e ^ {- i \left[ k \left(\left(z ^ {\prime} + l\right) + \frac {x ^ {\prime 2} + y ^ {2}}{2 R \left(z ^ {\prime} + l\right)}\right) - a r c t g \frac {z ^ {\prime} + l}{f} \right]} \tag {2-5}
+$$
+
+光纤传感探头的光耦合效率可用  $E_{\mathrm{s}}$  和  $E_{\mathrm{r}}$  的交叠积分表示：
+
+$$
+\eta = \frac {\left| \iint \left(E _ {\mathrm {s}} E _ {\mathrm {r}} ^ {*}\right)\right| _ {z ^ {\prime} = 0} d x ^ {\prime} d y ^ {\prime} \left. \right| ^ {2}}{\iint \left(E _ {\mathrm {s}} E _ {\mathrm {s}} ^ {*}\right) \Big | _ {z ^ {\prime} = 0} d x ^ {\prime} d y ^ {\prime} \iint \left(E _ {\mathrm {r}} E _ {\mathrm {r}} ^ {*}\right) \Big | _ {z ^ {\prime} = 0} d x ^ {\prime} d y ^ {\prime}} \tag {2-6}
+$$
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/d6a65bf6b24d928d6de1c15dc3d45fad8910bbbc551445fd7f7d40f0929f0906.jpg)  
+(a) 微探头端面为原点的坐标体系
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/43ca82dec944c2e829bd57f0720f95918a3793bddc383541d5516882495233b6.jpg)  
+(a) Equivalent model coordinate system of optical fiber probe  
+(b) 目标反射镜倾斜情况下的坐标体系  
+(b) Equivalent model coordinate system of optical fiber probe  
+图2-4光纤探头等效模型坐标体系  
+Fig. 2-4 Equivalent analysis model of optical fiber Michelson interference probe
+
+综上分析，当分光棱镜的分光比为1:1，则可以得到的测量光振动方程表示：
+
+$$
+E _ {\mathrm {m}} = A \cdot \eta \cdot \exp \left[ i (\omega t + \phi + \varphi_ {\mathrm {m}}) \right] \tag {2-7}
+$$
+
+式中  $A$  ——光纤出射光的振幅 (V);
+
+$\eta$  ——测量光耦合效率；
+
+$w$  ——光纤出射光的角频率(rad/s)；
+
+$\phi$  ——待测目标物所对应的相位(rad);
+
+$\varphi_{\mathrm{m}}$  ——光纤出射光的初始相位(rad)。
+
+忽略测量光在分光微棱镜中的损耗和准直器与微棱镜的装配误差，则可以得到的参考光振动方程表示为：
+
+$$
+E _ {\mathrm {r}} = A \exp \left[ i \left(\omega t + \varphi_ {\mathrm {r}}\right) \right] \tag {2-8}
+$$
+
+式中  $A$  ——微探头式干涉仪的参考光的振幅 (V);
+
+$w$  ——微探头式干涉仪的参考光的角频率(rad/s);
+
+$\varphi_{\mathrm{r}}$  ——微探头式干涉仪的初始相位(rad)。
+
+微探头式干涉仪中测量光、参考光之间互相发生干涉后，干涉信号可以推导
+
+如下：
+
+$$
+I _ {\mathrm {m}} \propto \operatorname {R e} \left[ \left(E _ {\mathrm {m}} + E _ {\mathrm {r}}\right) \cdot \left(E _ {\mathrm {m}} + E _ {\mathrm {r}}\right) ^ {*} \right] \tag {2-9}
+$$
+
+干涉信号经由光电探测单元探测，由光电探测单元转换为电流输出，其输出的电流幅度可表示为：
+
+$$
+i = K \cdot A (1 + \eta) + K \cdot A \cdot \eta \cos \varphi \tag {2-10}
+$$
+
+$K$  是光电探测单元的光电转换系数，根据待测相位  $\varphi$  与激光器参数之间的关系可以得到：
+
+$$
+\varphi = 2 \pi \frac {2 n L}{\lambda} = \frac {4 \pi n L f}{c} \tag {2-11}
+$$
+
+其中， $L$  为微探头式干涉仪的工作距离， $f$  为激光器所输出激光的频率， $c$  为光速， $n$  为介质的折射率。
+
+# 2.3面向百毫米量程亚纳米分辨力的快速动态位移测量方法
+
+# 2.3.1 光源光频内调制型相位生成载波动态快速解调原理
+
+在上述分析的基础中，将调制电流信号加载到激光器时，激光器输出的激光频率由  $f$  变化为：
+
+$$
+f _ {\mathrm {m}} = f + d \cos \left(\omega_ {0} t\right) \tag {2-12}
+$$
+
+其中，  $d = K_{\mathrm{DL}}i_{\mathrm{m}}$  为激光光源频率调制深度，  $K_{\mathrm{DL}}$  为激光光源的输出激光频率对应电流的相关调制系数，  $i_{\mathrm{m}}$  为所加载信号的幅度，该处特指电流。
+
+结合公式(2-11)和公式(2-12)，经过了频率调制后的相位可以表示为：
+
+$$
+\begin{array}{l} \varphi_ {\mathrm {m}} = \frac {4 \pi n L f _ {\mathrm {m}}}{c} = \frac {4 \pi n L}{c} (f + \Delta f) = \frac {4 \pi n L f}{c} + \frac {4 \pi n L}{c} d \cos \left(\omega_ {0} t\right) (2-13) \\ = \varphi + \frac {4 \pi n L}{c} d \cos \left(\omega_ {0} t\right) = \varphi + C \cos \left(\omega_ {0} t\right) \\ C = \frac {4 \pi n L}{c} d = \frac {4 \pi n L}{c} K _ {\mathrm {D L}} i _ {\mathrm {m}} (2-14) \\ \end{array}
+$$
+
+其中， $C$  表示当前激光器所加载的电流调制所引入的相位调制深度，当  $L$  固定时， $C$  仅由  $d$ （或者  $i_{\mathrm{m}}$ ）的大小所决定。由公式(2-9)，并且将  $\varphi$  写为  $\varphi(t)$ ，可以得到此时在光电探测单元中转换得到的光电流大小为：
+
+$$
+i _ {\mathrm {m}} = A + B \cos \left[ C \cos \left(\omega_ {0} t\right) + \varphi (t) \right] \tag {2-15}
+$$
+
+为了方便处理，对公式(2-15)进行变形可以得到：
+
+$$
+i _ {\mathrm {m}} = A + B \left\{\cos \left[ C \cos \left(\omega_ {0} t\right) \right] \cos \varphi (t) - \sin \left[ C \cos \left(\omega_ {0} t\right) \right] \sin \varphi (t) \right\} \tag {2-16}
+$$
+
+并且使用贝塞尔展开公式：
+
+$$
+\left\{ \begin{array}{l} \cos (z \cos \theta) = J _ {0} (z) + 2 \sum_ {n = 1} ^ {\infty} (- 1) ^ {n} J _ {2 n} (z) \cos (2 n \theta) \\ \sin (z \cos \theta) = - 2 \sum_ {n = 1} ^ {\infty} (- 1) ^ {n} J _ {2 n - 1} (z) \cos [ (2 n - 1) \theta ] \\ \cos (z \sin \theta) = J _ {0} (z) + 2 \sum_ {n = 1} ^ {\infty} J _ {2 n} (z) \cos (2 n \theta) \\ \sin (z \sin \theta) = 2 \sum_ {n = 1} ^ {\infty} J _ {2 n - 1} (z) \sin [ (2 n - 1) \theta ] \end{array} \right. \tag {2-17}
+$$
+
+$$
+J _ {n} (z) = \sum_ {m = 0} ^ {\infty} (- 1) ^ {m} \frac {1}{m ! (m + n) !} \left(\frac {z}{2}\right) ^ {2 m + n}, (n \text {为 整 数}) \tag {2-18}
+$$
+
+对公式(2-16)进行贝塞尔展开变换，可以得到：
+
+$$
+\begin{array}{l} i _ {\mathrm {m}} = A + B \left\{\left[ J _ {0} (C) + 2 \sum_ {k = 1} ^ {\infty} (- 1) ^ {k} J _ {2 k} (C) \cos 2 k \omega_ {0} t \right] \cos \varphi (t) \right. \tag {2-19} \\ \left. - 2 \left[ \sum_ {k = 0} ^ {\infty} (- 1) ^ {k} J _ {2 k + 1} (C) \cos (2 k + 1) \omega_ {0} t \right] \sin \varphi (t) \right\} \\ \end{array}
+$$
+
+由公式(2-19)可以看出，经过调制后的干涉信号  $i_{\mathrm{m}}$  中包含了调制频率  $w_{0}$  为各阶谐波分量，本文将用于分析的直流、一次谐波和二次谐波提出出来并表示如下：
+
+$$
+i _ {0} = A + B J _ {0} (C) \cos \varphi (t) \tag {2-20}
+$$
+
+$$
+i _ {\omega_ {0}} = - 2 B J _ {1} (C) \cos \left(\omega_ {0} t\right) \sin \varphi (t) \tag {2-21}
+$$
+
+$$
+i _ {2 \omega_ {0}} = - 2 B J _ {2} (C) \cos \left(2 \omega_ {0} t\right) \cos \varphi (t) \tag {2-22}
+$$
+
+# 2.3.2 大量程测量下系统信噪比急剧衰变机理分析
+
+通过观测上节的直流信号，一次谐波信号和二次谐波信号，可以发现交流项为正余弦信号，其中可以利用直流项和一次谐波信号结合反正切方法计算相位，也可以用一次谐波项和二次谐波项结合反正切方法计算相位。由于直流项容易受到环境干扰，鲁棒性差，因此通常选用一次谐波项和二次谐波项组合的方式进行。
+
+采用一倍频载波信号和二倍频载波信号对谐波信号分别相乘，并通过低通滤波器将相位信号进行提取得到公式(2-23)和公式(2-24)。
+
+$$
+U _ {\mathrm {m} 1} = B K J _ {1} (C) \sin (\varphi (t)) \tag {2-23}
+$$
+
+$$
+U _ {\mathrm {m} 2} = B K J _ {2} (C) \cos (\varphi (t)) \tag {2-24}
+$$
+
+可以发现，为了获取待测相位，需要保证上述公式的信号幅度相等。即使得  $J_{1}(C) = J_{2}(C)$ ，根据公式(2-18)可知，  $J_{n}(C)$  为贝塞尔函数，其中  $C$  为相位调制深度，对应的  $C$  值有多个解存在，其中最小值为2.63，选取连续变化的  $C$  值对表达式  $J_{1}(C) / J_{2}(C)$  进行仿真，结果如图2-5所示：
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/f8e51cca7c4452144e383b509f914c8962f7d53078548bdb65a9c0a9f9c40887.jpg)  
+图2-5不同  $C$  值下一次和二次贝塞尔系数关系图  
+Fig. 2-5 Relationship between primary and secondary Bessel coefficients under different C values
+
+由图可知,  $J_{1}(C) = J_{2}(C)$  相同, 对应的相位调制深度  $C$  为 2.63、4.48 和 6.08 , 测量系统的设计中选取不同的  $C$  值将对调制深度的调节范围这一性能产生影响。
+
+根据仿真结果，上述三个数值对应的相位调制深度斜率不同，考虑到斜率大小会影响系统的抗干扰能力，因此选择相位调制深度设置为2.63时，可以认为此时系统相位深度鲁棒性最强。
+
+在上述仿真中，相位调制深度(PMD)被设置为固定的理想值。当一阶和二阶贝塞尔函数之比等于1时，即一阶和二阶贝塞尔函数彼此相等，因此不影响输出信号幅度，PGC-Atan解调方案将正常工作。在这种情况下，来自PGC-Atan解调方案的输出信号变得稳定， $C = 2.63$  是最佳PMD值，确保所考虑的解调方案功能正常。
+
+然而，在微探头激光干涉仪实际工作时，相位调制深度难以保持系统最佳工作点，为了进一步探寻微探头干涉仪相位调制深度的影响因素。我们将公式(2-15)整理成下面公式(2-25)的形式，
+
+$$
+i _ {\mathrm {m}} = A + B \cos \left[ \Delta v _ {\mathrm {m}} \cos (w t) \cdot \frac {4 \pi n \left(L _ {0} + \lambda / 2 \Delta f \Delta t\right)}{c} + \varphi (t) \right] \tag {2-25}
+$$
+
+其中  $\Delta \nu_{\mathrm{m}}$  为光频内调制信号幅度， $\Delta f$  为多普勒外调制频率，当待测物体运动进行时，多普勒外调制带来的变化会导致相位调制深度随之变化。然而，当PMD偏离理想值时，解调结果会受到严重影响，并出现信号信噪比变差甚至无法解调的现象。为了进一步分析该现象，进行了如下的仿真工作，模拟多普勒外调制带来的物体工作距的变化从  $0 - 400\mathrm{mm}$ ，假设待测相位为不同工作距离下的正弦振动信号，通过上述相位生成载波解调方法，分析信纳比的变化，结果绘制在图2-6中。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/c1d999dd9772dadd0d8ef1225ee3861eb41246a05f66377ece4a74e6477b6771.jpg)  
+(a) 完整仿真结果  
+图2-6 信纳比与工作距离关系  
+Fig. 2-6 The relationship between signal and working distance
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/5a84c89dec421c8b919acad1c035974570e6075c6bd3635aa1bf51c0bc210985.jpg)  
+(a) Complete simulation results  
+(b) 局部仿真结果  
+(b) Partial simulation results
+
+图2-6(a)为完整的仿真结果，该仿真未考虑软硬件噪声，仅考虑工作距的不同带来的相位调制深度的变化对结果的影响。图2-6(b)为图2-6(a)的阴影部分，即局部结果图。从上述结果可以发现，多普勒外调制和光频内调制会有失配的存在，在失配区间，信号质量急剧下降甚至存在不能测得情况，更无法达到亚纳米分辨力的量级。这个问题在微探头式激光干涉仪中尤其严重，它的缘由是工作距离的变化导致相位调制深度偏离理想工作点，进而产生的后续影响，就像在实际的位移传感中一样，精确获得初始工作距离和确定初始相位生成载波解调的相位调制深度值是很困难的，初始相位生成载波解调的相位调制深度值由工作距离和激光波长调制幅度决定。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/bf641c08bc044206545bed5a50c387c5fade98a50632327f08975ae53d9992c3.jpg)  
+图2-7解调相位与工作距离和激光频率调制幅度关系  
+Fig. 2-7 Relation between demodulation phase and working distance and laser frequency modulation amplitude
+
+此外，在物体位移的过程中，系统的工作距离不可避免地会发生变化，这对微米级的位移影响不大，但对厘米级的位移影响很大，因此，PMD将出现较大偏
+
+差，导致系统异常。图2-7显示了PGC解调中工作距离和激光频率调制幅度对解调相位的影响。
+
+在该仿真实验中，假定正确的相位解调值为  $\pi /4$  ，利用相位生成载波法获取实际解调值如图2-7所示。改变不同的工作距离和激光频率调制幅度，进行仿真实验。图中黄色的虚平面为理想解调值，在不同条件下得到的解调相位与理想的差值为解调误差。从图中也可以发现相同的冲突区存在的现象，因此可见PMD的稳定控制对于实现精确的PGC解调尤为重要。
+
+近年来主要有两种相位调制深度的控制方法，一种方法是被动控制的方法，该方法利用光纤干涉仪输入信号的一次到四次谐波的组合来获得PMD，主要是采用工程控制中的比例积分微分算法实现PMD控制。核心公式如下[69]所示：
+
+$$
+\begin{array}{l} \frac {S _ {2} (t) S _ {3} (t)}{\left[ S _ {3} (t) - S _ {1} (t) \right] \left[ S _ {4} (t) - S _ {2} (t) \right]} \tag {2-26} \\ = \frac {J _ {2} (C) J _ {3} (C) \sin \varphi (t) \cos \varphi (t)}{\left(C ^ {2} / 2 4\right) \cdot J _ {2} (C) J _ {3} (C) \sin \varphi (t) \cos \varphi (t)} = \frac {C ^ {2}}{2 4} \\ \end{array}
+$$
+
+然而，从公式中可以发现，当  $\varphi(t) = \pi/2 + n\pi$  以及  $J_1(C) = 0$  或者  $J_2(C) = 0$  时，公式(2-26)的分母为零，系统无法工作，由于初始工作距离不确定，上述情况是不可避免的。因此，在某些情况下上述方法不适用。
+
+另一种方法是主动计算法，该方法不用计算PMD值，而是直接利用公式(2-27)计算出待测相位[70]，因此当待测相位  $\varphi (t) = \pi /2 + n\pi$  ，该方法仍然可以工作，然而对于  $J_{1}(C) = 0$  或者  $J_{2}(C) = 0$  时的情况，该方法仍然失败。
+
+$$
+\varphi (t) = \frac {T _ {\mathrm {y}}}{T _ {\mathrm {x}}} = \frac {A \sqrt {3 J _ {2} (\mathrm {C}) J _ {3} (\mathrm {C}) / \mathrm {C}} \sin \varphi (t)}{A \sqrt {3 J _ {2} (\mathrm {C}) J _ {3} (\mathrm {C}) / \mathrm {C}} \cos \varphi (t)} \tag {2-27}
+$$
+
+上述两种方法在第五章实验验证时被用于与本文提出的方法进行性能比对，进一步验证上述分析的正确性。
+
+# 2.3.3 基于光频自适应调控的动态位移解算方法
+
+根据前文分析结论可知，对于微探头式激光干涉仪来说，当进行大于几十微米的位移测量时，由于干涉仪的测量初始工作距离未知，同时测量过程中工作距离会无可避免的随之产生变化。工作距离的变化会使得相位生成载波解调中的相位调制深度随之变化，进而降低解调单元解调信号的信噪比，甚至使得干涉仪无法进行工作并产生跳变点。近年研究者研究了有效的相位生成载波算法相位调制深度控制方法，但是据分析可知，在面向大量程位移测量时，上述改进方法仍会在某些工作点及其附近产生跳变点，无法进行测量。
+
+针对上述问题，本研究提出了一种基于光频自适应调控的大量程相位生成载
+
+波位移解算方法，该方法的本质核心是实时计算出光纤微棱镜式微探头的绝对光程差，并以此作为依据调整微探头式干涉仪激光光源波长调制范围，控制相位调制深度的位置维持在2.63rad，进而摆脱因为待测目标的移动导致相位调制深度偏移，系统信噪比变低甚至无法工作的问题。
+
+如图2-8为基于光频自适应调控的相位生成载波解算方案原理图，该方法分为两个部分，一部分是面向待测目标初始静止时，相位生成载波解调中相位调制深度静态控制，另一部分是面向待测目标运动时，相位生成载波解调中相位调制深度的动态跟踪，对两部分分别进行阐述。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/07be9f447035b3224ab67a8c971c780eb2c5c5b9c445ac60f05bfa67ad72246a.jpg)  
+图2-8基于光频自适应调控的相位生成载波解算方案原理图  
+Fig. 2-8 Schematic diagram of phase generation carrier solution scheme based on internal modulation adaptive control
+
+本部分的主要任务是控制微探头式干涉仪的初始静态相位调制深度，以避免初始工作距离不确定导致初始相位调制深度偏离理想值。下面给出了该步骤的详细信息：
+
+第一步，PMD预控制。该步骤的主要目的是防止PMD接近几个特殊值，其中  $J_{1}(C) = 0$  或者  $J_{2}(C) = 0$  ，以及低通滤波器的输出信号严重衰减，因为这些情况可能导致PGC解调和后续单元故障。通过提高激光驱动温度来扫描激光波长，在此过程中，直接将数字合成器DDS的输出设置为  $\cos w_{0}t$  ，激光波长调制振幅设置为 $d_{1}$  ，满足以下公式：
+
+$$
+d _ {1} = \frac {2 . 6 3 \cdot C}{4 \pi n L _ {\max }} \tag {2-28}
+$$
+
+式中， $L_{\mathrm{max}}$  是干涉仪的最大工作距离，取决于传感探头的特性。在本研究中，最大工作距离设定为40厘米。干涉信号乘以  $\cos w_0t$  ，然后通过LPF获得信号。接下来，将获得的信号和上述干涉信号发送到信号幅度检测单元(SAD)进行以下
+
+算法计算。SAD模块包含三个部分：
+
+第一部分：用极值法提取干涉信号和获得的信号的交流振幅，并分别记录为  $A$  和  $B$ 。
+
+第二部分：计算  $B$  与  $0.4624A$  的商，并记录为  $H$  。如果  $H < 0.5$  ，则进入第三步的内容。如果  $H \geqslant 0.5$  ，保留当前参数，并结束SAD的所有程序。
+
+第三部分：将激光频率调制幅度更改为前一次的两倍。扫描激光波长，重复第一步中的步骤。
+
+SAD 模块的核心概念如下：通过确定滤波器输出的信号幅度，可以主动调整激光调频幅度，并可以执行几个周期，使调整后的 PMD 对应的信号质量能够满足后续处理要求。SAD 单元经过预处理后，工作距离越大，信号质量越好。PMD 预控制环节在上述算法结束后完成。SAD 单元处理前后的归一化幅度比较绘制在图 2-9 所示，其中图 2-9(a) 为未经过处理前的一次谐波信号，图 2-9(b) 为经过处理后的一次谐波信号，可以看出经过 SAD 单元处理后，在大多数工作距离下，信号归一化幅度都大于一半可以用于后续处理。
+
+第二步，PMD精确控制。这一步的主要目的是将系统的PMD控制在最佳值。通过提高激光驱动温度，激光波长从  $\lambda_{1}$  到  $\lambda_{2}$  扫描。同时采用PGC-Atan法，从LPF获得两个信号。表示如下：
+
+$$
+S _ {1} ^ {*} (t) = \left[ S ^ {*} (t) \cdot \cos \left(\omega_ {0} t\right) \right] * h _ {\mathrm {L P F}} (t) = - k I _ {0} v J _ {1} (C) \sin \varphi (t) \tag {2-29}
+$$
+
+$$
+S _ {2} ^ {*} (t) = \left[ S ^ {*} (t) \cdot \cos \left(2 \omega_ {0} t\right) \right] * h _ {\mathrm {L P F}} (t) = - k I _ {0} v J _ {2} (C) \cos \varphi (t) \tag {2-30}
+$$
+
+其中  $h_{\mathrm{LPF}}(t)$  为低通滤波器的响应函数。然而，由于此时的PMD仍然不是最佳值，进而导致  $J_{1}(C) \neq J_{2}(C)$ ，即信号解调仍然受到影响。为了获得正确的解调结果，采用不等幅修正方法处理LPF中的两个信号，得到了相位变化值  $\Delta \varphi_{0}$ 。
+
+根据得到的  $\Delta \varphi_{0}$  和已知的  $\lambda_{1}$  和  $\lambda_{2}$ , 通过计算可以得到微探头式干涉仪的初始绝对光程差, 在折射率为 1 时, 可以作为初始工作距离  $\Delta X$ , 计算公式如下:
+
+$$
+\Delta X = \frac {\lambda^ {2} \Delta \varphi_ {\lambda_ {1} - \lambda_ {2}}}{4 \pi \cdot \Delta \lambda} \tag {2-31}
+$$
+
+式中  $\Delta \lambda$  为波长  $\lambda_{1}$  与波长  $\lambda_{2}$  之差， $\lambda$  近似等于  $\lambda_{1}$  。利用得到的干涉仪初始工作距离，可以根据公式(2-14)设定理想的激光波长调制幅度，以获得理想的PMD。总之，通过采用上述技术，PMD会自动调整到最佳值。
+
+为了提高绝对工作距离的测量准确度，保证相位调制深度的精确设置，就要试图保证波长扫频起始点和终止点波长的精确性，即  $\lambda_{1}$  和  $\lambda_{2}$  的精确性。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/c24528970e6a15c5fd49b24d7a3d5ff324ed1a07f9a7a5b3896fca80c55a09bb.jpg)  
+(a) 未经过SAD单元处理前的信号  
+图2-9 SAD幅度自调整单元
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/ca0ecbc34fc6cd44ff06bc26d97b44eac6f5ac699830358c90f3dca65da6fcf4.jpg)  
+(a) Signal before processing by sad unit  
+(b) 经过SAD单元处理前的信号  
+(b) Signal after processing by sad unit
+
+在此，我们利用气体分子气室，将分子吸收谱线作为基准进而保障扫描波长起始点的准确性。选择乙炔气体作为吸收峰波长扫描基准，如图2-10所示。图中为吸收峰信号的一阶导数，可以用于光源吸收峰波长值进行标定。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/4300581fa9520b1f1efce30780cd69b7deb06d87d78e0c35d63bbb250000cac8.jpg)  
+Fig. 2-9 SAD amplitude self-adjusting unit  
+图2-10基于吸收峰基准的光源波长扫描  
+Fig. 2-10 Light source wavelength scanning based on absorption peak reference
+
+步骤为利用PI控制模块，结合锁相放大单元将光源先行锁定在P13峰上，实现基本频率稳定，此时稳定度为  $5 \times 10^{-8}$  量级，将P13峰的溯源波长值作为扫频起点  $\lambda_{1}$ ，改变激光光源驱动温度，将激光波长扫描至P15峰附近，固定驱动温度，改变驱动电流作为精细移频，并再次使用PI控制模块和锁相放大单元实现P15峰锁定，将P15峰的溯源波长值作为扫频起点  $\lambda_{2}$ 。通过此种方式可以有效保证绝对光程差的精度，支撑相位调制深度的有效设置。
+
+# 2.4 大量程亚纳米分辨力位移解调模型分析
+
+对于光纤干涉测量系统来说，影响干涉测量的分辨力性能的来源可以认为是光噪声和电噪声，光噪声主要来自于激光中心波长和输出功率的噪声，电噪声主要来自于电路采集单元噪声和相位生成载波解调算法中的滤波器以及细分单元性
+
+能。
+
+考虑到系统噪声主要以幅度噪声和相位噪声的形式存在，因此在理想干涉信号之上增加了幅度噪声和相位噪声这两种噪声信号，由此可得含有噪声信号的探测干涉信号公式表示如下：
+
+$$
+i _ {\mathrm {m}} = \left(1 + \delta_ {\mathrm {B}}\right) \cdot B \cos \left[ C \cos \left(\omega_ {0} t\right) + \varphi (t) + \varphi_ {\delta} (t) \right] \tag {2-32}
+$$
+
+其中， $\delta_{\mathrm{B}}$  为光纤干涉测量系统探测幅度噪声， $\varphi_{\delta}(t)$  为光纤干涉测量系统探测相位噪声，将公式(2-32)的信号与系统内部生成的一倍频载波和二倍频载波信号  $K \cos w_{0} t$  和  $K \cos 2w_{0} t$  分别进行乘法运算，对这两路乘法运算后的信号进行给定截止频率的低通数字滤波运算，得到滤波后的两路信号分别为：
+
+$$
+U _ {\mathrm {m} 1} = - \left(1 + \delta_ {\mathrm {B}}\right) \cdot \left[ B K J _ {1} (C) \sin (\varphi (t) + \varphi_ {\mathrm {r}} (t)) + \sum_ {n = 1} ^ {m} K _ {1 - n} / a _ {n} \cdot \sin \left(n w _ {0} t + \varphi (t) + \varphi_ {\mathrm {r}} (t)\right) \right] \tag {2-33}
+$$
+
+$$
+U _ {\mathrm {m} 2} = - \left(1 + \delta_ {\mathrm {B}}\right) \cdot \left[ B K J _ {2} (C) \cos (\varphi (t) + \varphi_ {\mathrm {r}} (t)) + \sum_ {n = 1} ^ {m} K _ {2 - n} / a _ {n} \cdot \cos \left(n w _ {0} t + \varphi (t) + \varphi_ {\mathrm {r}} (t)\right) \right] \tag {2-34}
+$$
+
+其中， $K_{1 - n}$  和  $K_{2 - n}$  分别为干涉信号与一倍频和二倍频载波相乘后的  $n$  次谐波对应的系数， $a_{n}$  为各个谐波频率对应低通滤波器的衰减系数。如果低通滤波器无法将截止频率外的信号全部滤除，那么残余的高阶信号将影响干涉测量精度，带来额外误差。
+
+按照相位生成载波解调算法的计算要求，使用滤波处理后的两路信号先后进行除法运算和反正切运算，即可得到相位信息，并通过调整光纤干涉测量系统的相位调制深度值，来使得一倍和二倍的贝塞尔函数系数相等，即  $J_{1}(C) = J_{2}(C)$ ，可得到解调相位值为：
+
+$$
+\begin{array}{l} \varphi^ {\prime} (t) = \arctan (\frac {U _ {\mathrm {m} 1}}{U _ {\mathrm {m} 2}}) \\ = \arctan \left(\frac {\left[ B K J _ {1} (C) \sin \left(\varphi (t) + \varphi_ {\mathrm {r}} (t)\right) + \sum_ {n = 1} ^ {m} K _ {1 - n} / a _ {n} \cdot \sin \left(n w _ {0} t + \varphi (t) + \varphi_ {\mathrm {r}} (t)\right) \right]}{\left[ B K J _ {2} (C) \cos \left(\varphi (t) + \varphi_ {\mathrm {r}} (t)\right) + \sum_ {n = 1} ^ {m} K _ {2 - n} / a _ {n} \cdot \cos \left(n w _ {0} t + \varphi (t) + \varphi_ {\mathrm {r}} (t)\right) \right]}\right) \tag {2-35} \\ = \arctan \left(\frac {\left[ B K J _ {1} (C) \sin \left(\varphi (t) + \varphi_ {\mathrm {r}} (t)\right) + K _ {1 - 1} / a _ {1} \cdot \sin \left(w _ {0} t + \varphi (t) + \varphi_ {\mathrm {r}} (t)\right) \right]}{\left[ B K J _ {2} (C) \cos \left(\varphi (t) + \varphi_ {\mathrm {r}} (t)\right) + K _ {2 - 1} / a _ {1} \cdot \cos \left(w _ {0} t + \varphi (t) + \varphi_ {\mathrm {r}} (t)\right) \right]}\right) \\ \end{array}
+$$
+
+根据公式(2-35)进行分析可得，光纤干涉位移测量对于采集到的干涉信号的幅度噪声不敏感，对相位噪声较为敏感，同时经过合理设计数字低通滤波器，并考虑有限字长影响和幅度噪声不敏感等因素影响，滤波器得到的两路信号可以整理为：
+
+$$
+U _ {\mathrm {m} 1} = B K J _ {1} (C) \sin (\varphi (t) + \varphi_ {\mathrm {r}} (t)) \tag {2-36}
+$$
+
+$$
+U _ {\mathrm {m} 2} = B K J _ {2} (C) \cos (\varphi (t) + \varphi_ {\mathrm {r}} (t)) \tag {2-37}
+$$
+
+接下来对相位解算与数字系统的有效位数关系的进行分析，计算过程公式为：
+
+$$
+\varphi (t) = \arctan \frac {U _ {\mathrm {m} 1}}{U _ {\mathrm {m} 2}} \tag {2-38}
+$$
+
+对上式进行求导计算得：
+
+$$
+\begin{array}{l} \Delta \varphi (t) = \sqrt {\left(\frac {\partial \varphi (t)}{\partial U _ {\mathrm {m} 1}}\right) ^ {2} \Delta U _ {\mathrm {m} 1} ^ {2} + \left(\frac {\partial \varphi (t)}{\partial U _ {\mathrm {m} 2}}\right) ^ {2} \Delta U _ {\mathrm {m} 2} ^ {2}} \tag {2-39} \\ = \sqrt {\left(\frac {U _ {\mathrm {m} 2}}{U _ {\mathrm {m l}} {} ^ {2} + U _ {\mathrm {m} 2} {} ^ {2}}\right) ^ {2} \Delta U _ {\mathrm {m l}} {} ^ {2} + \left(\frac {U _ {\mathrm {m l}}}{U _ {\mathrm {m l}} {} ^ {2} + U _ {\mathrm {m} 2} {} ^ {2}}\right) ^ {2} \Delta U _ {\mathrm {m} 2} {} ^ {2}} \\ \end{array}
+$$
+
+由于信号解调板卡中，两路信号使用同一个模数转换单元，因此将  $\Delta U_{\mathrm{m1}} = \Delta U_{\mathrm{m2}}$  代入上式可得：
+
+$$
+\Delta \varphi (t) = \frac {1}{\sqrt {U _ {\mathrm {m} 1} ^ {2} + U _ {\mathrm {m} 2} ^ {2}}} \cdot \Delta U _ {\mathrm {m} 1} \tag {2-40}
+$$
+
+由于  $\Delta U_{\mathrm{ml}}$  和  $\Delta U_{\mathrm{m2}}$  是具有相同幅度的两路信号，则进一步有：
+
+$$
+\Delta \varphi (t) = \frac {1}{2 ^ {N}} \tag {2-41}
+$$
+
+在公式(2-41)中，指数  $N$  为解算系统的等效有效位数。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/0afab5fc655f3c2516e501f731bff69bbc8eb0d7b0a9755c6e40e938d1d18d18.jpg)  
+图2-11测量分辨力与相位生成载波等效采集位数关系  
+Fig. 2-11 Relationship between measurement resolution and equivalent acquisition bits of phase generated carrier
+
+在实际测量条件下，系统，硬件，光源都能够对相位噪声产生影响，因此若想要达到  $0.1\mathrm{nm}$  的分辨力，以光学二细分，激光器输出激光波长为  $1532\mathrm{nm}$  为基
+
+准，则根据上式计算可以仿真测量分辨力与相位生成载波解调等效采集位数的关系，如图2-11所示。从图中可得，需要干涉信号经过模数转换及混频滤波后，到达相位反正切解算模块时两路输入信号的有效分辨力为至少为10.3位。
+
+# 2.5 本章小结
+
+本章首先对微探头式干涉仪的测量原理进行了介绍，之后从微探头式干涉仪的微传感探头和测量解算方法两个角度出发。在微探头传感方法方面，分析了传统光纤F-P干涉仪的缺陷和不足，由于其多光束干涉的存在会严重影响光纤干涉仪的精度，难以实现纳米级的测量精度，针对于此类现状，本文研究了一种光纤微棱镜式传感探头结构避免了多光束干涉；在测量解算方面，为了解决微探头激光干涉经典PGC测量方法因光频内调制失配导致存在位移分辨力急剧下降直至测量失效的多个奇点、无法实现大量程问题，提出一种基于光频自适应调控的亚纳米分辨力大量程微探头干涉测量方法。建立大量程工作中测量奇点与光频内调制幅度映射关系，自适应调控激光光源光频内调制幅度，动态跟踪系统调制深度最佳工作点，使仪器在大量程范围内始终保持亚纳米位移分辨力。补充建立微探头式干涉仪的相位生成载波解调算法的误差分析模型，为实现亚纳米分辨力提供依据。
+
+# 第3章 基于鉴频曲线重构的大幅度高带宽调频下的高精度稳频方法
+
+# 3.1 引言
+
+激光光源波长是微探头式超精密激光干涉仪的测量基准，决定激光干涉仪测量准确度。传统激光干涉仪仅要求波长准确稳定，相比之下在微探头干涉仪中，大量程、高测速下仪器光源必须大幅度、高带宽调频。然而，现有分子吸收稳频方法和模型只适用于小范围低速光源波长调制下使用，缺少微探头式干涉仪大范围高带宽激光波长调谐下的吸收稳频模型。当激光光源进行大范围高带宽调谐时，相位延迟和光强调制会严重影响气体吸收鉴频曲线函数，使其发生畸变或参考点消隐，导致传统锁零控制方法锁定错误或无法锁定，使得测量基准(波长)失锁进而导致干涉仪测不准的问题。
+
+本章首先从微探头式干涉仪的光源调频和中心频率稳定需求出发，分析微探头式干涉仪测量特性与光源特性的关系，随后对基于调谐光谱稳频方法的局限性进行分析；接下来，提出一种基于鉴频曲线重构的大幅度高带宽调频下高精度激光稳频方法。在大幅度高带宽调制条件下，建立鉴频特征曲线畸变模型和畸变矫正模型，利用矫正模型反馈调节相位补偿并重构鉴频曲线，明确锁定点与稳频基准点的对应关系，实现气体分子吸收基准点锁定跟踪，精准控制大范围高带宽调谐中心频率；最后，对光纤干涉光源的高带宽调频与中心频率稳定控制关键模块进行分析和设计。
+
+# 3.2 微探头式激光干涉仪调频光源需求分析
+
+在微探头传感器式超精密激光干涉测量中，激光光源波长需要进行正弦波长调谐，调谐的频率和幅度会对干涉位移测量的测量速度上限和解调信噪比性能产生影响，同时光源的中心频率稳定度影响干涉位移测量的稳定度。因此，本单元设计之初需要明确激光波长调谐参数(幅度和频率)以及中心频率稳定度的需求。
+
+# 3.2.1 光源GHz幅度MHz带宽频率调制需求
+
+根据2.2节中给出的微探头式激光干涉位移测量干涉信号表达式(2-15)中，可以发现，表达式中的相位调制深度  $C$  与调谐频率  $w$  受到激光波长调谐特性参数的影响。根据公式(2-14)可知，相位调制深度受到激光波长调制幅度和微探头式干涉仪干涉光程差决定，在忽略空气折射率变化的情况下，可以认为微探头式干涉
+
+光程差等效于干涉仪测量工作距离。由于在第二章分析过，对于 PGC-Atan 算法来说，需要保证相位调制深度  $C$  值为 2.63，进而保证一阶贝塞尔系数  $J_{1}$  与二阶贝塞尔系数  $J_{2}$  相等，此时的解调信噪比最高。同时可以发现当微探头式干涉仪工作距离越小时，对应的激光波长调谐范围越大。因此，假设目标微探头式干涉仪的测量工作距离为  $2.4 \mathrm{~cm}$ ，利用开源数值仿真软件仿真，将第一类贝塞尔函数的一阶系数  $J_{1}(C)$  与二阶系数  $J_{2}(C)$  的变化如图 3-1 中所示。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/e5b3e7722b6e9eb3d7228f1a748a278b71a0e7f690b39778b0d640a2da70f5ec.jpg)  
+图3-1系数数值与频率调制范围的关系  
+Fig. 3-1 The relationship between the coefficient value and the frequency modulation range
+
+从图中可以发现，当微探头式干涉仪工作距离保持恒定时，随着光源激光频率调制范围的增大，第一类贝塞尔函数的一阶系数  $J_{1}(C)$  与二阶系数  $J_{2}(C)$  会随之变化。为了满足相位调制深度  $C = 2.63$  的要求，当干涉仪工作距离为  $2.4\mathrm{cm}$  时，光源的波长调谐范围应为  $2.61\mathrm{GHz}$  。在确定完微探头式激光干涉仪光源调谐最大范围后，接下来分析光源调谐频率。
+
+为了研究光源调谐频率与微探头式干涉仪位移测量速度的关系，根据公式(2-15)-(2-22)，利用开源仿真软件仿真微探头式干涉仪信号解调完整过程。首先假设物体静止，相当于干涉公式(2-15)中的待测相位变化量  $\varphi(t)=0$ ，利用光电探测器探测光电信号并进行频谱分析用于后续研究，将得到的结果绘制在图3-2(a)中，通过观察可以发现当模拟物体静止时，本研究关心的基于激光光源波长调制频率的一次谐波信号和二次谐波信号的频谱不存在额外的频谱搬移情况，其中，红色线为一次谐波信号对应的频谱，绿色线为二次谐波信号对应的频谱。
+
+随后，假设物体匀速运动，相当于干涉公式(2-15)中的待测相位变化量  $\varphi(t) = 2\pi ft$ ，利用光电探测器探测光电信号并进行频谱分析用于后续研究，将得到的结果绘制在图3-2(b)-(d)中，通过观察可以发现当模拟物体匀速运动时，基于激光光源波长调制频率的一次谐波信号和二次谐波信号的频谱存在额外的频谱搬移情况。
+
+如图3-2(b)所示，为待测物体运动对应频率  $f$  为  $300\mathrm{kHz}$  的情况，可以看出红色线和绿色线出现频谱搬移，二者出现靠近的趋势。如图3-2(c)所示，为待测物体运动对应频率  $f$  为  $500\mathrm{kHz}$  的情况，可以看出红色线和绿色线出现重合，此时二者无法区分，因此对于该测量速度情况下，系统是无法工作的，此时可以认为是微探头式干涉仪的等效理论最大测量速度。如图3-2(d)所示，为待测物体运动对应频率  $f$  为  $700\mathrm{kHz}$  的情况，可以看出红色线和绿色线出现相对位置交替，此时解调算法无法将上述干涉信息正确提取。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/f88989fe15e83fb89182d015eb25fb935e37b0de9fa989daed79cc9a05ff186c.jpg)  
+(a) 被测物处于静态
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/de778bea64cbc876172fa18549fc2a9a89f6320640dae051c8b2f72585c677e3.jpg)  
+(b) 被测物的移动频率宽度  $300 \mathrm{kHz}$
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/7dc0eb60564603a3559480c02f7310c820e1e91cbffbf02bbf89842b493d67ec.jpg)  
+(a) Under the static state of the object to be tested  
+(c) 被测物的移动频率宽度  $500 \mathrm{kHz}$  
+(c) Frequency of the object:  $500\mathrm{kHz}$  
+图3-2微探头式干涉仪干涉信号频谱分析  
+Fig. 3-2 Spectrum analysis of interference signal of optical fiber micro probe interferometer
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/803f4542c8483a8193bb7e0c5e71fe5d426264d69cd0f26e14cd7224f0ffabab.jpg)  
+(b) Frequency of the object:  $300\mathrm{kHz}$  
+(d) 被测物的移动频率宽度  $700\mathrm{kHz}$  
+(d) Frequency of the object:  $700\mathrm{kHz}$
+
+仿真结果表明：被测物移动的速度较低，频率宽度之间的间距越长，反之频率宽度之间的间距较小。当激光光源的波长调制频率固定，被测物的移动速率达到某一数值时，邻近的频率就会出现频谱重叠，从而使相位不能得到准确的解调。在所测量的相位变化速度固定的情况下，调制速度对混合信号中邻近频率宽度的间距产生了影响。随着调制速度的提高，其邻近频率宽度的间距也随之增大，相反会随之减小；如果调频速度太低，则会使混频信号的频谱出现较大的重叠，从而使解调后的相位出现偏差。实际上，为防止由于频谱重叠而产生的解调误差，调制速率与被测物的移动速度之间有以下的联系：
+
+$$
+\omega_ {0} \geq 2 n \omega_ {s} \tag {3-1}
+$$
+
+公式中的  $n$  是沿调制速度的两侧扩展的边带等级，通常  $n$  大于等于10。当硬件条件许可时，要尽量增加调频速度，以增加系统的最高动态幅度，最后设定1MHz的调频速度。
+
+# 3.2.2 光源中心频率与干涉仪位移准确测量的相关性
+
+微探头式激光干涉仪进行位移测量时，待测相位可以表示为公式(3-2)的形式，通过公式可以获知，相位解算受到激光波长(频率)的影响，激光中心波长越不稳定，带来的误差越大，由于波长波动带来的相位误差可以表示为公式(3-3):
+
+$$
+\phi = \frac {4 \pi n L}{\lambda} = \frac {4 \pi n \left(L _ {0} + L _ {x}\right)}{\lambda} = \frac {4 \pi n \left(L _ {0} + L _ {x}\right) \nu}{c} \tag {3-2}
+$$
+
+$$
+\delta \phi = \frac {4 \pi n \left(L _ {0} + L\right) \delta v}{c} \tag {3-3}
+$$
+
+德国的微探头式的商业化产品的激光波长中心稳定度为  $50 \mathrm{ppb}$ , 那么根据公式(3-4), 将光源波长(频率)  $v_{0}$  代入可得激光光源的频率波动应为  $9 \mathrm{MHz}$  左右。
+
+$$
+\theta_ {v} = \frac {\Delta v}{v _ {0}} = \frac {\Delta v}{c / \lambda} = 5 \times 1 0 ^ {- 8} \tag {3-4}
+$$
+
+然而，因为分布式反馈激光器的主动驱动稳频方法，即利用恒定电流驱动和恒定温度控制的方法，实现的激光光源波长稳定度过差，因此需要进行主动的稳频方法进行实现。
+
+# 3.3 GHz 大幅度 MHz 高带宽调频下光源高精度中心稳频方法
+
+# 3.3.1 大幅度高带宽调谐下稳频特征曲线畸变和消隐机理
+
+# 3.3.1.1 乙炔调制吸收光谱的光源中心稳频特征曲线模型
+
+在要求较快的调频条件下，利用乙炔气体的吸收峰作为参照，采用分子吸收稳频的方法进行分析和设计。调制吸收光谱稳频技术的关键是采用调制解调技术来获得幅值和频率之间相关的误差曲线(也被称作鉴频曲线)，其工作原理见图3-3，调制信号的中心频率以及吸收信号中心频率的位置关系会影响解调结果。
+
+在  $v$  比  $v_{0}$  小的情况下，对光强的信号进行同频率同相位的调制，并得到了一个正解；相反，对光强的信号进行同频率反相位的调制，得到了一个负解；如果两者一致，则解调得到的值为 0。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/b2a4aee84056ff7e7722deaabb3e4dabb2716307c5fd89853231d124431e8db0.jpg)  
+图3-3调制解调原理示意图  
+Fig. 3-3 Schematic diagram of modulation and demodulation
+
+在本文设计中，采用乙炔作为分子吸收气体参考，根据乙炔气体的传输特性，其透射曲线可以用以下公式来表达：
+
+$$
+T (\nu) = 1 - \frac {a \gamma^ {2}}{\gamma^ {2} + \left(\nu - \nu_ {0}\right) ^ {2}} \tag {3-5}
+$$
+
+式中  $\nu$  ——激光光源的频率(GHz)；
+
+$v_{0}$  ——乙炔吸收峰谱线对应的频率(GHz);
+
+$a$  ——乙炔吸收峰的吸收率；
+
+乙炔吸收峰谱线的半高宽(GHz)。
+
+通过对上述透射曲线求导得到公式(3-6)，
+
+$$
+T ^ {\prime} (\nu) = \frac {2 a \gamma^ {2} \left(\nu - \nu_ {0}\right)}{\left[ \gamma^ {2} + \left(\nu - \nu_ {0}\right) ^ {2} \right] ^ {2}} \tag {3-6}
+$$
+
+在透射峰中心附近，可以近似表达为公式(3-7)：
+
+$$
+T ^ {\prime} (\nu) = \frac {2 a}{\gamma^ {2}} \left(\nu - \nu_ {0}\right) \tag {3-7}
+$$
+
+通过数值仿真软件对吸收峰信号和一阶微分信号进行仿真，结果绘制在图3-4中，从图中可以观测到，对于吸收峰的一阶微分信号来说，在吸收峰附近为线性区，并且吸收峰对应的鉴频曲线信号幅度为0，因此控制系统锁定点可以设置为零点。
+
+其中，锁相放大是实现谐波解调的关键理论基础。本文在第二章中对光纤干涉仪的位移测试理论进行了详细的阐述，在假定激光频率为  $\nu$  的情况下，调制深度为  $\Delta \nu_{\mathrm{m}}$  频率为  $w_{0}$  的信号对光源的光进行波长调制。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/695b1ab03badbaf07073af930a0e05b8e16e5ae53766ac82b1510ac23ae514d8.jpg)  
+激光光源频率/GHz  
+图3-4乙炔吸收峰信号及其一阶微分曲线  
+Fig. 3-4 Distribution diagram of acetylene molecular absorption peak acetylene absorption peak signal and its first-order differential curve
+
+此时激光频率表达为  $\nu_{\mathrm{m}} = \nu + \Delta \nu_{\mathrm{m}} \cos (\omega_0 t)$  。检测光光强度可以表示为  $I[\nu + \Delta \nu_{\mathrm{m}} \cos (\omega_0 t)]$  ，利用泰勒公式对光强公式在频率  $\nu$  处进行计算可得：
+
+$$
+\begin{array}{l} I [ \nu + \Delta \nu_ {\mathrm {m}} \cos (\omega_ {0} t) ] = I (\nu) + \Delta \nu_ {\mathrm {m}} \cos (\omega_ {0} t) \frac {\partial I}{\partial \nu} + \frac {\Delta \nu_ {\mathrm {m}} ^ {2}}{2 !} \cos^ {2} (\omega_ {0} t) \frac {\partial^ {2} I}{\partial \nu^ {2}} \\ + \frac {\Delta v _ {\mathrm {m}} ^ {3}}{3 !} \cos^ {3} \left(\omega_ {0} t\right) \frac {\partial^ {3} I}{\partial v ^ {3}} + \frac {\Delta v _ {\mathrm {m}} ^ {4}}{4 !} \cos^ {4} \left(\omega_ {0} t\right) \frac {\partial^ {4} I}{\partial v ^ {4}} + \dots \\ = I (\nu) + \Delta \nu_ {\mathrm {m}} \cos \left(\omega_ {0} t\right) \frac {\partial I}{\partial \nu} \tag {3-8} \\ + \frac {\Delta v _ {\mathrm {m}} ^ {2}}{2 !} \frac {\cos (2 \omega_ {0} t) + 1}{2} \frac {\partial^ {2} I}{\partial v ^ {2}} \\ + \frac {\Delta \nu_ {\mathrm {m}} ^ {3}}{3 !} \frac {\cos (3 \omega_ {0} t) + 3 \cos (\omega_ {0} t)}{4} \frac {\partial^ {3} I}{\partial \nu^ {3}} \\ + \frac {\Delta v _ {\mathrm {m}} ^ {4}}{4 !} \frac {\cos (4 \omega_ {0} t) + 4 \cos (2 \omega_ {0} t) + 3}{8} \frac {\partial^ {4} I}{\partial v ^ {4}} + \dots \\ \end{array}
+$$
+
+对式(3-8)进行合并同类项得到：
+
+$$
+\begin{array}{l} I [ \nu + \Delta \nu_ {\mathrm {m}} \cos (\omega_ {0} t) ] = [ I (\nu) + \frac {\Delta \nu_ {\mathrm {m}} {} ^ {2}}{4} \frac {\partial^ {2} I}{\partial \nu^ {2}} + \frac {\Delta \nu_ {\mathrm {m}} {} ^ {4}}{6 4} \frac {\partial^ {4} I}{\partial \nu^ {4}} + \dots ] \\ + \cos \left(\omega_ {0} t\right) \left[ \Delta v _ {\mathrm {m}} \frac {\partial I}{\partial v} + \frac {\Delta v _ {\mathrm {m}} {} ^ {3}}{8} \frac {\partial^ {3} I}{\partial v ^ {3}} + \dots \right] \tag {3-9} \\ + \cos (2 \omega_ {0} t) \left[ \frac {\Delta v _ {\mathrm {m}} ^ {2}}{4} \frac {\partial^ {2} I}{\partial v ^ {2}} + \frac {\Delta v _ {\mathrm {m}} ^ {2}}{4 8} \frac {\partial^ {4} I}{\partial v ^ {4}} + \dots \right] \\ + \cos (3 \omega_ {0} t) \left[ \frac {\Delta v _ {\mathrm {m}} ^ {3}}{2 4} \frac {\partial^ {3} I}{\partial v ^ {3}} + \frac {\Delta v _ {\mathrm {m}} ^ {5}}{3 8 4} \frac {\partial^ {5} I}{\partial v ^ {5}} + \dots \right] \\ \end{array}
+$$
+
+由公式(3-9)可见，阶数越小的谐波的幅度越大，利用锁相放大的基本思想，将其信号与系统内部生成的参考信号进行锁相放大运算，就可以得到用于激光光源中心频率控制的鉴频信号了。
+
+# 3.3.1.2 大幅度高带宽调谐下稳频特征曲线畸变和消隐机理
+
+激光光源大范围高速正弦调制的实现是利用 DDS 技术生成幅度可变的正弦电压信号，通过将电压信号转换成电流信号注入激光管中实现激光波长的正弦调制。对于半导体分布式反馈激光管，当调制信号调制频率较低时，频率与电流的调谐系数可以约等于准静态慢速扫频的调谐系数，然后当调谐信号频率超过  $100\mathrm{kHz}$  时，随着调制频率的逐渐增大，频率电流调谐系数会出现逐渐减小的情况。因此，可以认为对于高带宽频率调制而言，为了实现相同的调制幅度，较于低频调制，激光管需要注入更大幅度的调制电流信号。然而，对于半导体激光管来说，由于电流调制会在激光波长频率调制的情况下产生额外的不希望存在的光强伴随调制，其中光强伴随调制的大小通常用  $m$  表示，它代表的是强度的交流峰值与平均值的比值。本文通过实际实验测试光强伴随调制系数与激光波长调制信号幅度和频率的关系如图 3-5 所示。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/277183ce64f4b8c4f9728b6ddf398767b652888f648e40e85f0c53056139e876.jpg)  
+图3-5光强伴随调制系数和调制信号的关系
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/5efbea38458658fca0af20f37261d741a01e2a6fc7cd6715742a6076124cfa1e.jpg)  
+Fig. 3-5 Relationship between light intensity adjoint modulation coefficient and modulation signal
+
+根据图3-5可以发现，随着激光波长调谐电流信号的频率逐渐增大，光强伴随调谐系数保持不变；随着激光波长调谐电流信号的幅度增大，光强伴随调谐系数随之增大。
+
+接下来分析大范围高带宽波长调制对于前文描述的基于乙炔的分子吸收稳频模型的影响，当调制注入电流幅度较低时，光强伴随调制影响较小，可以忽略不计，但是当面对大幅度的电流调制信号时，光强伴随调制的影响就无法忽略。与此同时，另外一项因素的影响也随着高带宽的调谐产生。根据中心频率稳定方法的原理分析，可以发现，是利用FPGA内部生成的与调制信号同频率的载波信号混频相乘并滤波实现，然后在模型中忽略了DDS产生的调制信号传递到激光管，再经激光管出射经由光纤、气室、光电探测转换和信号采集单元等存在的信号延迟。建立调制频率与信号时间延迟和载波相位变化的关系式如下：
+
+$$
+\varphi_ {\mathrm {c}} = 2 \pi \Delta t f \tag {3-10}
+$$
+
+根据公式(3-10)可以推出，当系统硬件保持不变时，对于相同的时间延迟  $\Delta t$  来说，如果调制频率很小，对应的载波内部的相位延迟就接近 0，可以忽略；但是如果调制频率变得较大，那么载波内部的相位延迟就会影响得到的用来稳定频率的光电探测器转换信号。接下来，在传统模型中加入对于伴随光强调制和载波内部的相位延迟的考量，重新建立新的大范围高带宽调谐中心频率稳定模型。
+
+通过上一段落的分析，在传统模型的基础上加入了伴随光强调制和载波内部的相位延迟的考量，因此可以的用于稳频的探测信号表达式为：
+
+$$
+\begin{array}{l} I ^ {*} [ \nu + \Delta \nu_ {\mathrm {m}} \cos (\omega_ {0} t) ] \\ = (1 + m \cos (\omega_ {0} t + \varphi_ {\mathrm {m}} + \varphi_ {\mathrm {c}})) [ (I (\nu) + \frac {\Delta \nu_ {\mathrm {m}} ^ {2}}{4} \frac {\partial^ {2} I}{\partial \nu^ {2}} + \frac {\Delta \nu_ {\mathrm {m}} ^ {4}}{6 4} \frac {\partial^ {4} I}{\partial \nu^ {4}} + \dots) \\ + \cos \left(\omega_ {0} t + \varphi_ {\mathrm {c}}\right) \left(\Delta v _ {\mathrm {m}} \frac {\partial I}{\partial v} + \frac {\Delta v _ {\mathrm {m}} {} ^ {3}}{8} \frac {\partial^ {3} I}{\partial v ^ {3}} + \dots\right) \tag {3-11} \\ + \cos \left(2 \omega_ {0} t + 2 \varphi_ {\mathrm {c}}\right) \left(\frac {\Delta v _ {\mathrm {m}} ^ {2}}{4} \frac {\partial^ {2} I}{\partial v ^ {2}} + \frac {\Delta v _ {\mathrm {m}} ^ {4}}{4 8} \frac {\partial^ {4} I}{\partial v ^ {4}} + \dots\right) \\ + \cos \left(3 \omega_ {0} t + 3 \varphi_ {\mathrm {c}}\right) \left(\frac {\Delta \nu_ {\mathrm {m}} {} ^ {3}}{2 4} \frac {\partial^ {3} I}{\partial \nu^ {3}} + \frac {\Delta \nu_ {\mathrm {m}} {} ^ {5}}{3 8 4} \frac {\partial^ {5} I}{\partial \nu^ {5}} + \dots\right) ] \\ \end{array}
+$$
+
+式中  $v$  ——激光光源中心频率(GHz)；
+
+$\Delta v_{\mathrm{m}}$  ——激光光源频率调谐幅度(GHz);
+
+$m$  ——伴随光强调制系数；
+
+$w_{0}$  ——载波信号对应的角频率(rad/s);
+
+$\varphi_{\mathrm{c}}$  ——载波信号与参考信号相位延迟(rad);
+
+$\varphi_{\mathrm{m}}$  ——激光频率调制与光源功率调制的相位差(rad)。
+
+根据公式(3-11), 经过与同频率内部载波信号相乘混频并滤波后得到的改进的鉴频信号如下:
+
+$$
+\begin{array}{l} H ^ {*} (\nu) = L P F \left[ I ^ {*} \left[ \nu + \Delta \nu_ {\mathrm {m}} \cos \left(\omega_ {0} t\right) \right] \cos \left(\omega_ {0} t\right) \right] \\ = \cos \left(\varphi_ {\mathrm {c}}\right) \left(\Delta v _ {\mathrm {m}} \frac {\partial I}{\partial v} + \frac {\Delta v _ {\mathrm {m}} ^ {3}}{8} \frac {\partial^ {3} I}{\partial v ^ {3}} + \dots\right) \\ + m \cos \left(\varphi_ {\mathrm {m}} + \varphi_ {\mathrm {c}}\right) (I (\nu) + \frac {\Delta \nu_ {\mathrm {m}} {} ^ {2}}{4} \frac {\partial^ {2} I}{\partial \nu^ {2}} + \frac {\Delta \nu_ {\mathrm {m}} {} ^ {4}}{6 4} \frac {\partial^ {4} I}{\partial \nu^ {4}} + \dots) \tag {3-12} \\ + \frac {m}{2} \cos \left(\varphi_ {\mathrm {m}} - \varphi_ {\mathrm {c}}\right) \left(\frac {\Delta \nu_ {\mathrm {m}} ^ {2}}{4} \frac {\partial^ {2} I}{\partial \nu^ {2}} + \frac {\Delta \nu_ {\mathrm {m}} ^ {4}}{4 8} \frac {\partial^ {4} I}{\partial \nu^ {4}} + \dots\right) \\ \approx \cos \left(\varphi_ {\mathrm {c}}\right) \Delta v _ {\mathrm {m}} \frac {\partial I}{\partial v} + m \cos \left(\varphi_ {\mathrm {m}} + \varphi_ {\mathrm {c}}\right) I (v) \\ \end{array}
+$$
+
+通过分析公式(3-12)可以发现，得到的鉴频曲线的主体部分受到了载波中相位延迟  $\cos \varphi_{\mathrm{c}}$  的影响，并且可以预计的是，当  $\varphi_{\mathrm{c}}$  接近  $\pi / 2 + n\pi (n$  为整数)，鉴频曲线主体会被严重衰减。另外，由于光强伴随调制的存在使得鉴频信号产生了额外项  $m\cos (\varphi_{\mathrm{m}} + \varphi_{\mathrm{c}})$  。为了进一步深入的研究光强伴随调制和载波中相位延迟的影响，利
+
+用开源仿真软件进行仿真工作。假设激光频率调制与光源功率调制的相位差为  $\pi / 3$ ，光强伴随调制系数设置为0和0.2，吸收峰的吸收率设定为0.5，吸收峰谱线的半高宽设置为  $2\mathrm{GHz}$ ，载波相位延迟分别假设为0、 $\pi / 6$ 、 $\pi / 3$ 、 $\pi / 2$ 、 $2\pi / 3$ 、 $5\pi / 6$  和  $\pi$ 。相应不同情况下的鉴频曲线的仿真结果呈现在图3-6。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/cbf6c30089f0996d2c1f10861c28b0be9de0269f481679d57720ff94487bc02b.jpg)  
+(a) 参数: CPD:  $0 \mathrm{~m}: 0$ , CPD:  $0 \mathrm{~m}: 0.2$
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/abe96abd6b14dd891e35ef86707c6488e56d2bf9c2b7f98a8d53dbafd31c4573.jpg)  
+(b) 参数: CPD:  $\pi / 6 \mathrm{~m}: 0.2$ , CPD:  $\pi / 3 \mathrm{~m}: 0.2$
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/c837e7facbca63d17e5ee46cc9def027369f63e2012770e8d1eef4294364b78e.jpg)  
+(a) Parameter: CPD:  $0\mathrm{m}:0$  CPD:  $0\mathrm{m}:0.2$  
+(c) Parameter: CPD:  $\pi /2\mathrm{m}:0.2$  CPD:  $2\pi /3\mathrm{m}:0.2$  
+图3-6大范围高带宽波长调谐下光谱鉴频曲线  
+Fig. 3-6 Spectral frequency discrimination curve under wide range and high bandwidth wavelength tuning
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/6f22982777b66d27bacc566d07a898976254cd4ae0d5b035b96ee068476d8797.jpg)  
+(b) Parameter: CPD:  $\pi /6\mathrm{m}:0.2$  CPD:  $\pi /3\mathrm{m}:0.2$  
+(c) 参数: CPD:  $\pi / 2 \mathrm{~m}: 0.2$ , CPD:  $2 \pi / 3 \mathrm{~m}: 0.2$  
+(d) 参数: CPD:  $5\pi / 6 \mathrm{~m}: 0.2$ , CPD:  $\pi \mathrm{m}: 0.2$  
+(d) Parameter: CPD:  $5\pi /6\mathrm{m}:0.2$  CPD:  $\pi \mathrm{m}:0.2$
+
+根据图3-6(a)可以发现，当载波中的相位延迟为0的时候，光强伴随调制为0，经过低通滤波器之后得到的鉴频曲线幅度中数值为零的交点只有一个，且为气体吸收峰对应的点，曲线近乎于锁频点对称的形貌；当光强伴随调制不为零时，可以发现，经过低通滤波器之后得到的鉴频曲线幅度中数值为零的交点有两个，在这种情况下，通过传统的分子气体吸收稳频的通过鉴频曲线取零作为锁定点的方法将会失效，并且如果锁定在左侧的零点位置的话，控制模型斜率较小，对应的控制系统的灵敏度会变低，同时激光波长锁定点将会偏离吸收峰位置，偏离频率差超过2GHz，该偏离会使得相对激光波长偏差为  $10^{-5} - 10^{-6}$ ，这意味着待测物体运动  $1\mathrm{mm}$ ，就会有  $10\mathrm{nm}$  左右的偏差。如果锁定点是右侧的点，那么可以看出锁定点与可溯源的吸收峰仍会存在几百  $\mathrm{MHz}$  的偏差。
+
+根据3-6(b)-(d)可以发现，当载波中的相位延迟不为0且逐渐接近  $n\pi / 2$  的过程中，鉴频曲线的峰谷差值越来越小，对应的控制点附近的控制模型斜率较小，对应的控制系统的灵敏度会变越来越低。当载波中的相位延迟接近  $n\pi / 2$ ，可以发现，鉴频曲线几乎为轴对称函数，无法进行锁定点的激光频率稳定控制。
+
+综上所述，对于微探头式超精密干涉仪，由于测量原理和测量速度的需求，需要对激光波长进行大范围高带宽的频率调制，同时需要实现激光光源的中心频率稳定控制。然而，由于大范围高带宽的频率调制带来的载波中的相位延迟和伴随光强调制，对原始的调谐光谱分子吸收稳频模型带来影响，通过分析和仿真发现，鉴频曲线会出现锁频点偏离，多个零值锁定点或者不存在零值锁定点导致无法完成频率稳定以及锁定点附近控制灵敏度低导致激光稳定度差的问题。针对上述问题，下一节提出和分析补偿和锁频点重新设定方法。
+
+# 3.3.2 基于特征曲线重构的大幅度高带宽调谐光源稳频方法
+
+针对上节分析，可以发现对于大范围高带宽频率调制产生的额外的载波中的相位延迟和伴随光强调制，会改变鉴频曲线，进而使得系统找不到零点作为锁定点或者存在两个不同的锁定点进而使得微探头式超精密激光干涉仪光源中心频率稳定度差甚至无法稳定频率。针对上述问题，在前文建立了大范围高带宽调制下吸收稳频模型，在本节找出新的频率锁定点与稳频鉴频模型峰谷值的映射关系，并利用此映射关系消除载波中的相位延迟和伴随光强调制对吸收稳频的影响。下面，就具体理论分析和消除步骤进行详细阐述。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/9e1bd52960edd01eb6c5650dd885cd3f669660f3c672acce835134f6ddfb6d80.jpg)  
+图3-7大范围高带宽分子吸收稳频方法框图
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/57d8185aa4b989081b04c4e522ed286ee59ec55ad675b4cf478becf585d9d8c2.jpg)  
+Fig. 3-7 Block diagram of saturated absorption frequency stabilization method with wide range and high bandwidth
+
+将乙炔气体吸收曲线和曲线的一次导数函数带入公式(3-12)可以得到公式(3-13)如下所示：
+
+$$
+\begin{array}{l} H ^ {\oplus} (\nu) = L P F \left[ I \left[ \nu + \Delta \nu_ {\mathrm {m}} \cos \left(\omega_ {0} t\right) \right] \cos \left(\omega_ {0} t - \alpha\right) \right] \\ \approx \cos \left(\varphi_ {\mathrm {c}} - \alpha\right) \Delta v _ {\mathrm {m}} \frac {\partial I}{\partial v} + m \cos \left(\varphi_ {\mathrm {m}} + \varphi_ {\mathrm {c}} - \alpha\right) I (v) \tag {3-13} \\ = \cos \left(\varphi_ {\mathrm {c}} - \alpha\right) \Delta \nu_ {\mathrm {m}} \frac {2 a \gamma^ {2} \left(\nu - \nu_ {0}\right)}{\left[ \gamma^ {2} + \left(\nu - \nu_ {0}\right) ^ {2} \right] ^ {2}} + m \cos \left(\varphi_ {\mathrm {m}} + \varphi_ {\mathrm {c}} - \alpha\right) \left(1 - \frac {a \gamma^ {2}}{\gamma^ {2} + \left(\nu - \nu_ {0}\right) ^ {2}}\right) \\ \end{array}
+$$
+
+其中  $\alpha$  为补偿相位，通过观察公式(3-13)，可以发现鉴频曲线主要由两项组成，第一项是以轴  $v = v_{0}$  为中心的奇函数，第二项是以轴  $v = v_{0}$  为中心的偶函数。首先对第一项进行研究并求导，也就是对乙炔气体吸收谱线函数的二阶导数，可以得到公式(3-14)：
+
+$$
+I ^ {\prime \prime} (\nu) = \frac {2 a \gamma^ {2} \left[ \gamma^ {2} + \left(\nu - \nu_ {0}\right) ^ {2} \right] ^ {2} - 8 a \gamma^ {2} \left[ \gamma^ {2} + \left(\nu - \nu_ {0}\right) ^ {2} \right] \left[ \left(\nu - \nu_ {0}\right) ^ {2} \right]}{\left[ \gamma^ {2} + \left(\nu - \nu_ {0}\right) ^ {2} \right] ^ {4}} \tag {3-14}
+$$
+
+令公式(3-14)等于0时对应的两个自变量的值  $\nu_{1}$  和  $\nu_{2}$  分别对应的鉴频曲线的峰值(最大值)和谷值(最小值)。将计算得到的自变量的值  $\nu_{1}$  和  $\nu_{2}$  分别代入公式(3-13)可以得到鉴频曲线的峰值(最大值)和谷值(最小值)为：
+
+$$
+M A X [ H ^ {\oplus} (\nu) ] = H ^ {\oplus} \left(\nu_ {1}\right) = \cos \left(\varphi_ {\mathrm {c}} - \alpha\right) \Delta \nu_ {\mathrm {m}} \frac {3 \sqrt {3} a}{8 \gamma} + m \cos \left(\varphi_ {\mathrm {m}} + \varphi_ {\mathrm {c}} - \alpha\right) \left(1 - \frac {3 a}{4}\right) \tag {3-15}
+$$
+
+$$
+M I N [ H ^ {\oplus} (\nu) ] = H ^ {\oplus} \left(\nu_ {2}\right) = \cos \left(\varphi_ {\mathrm {c}} - \alpha\right) \Delta \nu_ {\mathrm {m}} \left(- \frac {3 \sqrt {3} a}{8 \gamma}\right) + m \cos \left(\varphi_ {\mathrm {m}} + \varphi_ {\mathrm {c}} - \alpha\right) \left(1 - \frac {3 a}{4}\right) \tag {3-16}
+$$
+
+将鉴频曲线的峰值(最大值)和谷值(最小值)作差得到公式(3-17)所示，可以发现鉴频曲线峰值和谷值之差不受到光强伴随调制的影响，只受到载波中的相位延迟的影响，因此可以主动引入可变的载波额外补偿相位，进而通过判断峰谷值之差的大小来判断载波相位延迟的大小，详细步骤如下：
+
+$$
+G = M A X [ H ^ {\oplus} (\nu) ] - M I N [ H ^ {\oplus} (\nu) ] = H ^ {\oplus} \left(\nu_ {1}\right) - H ^ {\oplus} \left(\nu_ {2}\right) = \cos \left(\varphi_ {\mathrm {c}} - \alpha\right) \Delta \nu_ {\mathrm {m}} \left(\frac {3 \sqrt {3} a}{4 \gamma}\right) \tag {3-17}
+$$
+
+步骤 1: 将激光波长粗略调节到乙炔气体目标吸收峰附近, 通过改变激光驱动温度以改变激光输出波长, 通过波长扫描获得鉴频曲线的最大值和最小值并计算出二者的差值。
+
+步骤2：粗略判断，以  $30^{\circ}$  的步长调节额外的载波补偿相位，重复步骤1中的过程，记录曲线的最大值和最小值和二者的差值，通过比较获取最大差值对应的额外载波补偿相位量。
+
+步骤3：准确判断，将步骤2中获得的粗略判断的额外载波补偿相位作为步骤3的调整中心，以前后  $15^{\circ}$  的范围内以步长为  $5^{\circ}$  调节补偿相位，重复步骤1中的过程获取较为准确的载波中的相位延迟补偿值。
+
+由于相位延迟影响判别曲线的斜率，因此不需要更高的补偿精度。在本文中，载波相位延迟的精度为  $5^{\circ}$  。如果要求更高的精度，则需要更小的补偿相位步长。
+
+根据3.3.1的仿真分析可以发现，在完成载波相位延迟补偿后，光强伴随调制可以使需要锁定的稳定频率点偏离零值，并产生两个零值。这种现象的存在将导致稳定频率未锁定到吸收峰，从而影响频率稳定结果。因此，在接下来的工作中，本文重新计算了对应于锁定频率点的新值，摆脱了传统分子吸收稳频模型的对于零值控制点的依赖。
+
+根据公式(3-15)-(3-17)，可以知道气体吸收谱线吸收峰对应的可溯源的频率  $\nu_{0}$  代入本文提出的大范围高带宽下分子吸收鉴频曲线模型可以得到公式(3-18)，此数值为新的激光稳频锁定点。
+
+$$
+H ^ {\oplus} \left(\nu_ {0}\right) = m \cos \left(\varphi_ {\mathrm {m}} + \varphi_ {\mathrm {c}} - \alpha\right) (1 - a) \tag {3-18}
+$$
+
+然而，在实际工程情况下，该激光稳频锁定点是无法直接确定的，在这种情况下，本文找出鉴频曲线的峰值(最大值)和谷值(最小值)与新的激光稳频锁定点的映射关系，通过获取的经过额外的载波中的相位延迟补偿后的最大值和最小值，获取新的锁定点。具体映射关系如公式(3-19)和(3-20)所示：
+
+$$
+D = M A X \left[ H ^ {\oplus} (\nu) \right] + M I N \left[ H ^ {\oplus} (\nu) \right] = H ^ {\oplus} \left(\nu_ {1}\right) + H ^ {\oplus} \left(\nu_ {2}\right) = m \cos \left(\varphi_ {\mathrm {m}} + \varphi_ {\mathrm {c}} - \alpha\right) \left(2 - \frac {3 a}{2}\right) \tag {3-19}
+$$
+
+$$
+H ^ {\oplus} \left(v _ {0}\right) = D / \left(2 - \frac {3 a}{2}\right) (1 - a) \tag {3-20}
+$$
+
+由于公式中  $a$  是乙炔目标吸收峰的吸收率，通过对选用的乙炔气室进行资料查询即可以获得，因此实现了对于锁定点的重新设定。
+
+# 3.4 光源高带宽调频与中心频率稳定控制方法分析
+
+接下来对大范围高带宽激光波长调谐下中心频率稳定的关键技术单元进行介绍，其中包括高速调制生成单元，谐波解调鉴频曲线获取单元和反馈控制单元。
+
+在高带宽大范围调制信号生成单元中，采用DDS技术通过在FPGA中实现地址累加器和查表法，并结合数模转换器实现高速调制信号生成。该信号经过低通滤波器滤除高频噪声，提高信噪比，并经过激光管第12引脚Bias-T结构注入到激光管的一端，实现电流调制。
+
+谐波解调是获得鉴频曲线的核心方法。该方法利用锁相放大技术，提取通过吸收气室的光强信号的一次谐波分量。光强信号通过模数转换器与载波参考信号相乘，然后通过低通滤波器滤除高频分量，得到鉴频信号。谐波解调单元结构图如图3-8所示。
+
+数字低通滤波器单元选用无限脉冲响应滤波器，该类型数字滤波器相比较于有限脉冲滤波，可以在更少的阶数，也就是更少的数字资源占有量上获取更优异的阻带衰减特性。该方法的缺点为不同频率下的信号相位是非线性的，但是在本应用中，考虑到鉴频信号获取的为直流量，因此无限脉冲响应滤波器更符合本应
+
+用的具体需求。结合前文分析，确定该滤波器的截止频率，衰减尽量设计较大，目的是具备更好的信号衰减特性。其中通过开源软件的设计可以获得滤波器的阶数，对应系数等设计参数，在FPGA实现需要将获取的浮点数进行量化处理，处理成可以在FPGA中实现的整数。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/6552c7f4d85860ddd0b4f63ae1bdf1bf14711d789c0a803a02aa3c80dfcb896c.jpg)  
+图3-8谐波解调单元硬件结构图  
+Fig. 3-8 Hardware structure diagram of harmonic demodulation unit
+
+反馈控制模块需要考虑到大范围高带宽激光频率调谐带来的伴随光强调制和电路时延带来的相位延迟对鉴频曲线的影响。光强调制会导致频率锁定零点偏移吸收峰，相位延迟会改变鉴频曲线形态，降低鉴频信号信噪比，两者都会影响激光光源中心频率的稳定性。因此，设计了消除光强调制和相位延迟影响的反馈控制单元，原理如图3-9所示。首先，在吸收峰附近通过激光器驱动器温度扫描，对谐波解调单元输出的鉴频信号进行峰值检测。然后，根据峰值检测结果对参考信号进行相位补偿和锁频点位置的计算。最后，根据新频率锁定点与鉴频信号比较，得到误差信号并对激光器频率进行PI控制，最终实现大范围高带宽调谐下激光光源频率分子吸收稳定。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/4f1a5256607317178682e7aef8a0c01cfe41f76882f7143d3a3054642a7b390e.jpg)  
+图3-9反馈控制单元原理图  
+Fig. 3-9 Schematic diagram of feedback control unit
+
+在本系统中，控制反馈单元的算法也决定了激光光源的稳定度。如图3-10的控制框图所示，利用上文的鉴频曲线获取单元获得的鉴频信号  $I_{\mathrm{D}}$ ，与设置的标准锁定点  $I$  进行比较，计算出偏差信号用于后续控制。其中设计的反馈控制软件算法的传递函数用  $G_{\mathrm{c}}(s)$  表示，控制数模转换器将信号控制电压输入到光源中，实现激光光源的波长调控，该过程的传递函数可以用  $G_{\mathrm{v}}(s)$  来表示，  $H_{\mathrm{a}}(s)$  和  $H_{\mathrm{m}}(s)$  分别代表频率到吸收峰以及吸收峰到获取的鉴频信号的对应传递函数。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/2b2d4f0c169e44078512635e3e2d60ea6381b83c2a996ccd92c0a57c0459f46a.jpg)  
+图3-10系统控制框图  
+Fig. 3-10 System control block diagram
+
+由上述分析和控制框图可以整理反馈控制系统的传递函数为:
+
+$$
+G (s) = \frac {I (s)}{I _ {\mathrm {D}} (s)} = \frac {G _ {\mathrm {c}} (s) G _ {\mathrm {v}} (s) H _ {\mathrm {a}} (s) H _ {\mathrm {m}} (s)}{1 + G _ {\mathrm {c}} (s) G _ {\mathrm {v}} (s) H _ {\mathrm {a}} (s) H _ {\mathrm {m}} (s)} \tag {3-21}
+$$
+
+$$
+G _ {\mathrm {c}} (s) = K _ {\mathrm {p}} + \frac {K _ {\mathrm {I}}}{s} + K _ {\mathrm {D}} s \tag {3-22}
+$$
+
+其中， $K_{\mathrm{P}}$ 、 $K_{\mathrm{I}}$ 、 $K_{\mathrm{D}}$  为控制系统的控制参数，该参数通过仿真初步设计和实际实验调配中获取。
+
+# 3.5 本章小结
+
+本章首先分析了微探头式激光干涉仪的测量速度和测量特性和稳定度与光源波长调谐速度和范围以及中心频率稳定度的关系，确定大范围高带宽中心频率稳定的激光光源的需求。随后，从调谐光谱气体吸收稳频的原理出发，理论分析测量基准难以兼顾大幅度高带宽调频和高精度稳频、导致大量程测量下难以获得高相对精度的问题。提出一种基于鉴频曲线重构的大幅度高带宽调频下高精度激光稳频方法。在大幅度高带宽调制条件下，建立鉴频特征曲线畸变模型和畸变矫正模型，利用矫正模型反馈调节相位补偿并重构鉴频曲线，明确锁定点与稳频基准点的对应关系，实现气体分子吸收基准点锁定跟踪，精准控制大范围高带宽调谐中心频率。最后，分析了本单元系统实现的关键模块并进行了硬件和算法设计，进而完成微探头式超精密激光干涉仪大范围高带宽波长调谐中心稳频光源的实现。
+
+# 第4章 基于校正特征参数复现的数十纳米级周期非线性误差消除方法
+
+# 4.1 引言
+
+周期非线性误差是微探头式超精密激光干涉仪的核心误差项，严重影响激光干涉测量精度。相较于传统激光干涉仪，微探头式干涉仪周期非线性误差异于传统干涉仪椭圆三差形式，其李萨如图表示为椭圆和直线的组合，数值通常为数十纳米量级。现存的周期非线性误差抑制方法只能抑制一种误差源的影响，其他误差源仍然存在耦合，现有能够完整消除全部误差的校正方法如椭圆拟合，当李萨如图为直线时或位移小于半个波长时，特征参数易缺失或消隐，校正失效。
+
+本章首先通过公式推导和仿真分析微探头式激光干涉仪的周期非线性误差产生来源和表示形式，建立微探头式激光干涉仪非线性误差传递和推导模型。随后分析微探头式激光干涉仪的现存的周期非线性误差消除方法的局限性，提出一种基于校正特征参数复现的周期非线性误差零位消除方法，计算载波相位延迟来局部复现周期非线性特征，进而利用温度调控激光移频以获得等效位移，来完整恢复周期非线性特征校准参数，将该误差抑制到亚纳米级。最后，对上述提出的周期非线性误差消除方法进行了仿真验证。
+
+# 4.2 微探头式激光干涉仪周期非线性误差全局模型
+
+在第三章节，分析过微探头式干涉仪光源的大范围频率调谐需求，在激光光源大范围频率调谐的过程中，额外的光强伴随调制会随之产生。同时在实际情况中，由于微探头式测量系统中的各项延迟，包括光纤延时，电路延时等等，使得干涉信号与载波信号存在相位延迟，进而产生周期非线性误差。因此，相较于第二章节得到的干涉信号表达式，完善的干涉信号形式应表示为：
+
+$$
+S (t) = k I _ {0} \left[ 1 + m \cos \left(\omega_ {0} t + \varphi_ {\mathrm {c}} + \varphi_ {\mathrm {m}}\right) \right] \tag {4-1}
+$$
+
+$$
+[ 1 + v \cos (C \cos \omega_ {0} t + \varphi_ {\mathrm {c}} + \varphi (t)) ]
+$$
+
+式中  $k$  ——电压和光强转换系数  $(\mathrm{V} / \mathrm{mW})$ ；
+
+$I_{0}$  测量和参考光光强和  $(\mathrm{mW})$
+
+$m$  ——伴随光强调制系数；
+
+$w_{0}$  ——载波信号对应的角频率  $(\mathrm{rad} / \mathrm{s})$ ；
+
+$\varphi_{\mathrm{c}}$  ——载波信号与参考信号的相位延迟(rad);
+
+$\varphi_{\mathrm{m}}$  ——激光频率调制与光源功率调谐之间的相位差(rad)；
+
+v——干涉对比度；
+
+$C$  ——相位调制深度(rad);
+
+$\varphi (t)$  ——包含初始相位和相位变化(rad)。
+
+其中，式(4-1)中的获取的干涉信号与参考的一倍和二倍频率信号相乘，将获取的结果经过低通滤波器处理，得到两路信号的表达式为式(4-2)和式(4-3)：
+
+$$
+S _ {1} (t) = - k I _ {0} v \sqrt {a _ {1} ^ {2} + b _ {1} ^ {2}} \cdot \left[ \sin \left(\varphi (t) - \theta_ {1}\right) \right] + 1 / 2 \cdot m k I _ {0} \cos \varphi_ {m} \tag {4-2}
+$$
+
+$$
+S _ {2} (t) = - k I _ {0} v \sqrt {a _ {2} ^ {2} + b _ {2} ^ {2}} \cdot [ \cos (\varphi (t) - \theta_ {2}) ] \tag {4-3}
+$$
+
+$$
+\tan \theta_ {1} = 2 a _ {1} / b _ {1} \tag {4-4}
+$$
+
+$$
+\tan \theta_ {2} = 2 a _ {2} / b _ {2} \tag {4-5}
+$$
+
+在上述公式中  $a_1, a_2, b_1$  和  $b_2$  分别表示为：
+
+$$
+a _ {1} = m / 2 \cdot \left[ J _ {0} (C) \cos \left(\varphi_ {\mathrm {c}} - \varphi_ {\mathrm {m}}\right) - J _ {2} (C) \cos \left(\varphi_ {\mathrm {c}} + \varphi_ {\mathrm {m}}\right) \right] \tag {4-6}
+$$
+
+$$
+a _ {2} = m / 2 \cdot \left[ J _ {3} (C) \cos \left(2 \varphi_ {\mathrm {c}} + \varphi_ {\mathrm {m}}\right) - J _ {1} (C) \cos \left(2 \varphi_ {\mathrm {c}} - \varphi_ {\mathrm {m}}\right) \right] \tag {4-7}
+$$
+
+$$
+b _ {1} = J _ {1} (C) \cos \varphi_ {\mathrm {c}} \tag {4-8}
+$$
+
+$$
+b _ {2} = J _ {2} (C) \cos \left(2 \varphi_ {\mathrm {c}}\right) \tag {4-9}
+$$
+
+通过分析，得出的式(4-2)和式(4-3)两组信号通常为含有三差，即直流偏置误差、交流不等幅形式的误差和非正交误差的形式，因此式(4-2)和式(4-3)可以表示为：
+
+$$
+S _ {1} (t) = A _ {\sin} + B _ {\sin} \sin (\varphi + \delta) \tag {4-10}
+$$
+
+$$
+S _ {2} (t) = A _ {\cos} + B _ {\cos} \cos \varphi \tag {4-11}
+$$
+
+利用式(4-10)和式(4-11)对相位差  $\varphi$  进行解算时，将会产生一定数值的额外误差  $e_{\varphi}$ ，表示如下：
+
+$$
+\begin{array}{l} e _ {\varphi} = \arctan \frac {S _ {1} (t)}{S _ {2} (t)} - \arctan \frac {\sin \varphi}{\cos \varphi} \tag {4-12} \\ = \arctan \frac {A _ {\sin} + B _ {\sin} \sin (\varphi + \delta)}{A _ {\cos} + B _ {\cos} \cos \varphi} - \arctan \frac {\sin \varphi}{\cos \varphi} \\ \end{array}
+$$
+
+由式(4-12)可以看出，微探头式干涉仪误差大小随相位差  $\phi$  呈非线性规律变化，且变化周期为  $2\pi$  。故此类特征误差被称为周期非线性误差。
+
+与理想情况对比, 参数取值为  $A_{\sin} = 0.1$  、  $A_{\cos} = 0.15$  、  $B_{\sin} = 1.1$  、  $B_{\cos} = 0.9$  、  $\delta = \pi /8$  时, 其光纤干涉仪周期非线性误差仿真结果如图 4-1 所示, 其中干涉信号李萨如图比对为 4-1(a), 利用数值仿真分析的方法, 可以得到周期非线性误差随被测位移变化的曲线如图 4-1(b)所示, 其折射率  $n = 1$  、激光波长  $\lambda = 1532 \mathrm{~nm}$  。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/425d42b7272992288acece827d459bef737ef5f6f3ccc3a5cd21bb43c47b8bf6.jpg)  
+(a)干涉信号李萨如图比对  
+图4-1光纤干涉仪周期非线性误差仿真  
+Fig. 4-1 Simulation of periodic nonlinear error of optical fiber interferometer
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/337f1a9c229ca4c628bf7ea411ca60ab2e1ae23f35f59d28131e55d73c67ab33.jpg)  
+(a) Comparison of Lissajous diagram  
+(b) 周期非线性误差  
+(b) Periodic nonlinear error
+
+可得该误差的周期为  $\lambda / 2 = 766 \mathrm{~nm}$ , 大小约为  $60 \mathrm{~nm}$  。在传统零差和外差干涉仪中, 一般有  $A_{\sin} \neq 0$  、  $A_{\cos} \neq 0$  、  $B_{\sin} \neq B_{\cos}$  、  $\delta \neq 0$  。但是与其不同的是, 对于微探头式干涉仪, 存在  $A_{\sin} = 0$  、  $A_{\cos} = 0$  的情况。
+
+# 4.3 基于校正特征参数复现的周期非线性误差零位消除方法
+
+# 4.3.1 周期非线性误差抑制和椭圆拟合校正的局限性
+
+现今，消除激光干涉仪的非线性误差主要有两种模式，一种是找出影响周期非线性误差的源头进行抑制，另一种是利用椭圆拟合思想进行椭圆拟合的周期非线性误差校正。微探头式干涉仪的周期非线性误差抑制的方法主要集中在两个方面，一个是伴随光强调制的消除，另一个是载波相位延迟的补偿。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/ea70cbcdbac7c48071d69fdb095dc8a981fbde5c07882f6df1ecb09a5100af9f.jpg)  
+图4-2双通道采集相除周期非线性误差消除方法原理图  
+Fig. 4-2 Schematic diagram of two channel acquisition phase division periodic nonlinear error elimination method
+
+其中对于伴随光强调制的较为有效的消除方法如图 4-2 所示，该方法利用光纤分束器将激光器出射的激光分成两束，一束光直接探测作为参考项，另一束用于激光干涉测量作为测量项。其中参考项和测量项的采集信号可以表示为式(4-1)
+
+和式(4-13)：
+
+$$
+S _ {2} (t) = k I _ {1} \left[ 1 + m \cos \left(\omega_ {0} \left(t - \tau_ {2}\right) + \varphi_ {\mathrm {m}}\right) \right] \tag {4-13}
+$$
+
+其中  $\tau_{1}$  和  $\tau_{2}$  分别对应着参考项光束和测量光光束的延迟时间，由于两个光束经历的路径不同，因此延迟时间也各不相同，将参考项和测量项的采集信号相除可得信号表示为：
+
+$$
+S (t) = \frac {S _ {1} (t)}{S _ {2} (t)} = \frac {k I _ {0} \left[ 1 + m \cos \left(\omega_ {0} \left(t - \tau_ {1}\right) + \varphi_ {\mathrm {m}}\right) \right]}{k I _ {1} \left[ 1 + m \cos \left(\omega_ {0} \left(t - \tau_ {2}\right) + \varphi_ {\mathrm {m}}\right) \right]} \tag {4-14}
+$$
+
+$$
+[ 1 + v \cos (C \cos \omega_ {0} (t - \tau_ {1}) + \varphi (t)) ]) ]
+$$
+
+但是，在这种方法中，需要特别注意双通道同步问题。由于两个通道通过不同的光路，即使电路的采集和预处理部分相同，也容易造成同步问题。解决这个问题最简单的方法是选择合适的光纤跳线长度，使双通道光路相同。但是，这种方法的精度较差，随着调制频率的增加，会产生很大的影响。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/a69cf5007f4bfbeb436bcbe139a955281e71b47331540016da50e444b9a90417.jpg)  
+(a) 参数:  $\mathrm{TCPD} = 15^{\circ}$ ,  $\mathrm{CPD} = 0.00^{\circ}$
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/f9b1ce9cee42da252faef2712a09840da2df2888440bace1271ce9e2eb7a0214.jpg)  
+(b) 参数:  $\mathrm{TCPD} = 15^{\circ}$ ,  $\mathrm{CPD} = 11.25^{\circ}$
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/a777346e5b3e2c2ae77dfcfaad4dc017e97e1f1afc8eee225d3df36d0321c749.jpg)  
+(c) 参数:  $\mathrm{TCPD} = 15^{\circ}$ ,  $\mathrm{CPD} = 22.50^{\circ}$  
+图4-3基于双通道探测相除的周期非线性误差消除效果仿真  
+Fig. 4-3 Simulation of periodic nonlinear error elimination based on dual channel detection division
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/cee3faf75740822fcd1b66e28f422c8081b23c11ee81c717404393a5d370793e.jpg)  
+(d) 参数:  $\mathrm{TCPD} = 15^{\circ}$ ,  $\mathrm{CPD} = 30.00^{\circ}$  
+(c) Parameter:  $\mathrm{TCPD} = 15^{\circ}$ ,  $\mathrm{CPD} = 22.50^{\circ}$  
+(d) Parameter:  $\mathrm{TCPD} = 15^{\circ}$ ,  $\mathrm{CPD} = 30.00^{\circ}$
+
+如果两条光纤路径的差为  $2 \mathrm{~m}$ , 采用 SMF-28 光纤, 则延迟为  $10 \mathrm{~ns}$  。假设载频为  $10 \mathrm{kHz} 、 100 \mathrm{kHz} 、 1 \mathrm{MHz} 、 5 \mathrm{MHz} 、 10 \mathrm{MHz}$ , 相位延迟分别为  $0.036^{\circ} 、 0.36^{\circ} 、 3.6^{\circ} 、 18^{\circ} 、 36^{\circ}$  。可以发现, 当载频达到  $\mathrm{MHz}$  区域及以上时, 影响变得非常大。
+
+在图4-3(a)中，不存在载波相位延迟的影响时，可以发现两条光纤路径的不同步会产生额外的  $3.3\mathrm{nm}$  的周期非线性误差。而当引入了载波相位延迟后，如图4-3(b)-(d)随着载波延迟的增大，残余的周期非线性误差增大，甚至可以达到几十nm，因此可以得到结论：双通道相除的周期非线性抑制方法理论上可以消除伴随光强调制引入的周期非线性误差，但当调制速度提高时，双通道相位不同步导致的相位差会越来越大，引入的影响也会越来越大，同时该方法会受到载波相位延迟存在的严重影响。
+
+对于载波相位延迟的消除方法最经典的莫过于正交解算法，该方法的具体步骤如下，生成内部的正弦信号载波和余弦信号载波作为参考信号，将参考信号与实际干涉信号相乘，并通过低通滤波器将一次谐波滤出，得到两路信号表达式如下：
+
+$$
+S _ {3} (t) = - k I _ {0} v J _ {1} \cdot \cos \varphi_ {\mathrm {c}} \cdot \sin \varphi (t) \tag {4-15}
+$$
+
+$$
+S _ {4} (t) = - k I _ {0} \nu J _ {1} \cdot \sin \varphi_ {\mathrm {c}} \cdot \sin \varphi (t) \tag {4-16}
+$$
+
+接下来，将得到的两路信号进行反正切运算，即可以得到有关于载波相位延迟相关的函数项。
+
+$$
+\varphi_ {c} ^ {*} (t) = \operatorname {a t a n} 2 \left(S _ {4} (t), S _ {3} (t)\right) \tag {4-17}
+$$
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/eb08f74fb2a3f0f393fac516cea4df90465b49f74ec0e876920256835d992ff9.jpg)  
+(a)两组一次谐波项  
+图4-4基于正交解算法的载波相位延迟计算仿真  
+Fig. 4-4 Calculation and simulation of carrier phase delay based on orthogonal solution algorithm
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/610319ae0c99509eb84b31941aa163142cb72c00bac53d602bbeaa0fdc77749d.jpg)  
+(a) Two groups of first harmonic terms  
+(b) 载波相位延迟函数项  
+(b) Carrier phase delay function term
+
+利用开源数值仿真软件进行仿真，设定载波相位延迟为  $\pi / 3$ ，光强伴随调制系数为0，利用正交解算法得到正弦载波和余弦载波对应的一次谐波项，将其绘
+
+制在图 4-4(a)，利用得到的两路一次谐波信号得到载波相位延迟函数项，并绘制在图 4-4(b)。
+
+从图4-4(b)的结果可以发现，在仿真的四个周期内，得到的结果分别是  $\pi /3$  和  $-2\pi /3$  ，两个结果的载波相位延迟进行补偿，虽然在数值上结果相同，但是会导致激光干涉仪符号位无法判断，甚至使得激光干涉仪整个无法辨别方向，这也是正交解算方法面对的问题。可发现，载波相位延迟计算会受到伴随光强调制的影响且只能消除微探头式超精密激光干涉仪的其中一种周期非线性误差。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/574349af3009de14b8c0c30f42db733490198f283452da907dce00e37b9648de.jpg)  
+(a) 参数:  $\mathrm{CPD} = 0$
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/37d70c552a3058dbdf0ff4104eb9f2d74ab7b9a58d0c3773bf5d202a77045b36.jpg)  
+(b) 参数:  $\mathrm{CPD} = \pi / 4$
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/b7bdf833d5f1b39f02775036a71e40a0056802f51bc48f5a212e8d6b93058371.jpg)  
+(a) Parameter:  $\mathrm{CPD} = 0$  
+(c) 参数:  $\mathrm{CPD} = \pi / 2$  
+(c) Parameter:  $\mathrm{CPD} = \pi /2$  
+图4-5伴随光强调制和载波相位延迟对于李萨如图的影响  
+Fig. 4-5 Influence of concomitant light intensity modulation and carrier phase delay on Lissajous diagram
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/ba50977309f79ba006f0a98c917ca18f674c3e1fda5541f2ea10800a0c5d7725.jpg)  
+(b) Parameter:  $\mathrm{CPD} = \pi /4$  
+(d) 参数:  $\mathrm{CPD} = 3\pi /4$  
+(d) Parameter:  $\mathrm{CPD} = 3\pi /4$
+
+除了上述周期非线性误差源头抑制的方法外，能够同时校正所有影响的经典手段为椭圆拟合方法。根据第一章的综述可知，椭圆拟合法的本质是获取干涉仪周期非线性误差对应的李萨如图的椭圆图样特征，并将其校正成理想的圆形的图像，但是由于微探头式干涉仪的周期非线性误差存在李萨如图接近或者为直线的
+
+时候，因此在一些情况下，椭圆拟合方法无法使用或失效，该现象就是在 4.2 节提到的存在  $A_{\sin} = 0$  、 $A_{\cos} = 0$  的情况。
+
+为了进一步分析该现象产生的原因，进行了相应的仿真实验。假设载波相位延迟为  $0$  、  $\pi /4$  、  $\pi /2$  、  $3\pi /4$  ，被测目标以  $0.75\mathrm{mm / s}$  的恒定速度移动  $3750\mathrm{nm}$  (对应5条干涉条纹)，移动时间为  $5\mathrm{ms}$  ，相位调制深度设为  $C = 2.63$  ，伴随光强调制深度设为  $m = 0.1$  ，计算得到低通滤波器输出的两路信号和两路信号的李萨如图绘制在图中。
+
+由图 4-5(a) 可以看出，当载波相位延迟趋近于零时，光强伴随调制引起的非线性误差占主导，对应的李萨如图为椭圆，此时的非线性误差可以通过椭圆拟合和最小二乘拟合校正方法进行校正。然而，从图 4-5(b) 和 4-5(d) 中可以明显看出，当载波相位延迟为一定值时（如  $n\pi + \pi / 4$  和  $n\pi + \pi / 2$ ），由载波相位延迟引起的非线性误差占主导地位，因此，此时的李萨如图形是一条线。在这种情况下，该系统既不能进行解调，也不能进行椭圆拟合的非线性校正。
+
+# 4.3.2 特征复现的非线性误差粗精双阶段复合修正方法
+
+通过上一小节的分析，发现现存的周期非线性误差源头抑制方法只能抑制其中一种影响因素，然而能够同时校正全部影响因素的椭圆拟合校正方法，当载波相位延迟处于特殊值时，方法会失效。针对上述的问题，本文提出了基于粗补偿和精校正双阶段融合的周期非线性误差消除方法，其原理图如图4-6所示。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/b18ef5a7128184813b0fce2f0aaed99ba4298ce66afc8558f76d30dcb9d07d33.jpg)  
+图4-6基于粗补偿和精校正双阶段融合的周期非线性误差原理图  
+Fig. 4-6 Schematic diagram of periodic nonlinear error based on the combination of parameter pre compensation and fine correction
+
+参数预补偿的主要目的是防止载波相位延迟接近前面提到的特殊值(例如， $n+\pi/4$  和  $n+\pi/2$ )进而导致滤波器的输出信号严重衰减，在这些场景会导致包括解调和椭圆拟合周期非线性校正失败。因此，在这一步骤中，采用载波相位延迟的粗补偿为非线性校正提供条件。下面详细介绍载波相位延迟预补偿方法。
+
+通过连续改变激光驱动温度，进而实现激光波长扫描，改变干涉信号初定相位，至于温度驱动改变激光波长以及进而改变干涉信号相位变化的原理在下一节进行详细阐述。在此过程中，直接数字合成器 DDS1 和 DDS2 的输出分别设置为 sinwt 和 coswt。将 ADC 采集到的干涉信号乘以载波信号并通过 LPF 得到两个信号，获得的两路信号对其中的载波相位延迟项进行提取，如公式 (4-18) 所示。
+
+$$
+\varphi_ {\mathrm {c}} (t) = \left\{ \begin{array}{l l} I N T \left(\frac {\pi - \varphi_ {\mathrm {c}} ^ {*} (t)}{\pi / 1 8 0}\right) & \varphi_ {\mathrm {c}} ^ {*} (t) \geq 0 \\ I N T \left(\frac {- \varphi_ {\mathrm {c}} ^ {*} (t)}{\pi / 1 8 0}\right) & \varphi_ {\mathrm {c}} ^ {*} (t) <   0 \end{array} \right. \tag {4-18}
+$$
+
+该处理方法的原因是，当相位值接近零时，载波相位延迟的计算值是不可靠的。采用等时间采样的方法，通过设置时间间隔为一个合理的值，其数值大致为温度扫描时间的1/100。选择样本中出现次数最多的值为计算出的载波相位延迟量，并将其补偿回信号参考载波中，实现载波相位延迟误差的预补偿，此时得到的相位延迟是正确的。由于这种方法只能在相位值为  $0^{\circ} - 180^{\circ}$  范围内工作，会导致解调结果方向的模糊问题，因此在校正完成后，再对激光波长进行扫描，利用已知的波长扫描方向识别并确定激光干涉仪的测量方向。
+
+至于在精细周期非线性误差校正单元，在这一步中，主要校正残余非线性误差。在前一步骤中应用载波相位延迟预补偿之后，保证来自低通滤波器的输出信号不会被大幅衰减，从而满足后续周期非线性校正的条件。
+
+基于温度扫描激光移频的主动相位变化原理与应用的描述可知，可以通过温度扫描来代替物体运动获取完整的椭圆非线性误差校正参数，当目标位移超过  $\lambda / 4$  时，正交信号的李萨如图轨迹，如图 4-7(b)所示，变为大于一个完整的椭圆轨迹。在这种情况下，可以提取两个正交信号的四个峰值，并且可以计算用于非线性误差校正的参数。然而，如图 4-7(a)所示，如果位移小于  $\lambda / 4$  ，由于李萨如图轨迹的不足，四个峰值的提取是不可行的，无法执行周期非线性校正。为了解决这个问题，再次使用主动温度扫描单元来执行激光波长的主动扫描。这相当于目标的移动，并被用来代替。其功能是当目标位移小于波长的四分之一时，主动提供足够的位移，以预先确定非线性误差校正的参数。下文提供了非线性精细校正的详细信息。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/c911cb659aee7408779b0853b5cb3ef8eb04b2df7d490fbca43527cf75f95f27.jpg)  
+(a) 相位周期变化小于  $2\pi$
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/3794d1fd9d3f34ad29138ada42b6fe55adb36dd59126429738a10602df74a27a.jpg)  
+(b) 相位周期变化大于  $2\pi$
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/126689b7028ed44145f9cf76f481a2584042d0a8562d3cdc5a70607540c1108e.jpg)  
+(a) The phase periodic variation is less than  $2\pi$  
+(b) The phase periodic variation is more than  $2\pi$  
+(c) 基于极值法的周期非线性误差校正方法原理框图  
+(c) Principle block diagram of periodic nonlinear error correction method based on extreme value  
+图4-7光纤干涉仪残余周期非线性误差校正方法  
+Fig. 4-7 Correction of residual periodic nonlinear error of optical fiber interferometer
+
+通过将激光驱动温度降低到初始值，第二次扫描激光波长。在此过程中，DDS1输出设置为  $\cos 2wt$  ，而DDS2输出保持不变，因此，非线性校正模块被启用。在这个阶段，两个滤波器的输出信号与等式(4-10)和(4-11)给出的信号接近。公式包含直流偏移、不等振幅和非正交误差。如图4-7(c)所示，非线性校正模块使用两个峰值检测器(PVD)来评估误差参数。
+
+首先通过两个峰值检测器检测出对应  $S_{1}(t)$  和  $S_{2}(t)$  信号的最大值和最小值，接下来，进行如公式(4-19)和(4-20)的计算，目的是消除直流偏置误差和不等幅误差。
+
+$$
+S _ {1} ^ {\wedge} (t) = \frac {S _ {1} (t) - \left(S _ {1} ^ {\max } + S _ {1} ^ {\min }\right) / 2}{\left(S _ {1} ^ {\max } - S _ {1} ^ {\min }\right) / 2} = \sin (\varphi (t) - \theta_ {1}) \tag {4-19}
+$$
+
+$$
+S _ {2} ^ {\wedge} (t) = \frac {S _ {2} (t) - \left(S _ {2} ^ {\max } + S _ {2} ^ {\min }\right) / 2}{\left(S _ {2} ^ {\max } - S _ {2} ^ {\min }\right) / 2} = \cos (\varphi (t) - \theta_ {2}) \tag {4-20}
+$$
+
+接下来，可以根据公式(4-21)和(4-22)进一步消除非正交误差的影响：
+
+$$
+S _ {1} ^ {*} (t) = S _ {1} ^ {\wedge} (t) - S _ {2} ^ {\wedge} (t) = 2 \cos \left(\frac {\pi}{4} + \frac {\theta_ {1} - \theta_ {2}}{2}\right) \cdot \sin [ \varphi (t) - \left(\frac {\pi}{4} + \frac {\theta_ {1} + \theta_ {2}}{2}\right) ] \tag {4-21}
+$$
+
+$$
+S _ {2} ^ {*} (t) = S _ {1} ^ {\wedge} (t) + S _ {2} ^ {\wedge} (t) = 2 \sin \left(\frac {\pi}{4} + \frac {\theta_ {1} - \theta_ {2}}{2}\right) \cdot \cos [ \varphi (t) - \left(\frac {\pi}{4} + \frac {\theta_ {1} + \theta_ {2}}{2}\right) ] \tag {4-22}
+$$
+
+通过分析公式(4-21)和(4-22)的结果发现，此时的非正交误差已经消除，但是产生了额外的不等幅误差，因此再次使用PVD获得这两个信号的最大值和最小值，并且通过相同的方式实现振幅归一化，得到的残余周期非线性误差校正后的两路信号表达如公式(4-23)和(4-24)：
+
+$$
+S _ {1} ^ {\prime} (t) = \frac {S _ {1} ^ {*} (t)}{\left(S _ {1} ^ {* \max } - S _ {1} ^ {* \min }\right) / 2} = \sin [ \varphi (t) - (\frac {\pi}{4} + \frac {\theta_ {1} + \theta_ {2}}{2}) ] \tag {4-23}
+$$
+
+$$
+S _ {2} ^ {\prime} (t) = \frac {S _ {2} ^ {*} (t)}{\left(S _ {2} ^ {* \max } - S _ {2} ^ {* \min }\right) / 2} = \cos [ \varphi (t) - (\frac {\pi}{4} + \frac {\theta_ {1} + \theta_ {2}}{2}) ] \tag {4-24}
+$$
+
+# 4.3.3 温度扫描激光移频的主动相位变化原理与应用
+
+通过上节的分析可以发现，为了实现非线性误差的精细校正需要部分条件。一方面就是要获取完整的一个周期的李萨如图，也就是物体运动或等效运动位移超过激光干涉仪半个波长，同时要求，在实际位移测量时获取的李萨如图与精细校正时用于提取校正参数的李萨如图形貌一致，如图4-8所示。
+
+从图中可以发现，理想情况下是获取完整的椭圆，但当位移较小时或强度变化时，李萨如图无法满足条件。为了解决上述问题，本文利用半导体激光器波长可调谐的特性，提出了基于主动光学激光波长扫描的主动干涉相位变化方法。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/4fc4a184da68160000e8803cc09eff813997759bfbe0f94202c79cb1a306b54e.jpg)  
+图4-8非理想条件下干涉信号  $S_{1}(t)$  和  $S_{2}(t)$  的李萨如图  
+Fig. 4-8 Lissajous diagram of interference signals  $S_{1}(t)$  and  $S_{2}(t)$  in a non-perfect situation
+
+首先进行激光波长扫描代替物体运动可行性的分析。干涉解调相位变化公式如下所示：
+
+$$
+\varphi (t) = \varphi_ {0} + \varphi_ {\mathrm {s}} (t) = \frac {4 \pi n L}{\lambda} + \frac {4 \pi n x (t)}{\lambda} \tag {4-25}
+$$
+
+其中，在式(4-25)的基础上，发现干涉解调相位变化值与激光波长  $\lambda$  相关，因此，引入双自变量，即激光波长  $\lambda$  和时间  $t$  ，得到公式(4-26)，
+
+$$
+\varphi (\lambda , t) = \frac {4 \pi n (L + x (t))}{\lambda} \tag {4-26}
+$$
+
+当主动引入激光波长的变化，即从  $\lambda_{1}$  连续改变至  $\lambda_{2}$  后，对应的时间从  $t_1$  一直到  $t_2$  ，此时激光干涉仪相位差变化可以表示为(4-27)所示，
+
+$$
+\Delta \varphi = \varphi \left(\lambda_ {1}, t _ {1}\right) - \varphi \left(\lambda_ {2}, t _ {2}\right) = \frac {4 \pi n \left(L + x \left(t _ {1}\right)\right)}{\lambda_ {1}} - \frac {4 \pi n \left(L + x \left(t _ {2}\right)\right)}{\lambda_ {2}} \tag {4-27}
+$$
+
+假设此时从时间  $t_1$  一直到  $t_2$  的过程中，激光干涉仪位移没有发生变化或者很小，因此将位移项忽略可以得到相位差和激光扫描波长之间的关系，并表示为公式(4-28)所示，
+
+$$
+\Delta \varphi = \frac {\left(\lambda_ {2} - \lambda_ {1}\right)}{\lambda_ {2} \cdot \lambda_ {1}} \cdot 4 \pi n L \geq 2 \pi \tag {4-28}
+$$
+
+通过上述理论推导可以得到结论：可以通过改变激光输出波长，实现激光干涉仪相位差的主动改变，并代替物体运动。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/a3d87b7e17b87032b88281dcbfaef5869b58638e6d24cad8a1f2b2e462ca172a.jpg)  
+(a) 不同温度，相同电流  
+(a) Different temperature, same current
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/551deacbb5c34add627289e532d55d6e7ac95b3037edef772120c4dab527bf14.jpg)  
+(b) 不同电流，相同温度  
+(b) Different current, same temperature  
+图4-9不同温度和电流驱动下对应的李萨如图  
+Fig. 4-9 The corresponding Lissajous curves by different temperatures and currents are shown in the figure
+
+确定完激光波长扫描代替物体运动可行性后，接下来需要讨论的是如何实现波长扫描的问题。在本研究内容中，DFB 由于其小巧和可调谐性选用本系统光源。分别通过 DFB 的电流调谐和温度调谐的方式进行实验。
+
+在DFB激光管温度扫描和电流扫描中进行比较，可以发现，相较于电流调谐方式，温度调谐扫描范围更大，且扫描过程中，激光器输出光强功率并不随着扫描发生变化，但温度扫描是非线性过程。由于通过理论分析发现，本系统只需要额外的主动相位变化，并且相位变化过程中，李萨如图的椭圆特征量要保持不变，但是对扫描过程中相位是否线性变化并不要求，只需连续即可，因此温度扫描更适合本系统。
+
+一项仿真工作进一步证实了上述观点，通过查阅激光管的典型参数值，并在对应的相同的波长扫描范围，即  $1533.02\mathrm{nm}$  到  $1533.12\mathrm{nm}$  过程中，设置不同的驱动电流和连续变化的相位值，将李萨如图结果绘制如图4-9所示，可知如果通过主动激光温度扫描改变激光波长，那么得到的周期非线性参数与目标运动时的非线性参数一致，但如果采用主动激光电流扫描改变激光波长的方式，那么得到的周期非线性参数与目标运动时的非线性参数不一致，因此，利用所提出的方法，可以在目标静止时提前获得目标的非线性参数。这使得当目标运动距离小于半波长时，依旧可以实现微探头式干涉仪的周期非线性误差校正。
+
+# 4.4 数十纳米级周期非线性误差消除过程仿真验证分析
+
+利用开源数值仿真软件进行仿真提出的预补偿和精细校正结合的微探头式激光干涉仪周期非线性误差校正算法。其中设定参数光强伴随调制系数为0.05，载波相位延迟为  $30^{\circ}$ ，利用上述本文提出的基于粗精双阶段复合修正的周期非线性误差消除方法进行处理，分别得到未经过预补偿的位移测量结果、经过预补偿的位移测量结果和经过精细校正后的位移测量结果，并将结果绘制在图4-10中。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/e1f10982b2b8d8a445baee95f22ebbaa08189e96736c4a0edacf7da2f1e3c8c8.jpg)  
+图4-10微探头干涉仪非线性误差校正下的测量位移  
+Fig. 4-10 Displacement measurement with nonlinear error correction of interferometer
+
+同时为了突出本文提出的周期非线性误差消除效果，对于仿真信号先不进行任何处理，接下来开启预补偿进行处理，随后再开启精细校正单元，将变化的比
+
+较过程绘制在图4-11中。
+
+通过观察得到的图中结果，可以发现：未经过预补偿的位移测量结果误差较大，非线性误差也更大，经过预补偿的位移测量结果误差相比较而言变得更小，经过精细校正后，周期非线性误差明显被消除掉了，该结果很好的证明了本文提出的基于粗精双阶段复合修正的周期非线性误差消除方法的有效性，周期非线性的消除使得微探头式干涉仪纳米级测量精度成为可能。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/6de796f6e563bafde69fd7a2053e786b82ab7516d477214e24a459d561356bf2.jpg)  
+图4-11微探头干涉仪周期非线性误差校正仿真结果  
+Fig. 4-11 Simulation results of periodic nonlinear error correction of optical fiber interferometer
+
+# 4.5 本章小结
+
+本章提出一种基于校正特征参数复现的周期非线性误差零位消除方法。针对异于传统干涉仪椭圆三差形式的周期非线性误差，利用锁相正交解算手段进行载波相位延迟计算，局部复现周期非线性特征；利用温度驱动式激光波长扫描连续改变干涉光程差，保证非线性特征参数不变的情况下主动引入干涉相位差变化，来完整恢复周期非线性特征校准参数，实现误差特征值的预获取及周期非线性精细零位校正，解决因传统椭圆拟合等非线性消除方法无法修正周期非线性，导致的干涉仪测不精的问题。
+
+# 第5章 实验验证及结果分析
+
+# 5.1 引言
+
+为验证本文提出的微探头式激光干涉仪亚纳米分辨力大量程信号解算方法及波长调频光源中心频率稳定方法和周期非线性误差消除方法的可行性，通过自主搭建的测试平台对所提出的方法和关键理论可行性进行分析，并结合中国计量院校准测试证书对上述结果补充验证，同时测试和评价微探头式激光干涉仪整机的线性测量性能，最后将研制的微探头激光干涉仪样机核心参数与国际最先进同类仪器进行了比较。
+
+# 5.2 微探头式激光干涉的微棱镜式传感头性能测试
+
+由光纤传感探头参数知  $w_{1} = 0.36\mathrm{mm}$ ，  $w_{0} = 5.2\mu \mathrm{m}$ ，  $\lambda = 1.550\mu \mathrm{m}$ ，  $Z_{\mathrm{wd}} = l = 16.9\mathrm{cm}$  时，仿真得到耦合效率曲线以及干涉条纹对比度图，如图5-1所示，可得结论：光功率随输出光束与反射面法线之间的夹角增大而陡然减小，当夹角为  $0^{\circ}$  时返回探头的光功率最大；相较于耦合效率，对比度对反射目标倾角的敏感程度较低，随夹角增大而平缓减小，高对比度的倾角范围更大。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/351828b951f3d7c259155a0c8a5279db699f59de300f8a284dae9f0669cc402d.jpg)  
+(a) 耦合效率结果仿真  
+图5-1 微探头式性能仿真结果  
+Fig. 5-1 Performance simulation results of optical fiber micro probe
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/dc975dda45a60ab41bcfef6d2aefa1029f1fef4f0a94b059ae1393eae07376f3.jpg)  
+(a) Simulation of coupling efficiency  
+(b) 对比度结果仿真  
+(b) Simulation of contrast results
+
+为了验证本文构建的含有倾斜待测目标微型探头等效模型的有效性并对设计后的微探头式进行工作距离和容差角的测试，建成了如图5-2所示的验证装置。光源为分布式反馈激光器，由光源驱动器驱动，不同倾角通过角度旋转台实现，不同工作距离利用位移台实现。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/1ba85ed81551dd7e26126fd89b6f14b565ff734ebdcdd35573d10735897873c1.jpg)  
+图5-2微探头式工作距离和容差角测试平台  
+Fig. 5-2 Test platform for working distance and tolerance angle of optical fiber microprobe
+
+首先，根据图5-2上部分所示，利用光功率计测定光纤探头出射光的光功率 $P_{0}$ ，随后光路中加入反射物，令微探头式出射的光经反射物反射进入光纤探头中发生干涉，之后经由光纤环形器出射，由功率计探测获得。扫描DFB半导体激光器的驱动温度使得输出波长发生连续变化，因此探测信号可以检测出连续的干涉正弦信号如图5-3(a)所示。
+
+为了验证本文设计的微探头相较于F-P微传感探头不存在多光束干涉的问题，对获取的信号进行频谱分析，如图5-3(b)所示，左侧为光纤F-P微探头干涉仪信号频谱，可以发现有额外的多次谐波，而本文研究的微探头为右侧图，并不存在谐波，该实验验证了本文提出的微探头可以有效避免多光束干涉带来的测量误差。
+
+(a) 微探头式干涉信号时域分析  
+图5-3 微探头式干涉信号测试结果  
+Fig. 5-3 Test results of interference signal of optical fiber micro probe  
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/8f5875059df8a5043a30c0b18cb53686b39050678100971e7f76bd66b3364bc1.jpg)  
+(a) Time domain results of interference signal of optical fiber micro probe
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/b0950f5cb12d32bcfd77ce5ecaa1fb0ef1489c7dfca4c437d4742d94a8ed1333.jpg)  
+(b) 微探头式干涉信号频域分析
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/fc1a763cb129e86397bd8fc5d71bc9cacb717c42dd0d5defa50dba0939f5cd7d.jpg)  
+(b) Frequency domain results of interference signal of optical fiber micro probe
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/7a7b2c95767faa5b0c46357d6c1393d64e383590dfff3e238694addb4c1f4404.jpg)  
+Fig. 5-3 (Continuations)  
+(a) 不同工作距离下的耦合效率
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/4443b96cecebe1a96ec6b114d3633048719d7368e02eb23de57977e207d2e1c4.jpg)  
+图5-3(续图)  
+(b) 不同倾角下的耦合效率  
+(b) Coupling efficiency at different angles
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/e5d9f1d9b4d844477bf579070f2a7e621d86f11fdefac4069e9ad344921b2b55.jpg)  
+(a) Coupling efficiency at different distances  
+图5-4微探头式耦合效率测试结果  
+Fig. 5-4 Test results of coupling efficiency of optical fiber micro probe  
+(a) 不同工作距离下的对比度  
+(a) Contrast at different distances
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/c278621dabdbd8fc6b49e34a4598fce7f2100e16140b167b9fc9f89b03a92b85.jpg)  
+(b) 不同倾角下的对比度  
+(b) Contrast at different angles  
+图5-5 微探头式对比度测试结果  
+Fig. 5-5 Contrast test results of optical fiber micro probe
+
+根据探测到的干涉信号可以计算得到反射物在不同距离和不同倾角下的微探头耦合效率，绘制在图5-4，观察可得，实验数据点与理论仿真曲线基本吻合。
+
+同时获取信号对比度与微探头工作距离和反射倾角的关系曲线示于图5-5中。相比于探头耦合效率的仿真结果，干涉条纹对比度随着工作距离和反射镜倾角的变化比较平缓。由图可知，实验数据点与理论仿真曲线基本吻合。
+
+# 5.3 微探头式激光干涉的亚纳米分辨力大量程信号解调实验
+
+# 5.3.1 中国计量院有效分辨力测试结果分析
+
+根据国家最高法定计量机构—中国计量科学研究院的测试报告(报告编号：CDjc2022-20129,附录B)中的测试结果记录在表5-1中，该数据的获取依据JB/T5610-2006激光干涉仪[111]和JJG739-2005激光干涉仪检定规程[112]，标准精密位移台进行  $0.4\mathrm{nm}$  台阶步进，利用本文研制的微探头激光干涉仪进行测试，记录测试结果和位移台数值。由以上数据可知，微探头干涉仪实测有效分辨力为  $0.4\mathrm{nm}$  。
+
+表 5-1 中国计量科学院分辨力测试  
+Table 5-1 Resolution test of China academy of metrology  
+
+<table><tr><td>序号</td><td>位移台位移(nm)</td><td>测量值(nm)</td></tr><tr><td>1</td><td>3.4</td><td>3.4</td></tr><tr><td>2</td><td>3.0</td><td>3.0</td></tr><tr><td>3</td><td>2.6</td><td>2.6</td></tr><tr><td>4</td><td>2.2</td><td>2.2</td></tr><tr><td>5</td><td>1.8</td><td>1.8</td></tr><tr><td>6</td><td>1.4</td><td>1.4</td></tr><tr><td>7</td><td>1.0</td><td>1.0</td></tr><tr><td>8</td><td>0.6</td><td>0.6</td></tr><tr><td>9</td><td>0.2</td><td>0.2</td></tr><tr><td>10</td><td>-0.2</td><td>-0.2</td></tr></table>
+
+# 5.3.2 基于光频自适应调控的信号解调方法验证
+
+# 5.3.2.1 亚纳米分辨力位移解算关键模块验证
+
+根据第二章提出的相位生成载波解调锁相放大单元等效信号采集精度的要求，设置多功能可编程信号发生器产生如公式(2-15)所示，其中为了测量微探头式干涉仪信号处理单元静态测量极限，将公式中的相位变化设置为定值，模拟待测物
+
+体处于静止的情况，将信号发生器产生的信号接入自主设计的信号处理电路板卡中，在板卡 FPGA 中进行信号与载波信号的相乘和低通滤波处理，将处理后的信号经过 quartus 软件中的 SignalTap 采集功能进行信号采集，将采集后的一次谐波等效数字量波动和二次谐波等效数字量波动绘制在图 5-6 中，其中图 5-6(a)为一次谐波锁相放大等效采集精度测试结果，等效数字量波动的峰峰值为 24，图 5-6(b)为二次谐波锁相放大等效采集精度测试结果，等效数字量波动的峰峰值为 25，根据数字波动量与等效采集位数的关系可以计算得到，一次谐波锁相放大等效采集精度为 11.42bits，二次谐波锁相放大等效采集精度为 11.36bits，二者接近，符合 2.4 节中信号处理精度分析的假定，同时二者优于 10.30bits，证明该单元设计可以满足  $0.1\mathrm{nm}$  位移分辨力的要求。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/5e8864de0ef46bf96fa8f362c268b88394ca95f5e3aebc447f9d0a27bb2a1ddc.jpg)  
+(a) 一次通道等效静态测量  
+图5-6相位生成载波锁相放大等效采集精度测试  
+Fig. 5-6 Measurement of equivalent acquisition accuracy of phase generated carrier lock-in amplifier
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/77b5d7dcb002c4e3117e71e3437e2391aa88d904811d462a80808a968d29158b.jpg)  
+(b) 二次通道等效静态测量  
+(a) Equivalent measurement of primary channel  
+(b) Equivalent measurement of secondary channel
+
+上述实验证明了相位生成载波解算单元满足亚纳米分辨力设计的要求，接下来进行结合反正切单元后的整体相位生成载波解调精度测试。在本文设计中，FPGA中的反正切运算采用Cordic算法进行相位解算，本文根据Cordic算法迭代次数与相位分辨力的关系，确定Cordic算法迭代次数。Cordic算法迭代输出值为微探头式干涉仪的信号解调系统最终的相位输出值，利用多功能可编程信号发生器生成如公式(2-15)所示的模拟输入信号，模拟物体静止，将计算得到的Cordic算法输出值采集并绘制在图5-7中，采集3小时内的微探头式干涉仪信号解调输出量，完成长时间系统静态相位测试，根据测试结果可得，数字量峰峰值波动为8，对应的位移抖动量小于  $0.1\mathrm{nm}$  。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/aaf93d9fab1f439a9d6b449f5383135112bf09618548e981bfe6354112102078.jpg)  
+图5-7 信号解调系统的相位静态噪声测试  
+Fig. 5-7 Phase static noise test of signal demodulation system
+
+随后进行微探头式干涉仪信号解调系统分辨力电信号测试。利用如图5-8左图所示的分辨力电测试实验平台，设置信号发生器中模拟干涉信号的待测相位从0开始至  $2\pi$  结束，通过调节相位变化量模拟目标进行  $0.1\mathrm{nm}$  的台阶步进，在信号处理板卡输出端利用usb上传到计算机进行数据采集和处理，将得到的数据量绘制在图5-8右侧图中，通过图中可以观测，微探头式解调系统能够较清晰地分辨出来  $0.1\mathrm{nm}$  的等效位移量，进一步证实了该系统具备亚纳米测量分辨力的水平。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/b659bcc052fc03566beac2a939a81bdc94c7ec78c5a36054b7a3eeb15103c7da.jpg)
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/96931b7990777c1796eb6cd6ee7a380cec0acb3a717117728a1bd11c28290e30.jpg)  
+图5-8干涉系统分辨力电测试结果  
+Fig. 5-8 Electrical test results of resolution of interferometric system
+
+上述系列实验验证了微探头式干涉仪信号解调系统的亚纳米分辨力水平，下面，对信号解调系统的大量程测量性能进行验证。
+
+# 5.3.2.2 百毫米大量程位移解算关键模块验证
+
+根据第2章的仿真分析发现，在大量程位移测量过程中，相位生成载波解调算法中的核心参数相位调制深度会无可避免的发生变化，远离理想值2.63，该现象会严重影响相位生成载波解调算法的解调精度，甚至在某些工作距离下相位解
+
+调系统会产生异常突变点甚至噪声解调系统失效，这导致相位生成载波解调算法的大量程位移测量应用受到严重制约。并且近年来研究者提出的两种相位调制深度控制方法无法解决大量程位移测量下突变点的产生的问题。本文设计了对比实验，与最新的研究者提出的方案[69, 70]进行比对，旨在证明本文提出的方法的优越性。
+
+首先，为了验证大量程位移下相位调制深度控制的效果，将干涉仪工作距离从  $2.4\mathrm{cm}$  调整到  $40\mathrm{cm}$  。分别利用本文提出的方法和最新研究者提出的测量方案对  $2.4\mathrm{cm} - 40\mathrm{cm}$  位移过程中的干涉信号进行解调测试，将得到的相位调制深度数值绘制在图5-9中。通过图中观测，与相位调制深度理想值相比较，本文提出的方案可以有效的将相位调制深度设定在理想值附近，控制精度为0.01rad，用于对比的前人研究的测试方案，在特定距离会产生跳变点，并且在跳变点附近相位调制深度计算值噪声非常大，通过比较证明了本文提出的方法对于大量程位移测量的微探头式干涉仪的适用性。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/8ac2774b94a070e718c08fae68eeacd135dc5ee06f0c155d36e603b8e8f7b2ac.jpg)  
+图5-9大范围工作距离下相位调制深度计算和设置对比结果  
+Fig. 5-9 Comparison results of phase modulation depth calculation under large working distance
+
+为了验证微位移下本文提出的方法的有效性和优越性，设置干涉相位变化两个周期数，分别利用本文提出的相位调制计算和控制方法与前人研究方法[69]进行对照，将得到的相位调制深度计算值绘制在图5-10中。根据图中对照结果可得，在微位移传感下，本文提出的方法仍然正常工作。相比较而言，对照的方法当相位为  $\pi /2$  的整数倍式，会产生跳变点，影响相位调制深度的控制，该结论与2.4节中的分析结果一致，其原因为对照方法的原理公式(2-41)中，当相位变化为  $\pi /2$  的整数倍时，公式分母为0，无法工作。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/31fed47f6c46e16e378210c2b800a8d33766ad454869ea6c4f07c70da6a9b993.jpg)  
+图5-10微位移下相位调制深度计算和设置对比结果  
+Fig. 5-10 Comparison results of phase modulation depth calculation under micro displacement
+
+最后，进行大量程位移解算的正确性与优越性，与研究者提出的研究方法[70]进行对比，该方法未对相位调制深度进行控制，而是在主动地规避掉相位调制深度变化的影响，直接进行干涉位移的解算，该方法在一定测量范围内被证实有效，被认为是较为权威和广泛的应用方法。通过实际的对比测试，将测试结果绘制在图5-11中，根据数据结果发现，与理想值比较，本文提出的基于光频自适应调控的大量程相位生成载波解调算法可以平稳的进行干涉大量程位移测量，而用于对照的研究方法仍然会在一些工作距离点产生跳变，并在其跳变点附近产生极大的难以忽略的误差量。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/0c406848d37f6afc5f5841680bcd7d67af9e4737e3fb2ee6f632c0a3e19dd5ea.jpg)  
+图5-11大范围工作距离下解调位移测试对比结果  
+Fig. 5-11 Comparison of demodulation displacement test results under large working distance
+
+综上所述，通过上述三组对照实验，证明本文提出的方法无论是在大量程还是微位移测量情况下，都可以实现相位调制深度的稳定控制，保证量程测量过程中测量稳定，消除突变点，可以实现大量程高分辨力的相位生成载波解调工作。避免测量过程中信噪比过低导致无法测量，将测量量程从  $\mathrm{mm}$  量级提升  $376\mathrm{mm}$  。
+
+# 5.4 微探头式激光干涉大范围高带宽调谐光源中心稳频实验
+
+# 5.4.1 中国计量院大范围高带宽调谐稳频测试结果分析
+
+根据国家最高法定计量机构—中国计量科学研究院的校准证书(证书编号：CDcd2022-20007，附录A)中的校准结果记录如下表5-2，该数据的获取依据NIM-ZY-CD-CD-505稳频激光器校准方法[113]，采用飞秒频率梳偏频锁定激光器作为基准激光器，与本文研究的微探头激光干涉仪波长调制中心稳频光源进行拍频，以实现频率稳定度评定。由此可得：大范围高带宽调频光源中心波长  $3\mathrm{h}$  长期相对稳定度为秒稳  $2.9\times 10^{-10}$ ，百秒稳  $4.1\times 10^{-11}$ ，激光光源平均中心波长扩展不确定度 $5\times 10^{-8}(k = 2)$ 。
+
+表 5-2 中国计量科学院大范围波长调制光源中心频率稳定度测试  
+Table 5-2 Central frequency stability test of large range wavelength modulated light source in China academy of metrology  
+
+<table><tr><td>序号</td><td>取样时间(s)</td><td>相对频率稳定(3h)</td></tr><tr><td>1</td><td>0.1</td><td>2.8×10-10</td></tr><tr><td>2</td><td>1</td><td>2.9×10-10</td></tr><tr><td>3</td><td>10</td><td>1.1×10-10</td></tr><tr><td>4</td><td>100</td><td>4.1×10-11</td></tr><tr><td>5</td><td>1000</td><td>2.5×10-11</td></tr></table>
+
+# 5.4.2基于鉴频特征曲线重构的激光稳频方法验证和测试
+
+# 5.4.2.1 大幅度高带宽调频下分子吸收鉴频曲线重构验证
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/39919044abaa23aff8191cdd10005249290914f26495082ac61d425a32c075eb.jpg)  
+图5-12吸收稳频鉴频曲线测试实验平台  
+Fig. 5-12 Experimental platform for testing saturated absorption frequency stabilization and frequency discrimination curve
+
+根据本文第三章的描述，在大范围高带宽激光光源波长调谐下，无可忽略的相位延迟和光强调制会严重影响分子吸收稳频鉴频曲线的形貌，进而影响稳频性
+
+能和稳定点锁定。为了证明本文提出的大范围高带宽频率调谐分子吸收稳频模型的正确性，搭建了如图5-12所示的分子吸收稳频鉴频曲线测试实验平台，该测试实验平台包含激光器和光源驱动器、乙炔吸收气室、光电探测器和鉴频曲线获取单元，其中鉴频曲线获取单元包含载波生成模块、乘法器模块、低通滤波模块和调制载波增益调节模块。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/07043be3a1bdf3a59b81196c0e6e6d06e86f4c32f1d135509c1372a7bada00cf.jpg)  
+(a) 相位大步进量调节下的鉴频曲线模型
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/e7562891e911fd8659b7c584d1f5083003bdfa48942d58e7acbbb9562ad9aab4.jpg)  
+(a) Frequency discrimination curve model under phase stride adjustment  
+(b) 相位精细步进量调节下的鉴频曲线模型  
+(b) Frequency discrimination curve model under fine phase stepping adjustment  
+图5-13光纤干涉仪大范围可调频光源鉴频曲线模型图  
+Fig. 5-13 Model diagram of frequency discrimination curve of large-scale adjustable frequency light source of optical fiber interferometer
+
+首先，为了验证第三章中的大范围高带宽激光波长调谐光源中心稳频理论推导公式和模型，将测试平台中激光光源中心波长设置为要锁定的吸收峰附近，并利用驱动电压驱动光源驱动器在吸收峰左右范围扫描。扫描过程中，鉴频曲线获
+
+取单元不工作，此时获取吸收峰的形貌，确定气室吸收峰的位置。接下来开启鉴频曲线获取单元，同时开启对激光光源的大范围高带宽调制，收集并获得在FPGA中计算的鉴频信号，并在图5-13中绘制鉴频曲线，此时对应的分子吸收稳频鉴频曲线为蓝色曲线，载波相位值为  $0^{\circ}$  。
+
+为了防止扫描过程中驱动电流的不同带来的激光光强的影响，本实验利用SOA光放大器实现了光强稳定控制。根据图中可以看出，曲线呈现不对称形状，且鉴频曲线对应的幅度值不为0，这种结果与本文3.3节中的推导和模拟仿真结果一致。该实验在一定程度证明了本文提出的大范围高带宽调谐光源中心稳频模型的正确性。
+
+根据第三章的分析可知，在大范围高带宽调谐条件下，相位延迟和光强调制会通过影响鉴频曲线形貌来影响光源系统中心频率的稳定。接下来，验证提出的基于鉴频特征曲线重构的大范围高带宽波长调谐中心波长稳定方法。
+
+首先，在鉴频获取单元的FPGA内部载波信号的相位从  $0^{\circ}$  逐渐改变为  $180^{\circ}$ ，变化步进幅度为  $30^{\circ}$ ，与此同时，重复对光源波长进行扫描的操作，将得到的鉴频曲线信号分别绘制在图5-13(a)中，并提取了鉴频曲线中的最大值和最小值。通过计算最大值和最小值之间的差值，选择差值较大的两组对应的载波信号相位，在提取的两组相位之间将载波信号相位细分  $10^{\circ}$  。重复上述操作设置，并在图5-13(b)中绘制相位精细步进量下的鉴频曲线。再次选择差值最大的载波相位对最终系统进行补偿。至于锁定点根据公式(3-20)计算并重新设定，根据设定值与获得的吸收峰谱线峰值对应值相同，进而证明了锁频点重新设定的正确性和提出的大范围高带宽调谐光源中心稳频模型的正确性。
+
+# 5.4.2.2 大幅度高带宽调频下光源中心波长稳定度测试
+
+本部分实验的目的是测试微探头式干涉仪大范围高带宽调谐光源的中心频率稳定性。由于激光光源的调制范围太大，无法用更高稳定性的激光器通过拍频来测试激光光源中心波长控制精度，因此采用了间接测量方法。具体测量方法如下：将频率稳定的系统置于安静的测试空间中，从鉴频获取单元采集鉴频信号，采集时长为  $3\mathrm{h}$  。随后，通过扫描激光频率获得鉴频曲线，并转换和拟合鉴频曲线的中心线性区域，如图5-14所示，并对上述曲线进行归一化处理，然后获得激光频率的波动范围。
+
+本文提出的大范围高带宽波长调谐分子吸收稳频方法采集得到的稳频结果如图5-14所示，通过公式(5-1)转换获得的频率波动范围，可以获得与波动峰值对应的激光波长的相对稳定性。
+
+$$
+\frac {\Delta f}{f} = \frac {\Delta \lambda}{\lambda} = \frac {\Delta f \cdot \lambda}{c} \tag {5-1}
+$$
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/414e1cc73cb2948ba52edc62a1db6dfb7605e8c5f9e86dad8967e40a84d3bb2d.jpg)  
+图5-14光纤干涉仪激光稳频频率控制精度测试  
+Fig. 5-14 Measurement of laser frequency stabilization and frequency control accuracy of optical fiber interferometer
+
+通过多次各时间段的激光稳定测试结果分析，根据公式计算表明，优化稳频系统后，激光中心频率波动相对量为  $2.5 \times 10^{-8}$ ，即中心频率相对精度为  $5 \times 10^{-8} (k = 2)$  这证明了本文提出的优化稳频系统的有效性。
+
+表 5-3 不同调制幅度下的调谐光源中心频率稳定度测试  
+Table 5-3 Test of center frequency stability of tuned light source with different modulation width  
+
+<table><tr><td>序号</td><td>调制速度 (MHz)</td><td>调制宽度 (GHz)</td><td>稳频控制精度 (k=2)</td></tr><tr><td>1</td><td>1</td><td>0.15</td><td>5.0×10-8</td></tr><tr><td>2</td><td>1</td><td>0.30</td><td>4.7×10-8</td></tr><tr><td>3</td><td>1</td><td>0.60</td><td>4.5×10-8</td></tr><tr><td>4</td><td>1</td><td>0.90</td><td>5.0×10-8</td></tr><tr><td>5</td><td>1</td><td>1.20</td><td>4.8×10-8</td></tr><tr><td>6</td><td>1</td><td>1.50</td><td>4.6×10-8</td></tr><tr><td>7</td><td>1</td><td>1.80</td><td>5.0×10-8</td></tr><tr><td>8</td><td>1</td><td>2.10</td><td>5.0×10-8</td></tr><tr><td>9</td><td>1</td><td>2.40</td><td>4.6×10-8</td></tr><tr><td>10</td><td>1</td><td>2.61</td><td>5.0×10-8</td></tr></table>
+
+进一步研究本文提出的激光稳频方法中调制幅度的变化是否会影响光源中心波长的稳定性，补充实验，改变调制信号幅度，进而调整调制幅度，测试波长稳定度，每次调整后测试时间为  $20\mathrm{min}$ ，调制速度(调制带宽)为  $1\mathrm{MHz}$ 。
+
+相应数据如表5-3所示，可得结论，在调制带宽为  $1\mathrm{MHz}$  ，调制幅度
+
+150MHz-2.61GHz 范围内，本论文研究的高速调谐稳频光源稳定度不受调制宽度变化影响，稳频控制精度为  $5 \times 10^{-8} (k = 2)$  量级，未发现该稳频方法下调制幅度的变化对系统稳频精度的影响，支撑激光干涉仪在大量程测量下保持高相对精度。
+
+此外，为了将本文提出的稳频方法与传统方法进行比较，设计了对比实验，在调制带宽1MHz，调制幅度2.61GHz时，首先利用上述激光光源中心波长控制精度间接测量方法，对自由运转下的激光光源频率波动进行采集，采集时间为30min，接下来利用本文提出的稳频方法进行处理，对其频率波动进行采集，采集时间为30min。最后，将本文的稳频方法换成传统稳频方法，对其频率波动进行采集，采集时间为30min。将数据绘制如图5-15所示，从图中可得，光源自由运转时，频率波动超过50MHz，而利用本文的稳频方法，成功进入稳频锁定状态；当替换成传统稳频方法，可观察并未进行稳频，系统失锁，根据波动值进行换算可得稳频控制精度仅为  $5 \times 10^{-7} (k = 2)$  。通过对比实验，本文提出的大范围高带宽调谐下激光稳频方法的有效性得到了很好的验证。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/bf1bd4242a30c0b94203b20e03b2f1b1f7e39f7560e86d6fd43f19d1aef458b1.jpg)  
+图5-15大范围高带宽调谐下激光中心频率波动测试  
+Fig. 5-15 Measurement of frequency fluctuation of laser tuned in large range and high bandwidth
+
+# 5.5 微探头式激光干涉周期非线性误差消除验证实验
+
+# 5.5.1 中国计量院微位移测试结果分析
+
+根据国家最高法定计量机构—中国计量科学研究院的测试报告(报告编号：CDjc2022-20129，附录B)中的测试结果记录在表5-4中，该数据的获取依据JB/T5610-2006激光干涉仪第5.5条[11]和JJG739-2005激光干涉仪检定规程第7.3.4条[112]，采用标准器激光干涉仪与本文研究的微探头激光干涉仪进行比对测试，同时共轴测量同一目标物，其中标准器激光干涉仪测量结果为标准值，待测试微探
+
+头激光干涉仪测量结果为测量数据，二者差值作为示值误差，最大示值误差应该为-2.0nm。
+
+表 5-4 中国计量科学院微位移测试  
+Table 5-4 Micro displacement measurement of China Academy of Metrology  
+
+<table><tr><td>序号</td><td>标准值(nm)</td><td>测量数据(nm)</td><td>示值误差(nm)</td></tr><tr><td>1</td><td>0.0</td><td>0.0</td><td>0.0</td></tr><tr><td>2</td><td>664.4</td><td>664.1</td><td>-0.3</td></tr><tr><td>3</td><td>1331.5</td><td>1331.4</td><td>-0.1</td></tr><tr><td>4</td><td>1998.3</td><td>1996.4</td><td>-1.9</td></tr><tr><td>5</td><td>2663.5</td><td>2661.5</td><td>-2.0</td></tr><tr><td>6</td><td>3328.7</td><td>3326.9</td><td>-1.8</td></tr><tr><td>7</td><td>3996.5</td><td>3994.7</td><td>-1.8</td></tr><tr><td>8</td><td>4660.6</td><td>4660.4</td><td>-0.2</td></tr><tr><td>9</td><td>5325.4</td><td>5323.6</td><td>-1.8</td></tr><tr><td>10</td><td>5991.7</td><td>5991.3</td><td>-0.4</td></tr><tr><td>11</td><td>6655.8</td><td>6655.4</td><td>-0.4</td></tr></table>
+
+利用上述测试数据，根据JJG739-2005激光干涉仪检定规程第7.3.8激光干涉仪非线性测试条例[112]。将标准值作为横坐标，微探头干涉仪测量数据作为纵坐标绘制测量点，并利用最小二乘方法将测量点进行线性拟合获得一条直线，将该直线与测量点的连线旋转，旋转角度保持一致直至直线与  $x$  轴平行，记录旋转后的测量点与直线的最大距离作为微探头激光干涉仪的非线性误差，量值为 $0.8\mathrm{nm}$
+
+# 5.5.2 数十纳米级周期非线性误差消除方法验证和测试
+
+# 5.5.2.1 温度驱动扫频的主动相位变化验证实验
+
+本小节旨在验证4.3节提出的温度扫描激光移频的主动相位变化的假想，为了验证上述假设，本文搭建了微探头式周期非线性误差测试平台，使用激光驱动器主动温度扫描单元将激光驱动温度从  $24^{\circ}\mathrm{C}$  连续扫描到  $25^{\circ}\mathrm{C}$ ，与此同时，采集PGC解调系统两路低通滤波器的输出信号，并绘制两组输出信号的李萨如图在图5-16(a)所示。在对比实验中，设置激光光源驱动温度为  $25^{\circ}\mathrm{C}$ ，设置装有反射目标物的纳米位移平台移动速度为  $1\mathrm{mm/s}$ ，运动范围为  $5\mu\mathrm{m}$ ，再次收集PGC解调系统中滤波器的两组输出信号并绘制相应的李萨如图如图5-16(b)所示。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/67330897450df7ea7e11cd7ed7020bd3eeabb7d854355b399326016bd496f0ee.jpg)  
+(a) 温度扫描获取的  
+图5-16光纤干涉仪周期非线性李萨如图结果  
+Fig. 5-16 Periodic nonlinear Lissajous diagram results of optical fiber interferometer
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/5a154f35a10901be4181ec4a6459b447e99343e71546109e71ec6eeaac8643d2.jpg)  
+(a) Obtained by temperature scanning  
+(b) 实际运动获取的  
+(b) Actual motion acquisition
+
+根据图5-16获取的李萨如图，提取其中的椭圆特征参数，分别为  $A$  、  $B$  、  $S_{\mathrm{1c}}$  、  $S_{2\mathrm{c}}$  和  $\alpha$  ，该特征参数的提取是通过椭圆拟合方法获得。为了便于比较，表5-5列出了温度扫描和实际运动获取的这两组参数，可以发现的是二者特征值差异非常小，我们推测这种偏差是由实验过程中光功率的微小变化引起的。
+
+表 5-5 李萨如图椭圆特征参数  
+Table 5-5 Characteristic parameters of Lissajous ellipse  
+
+<table><tr><td></td><td>A</td><td>B</td><td>S1c</td><td>S2c</td><td>α</td></tr><tr><td>温度驱动扫频</td><td>1.099</td><td>0.936</td><td>0.000</td><td>0.000</td><td>87.523</td></tr><tr><td>实际物体运动</td><td>1.099</td><td>0.936</td><td>0.000</td><td>0.000</td><td>87.523</td></tr></table>
+
+因此，可以认为，通过温度扫描获取的主动相位变化与实际位移产生的相位变化周期非线性误差特征值一致，温度扫描激光移频的主动相位变化假定得到了验证。
+
+# 5.5.2.2 周期非线性误差消除方法验证和测试
+
+为了验证本文提出的参数预补偿的周期非线性误差抑制方法的有效性，将载波相位延迟分别设置为  $45^{\circ}$  和  $90^{\circ}$  。令被测目标保持静止，利用主动温度扫描驱动激光器，驱动温度从  $25^{\circ}\mathrm{C}$  连续扫描到  $26^{\circ}\mathrm{C}$  。利用本文第四章所述的参数预补偿周期非线性误差抑制方法，将滤波器输出的两组结果和对应的载波相位延迟计算值绘制在图 5-17 中。从图中可以看出，计算得到的载波相位延迟与设置的数值相
+
+同，随后将得到的粗略的载波相位延迟加入载波生成单元中进行载波相位补偿，完成周期非线性误差的抑制。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/ee8b99e198efc23eea56cf5a9454ecbb5f5d705cc425af5662ce4e7b5a139c7f.jpg)  
+(a) 载波相位延迟设置为  $45^{\circ}$  的预补偿情况
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/d9effc3b0c22dadb32585efbc685abf9cb392b6e349d48149929fa6bd211fc35.jpg)
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/98448698c3f1e98d2e027f5c66e064d41a1a3fecf7d319a8e17bdaee814f2f8e.jpg)  
+(a) Pre compensation with carrier phase delay set to  $45^{\circ}$  
+(b) Pre compensation with carrier phase delay set to  $90^{\circ}$  
+图5-17光纤干涉仪周期非线性误差补偿结果  
+Fig. 5-17 Compensation results of periodic nonlinear error of optical fiber interferometer
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/dc85579ccba109e7b0b3340d61de2f2cbca5a395f2be108119dcd89eba6286d4.jpg)  
+(b) 载波相位延迟设置为  $90^{\circ}$  的预补偿情况
+
+为了证明周期非线性误差的抑制效果，在相位延迟参数预补偿前后，设定装有反射目标的纳米位移台运动。与此同时采集PGC解调系统中滤波器的输出信号，将滤波器得到的两组信号绘制李萨如图，结果如图5-17。对比补偿前后的图形可知，补偿后的微探头式干涉仪信号李萨如图由直线变为椭圆。虽然残余非线性误差(直流偏置和不等幅值)仍然存在，但此时信号满足对非线性误差进行精细补偿的条件。
+
+为了验证非线性误差精细校正的有效性，将装有反射物目标的纳米位移平台设置以  $0.75 \mathrm{~mm} / \mathrm{s}$  的速度移动，非线性精细校正单元一开始被停用。当目标移动一段时间后，非线性精细校正被激活。采集了整个过程的相位解调结果，并计算了
+
+相应的非线性误差。这些数据绘制在图 5-18 中，其中图 5-18(a) 和 5-18(b) 分别表示  $\pi /4$  和  $\pi /2$  的载波相位延迟补偿后的情况。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/5a562cb9c60085711440f70b26324972449766945b1237dafb53932b1f34d3be.jpg)  
+(a) 载波相位延迟设置为  $45^{\circ}$  的精细校正情况
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/e87662d2457260eacd6625867ef61521559fb1bcf5b9cce2f415315dcc7ed6df.jpg)  
+(a) Fine correction with carrier phase delay set to  $45^{\circ}$  
+(b) 载波相位延迟设置为  $90^{\circ}$  的精细校正情况  
+(b) Fine correction with carrier phase delay set to  $90^{\circ}$  
+图5-18微探头式干涉仪周期非线性精细校正结果  
+Fig. 5-18 Fine correction results of periodic nonlinearity of optical fiber micro probe interferometer
+
+从图中可以明显看出，在非线性预补偿后，残余非线性误差约为  $10\mathrm{nm}$  。然而，经过精细校正后，最大非线性误差小于  $1\mathrm{nm}$  。因此，非线性误差校正方法被证明是有效的。
+
+进一步通过比对法进行误差的测量，通过将纳米位移台以  $5\mathrm{nm}$  的步长移动600次  $(3\mu \mathrm{m})$  来进行的。纳米位移台运动量与微探头式干涉仪测量值以及二者的偏差量被绘制在图5-19中。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/787da2555838e14845f9eb64b7591a364c72b6cd306cac80b3ac86216f42a32e.jpg)  
+图5-19 微探头式干涉仪微位移偏差分析  
+Fig. 5-19 Analysis of micro displacement deviation of optical fiber micro probe interferometer
+
+从图中可以观测出，二者的平均偏差几乎为零，不存在明显的周期非线性误差的周期性变化特征，结果表征出的上下波动的测量误差，结合中国计量院测试结果保守认为，非线性误差为  $0.8\mathrm{nm}$ ，可以实现纳米精度的位移测量。
+
+# 5.6 微探头式激光干涉仪整机性能测试实验
+
+上述5.2节到5.5节阐述的是本文提出的一种由光纤微棱镜式微探头传感与基于光频自适应调控的相位生成载波解调组合的整体测量方法、一种基于鉴频特征曲线重构的大范围高带宽波长调谐中心波长稳定方法和一种基于粗精双阶段复合修正的微探头式式激光干涉周期非线性误差抑制与校正方法的有效性的验证，本节基于上述方法搭建了完整的微探头式激光干涉样机，并对整机进行综合性能测试。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/b02eaeceb00542a1c96eb964b7cd68f952a4b84e7984b58e43e9d2d277fca7b8.jpg)  
+图5-20微探头式干涉仪测量分辨力测试结果  
+Fig. 5-20 Measurement resolution test results of optical fiber micro probe interferometer
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/2d00a5cb199f7b58d76a9667c3703a4cc2049b71b5473cf78bce4460868c9d4f.jpg)
+
+本小节旨在测试了所搭建的微探头式激光干涉仪整机的位移测量分辨力，在
+
+该实验中，将纳米位移台参数设置为  $0.4\mathrm{nm}$  的往返步长和 1s 的步进时间。具体实验装置如图 5-20 右侧所示，采集得到的位移量如图 5-20 左侧所示，图中显示了可以明显用于区分的往返台阶，虽然，从图中可以看出数据存在一种整体偏移现象，我们分析这是由环境漂移或机械应力释放引起的。因此，根据实验可知，本研究中提出的微探头式激光干涉仪的实际测量分辨力优于  $0.4\mathrm{nm}$  。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/25bd706d24022e563811a8944e5ba827c55e19109af90bca9fc417cee469ef63.jpg)  
+图5-21微探头式干涉仪稳定度测试结果
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/7a8ac4d54b1c44f29c9d8c566621890df9d0c7d7c54877714f6f7b272945384e.jpg)  
+Fig. 5-21 Stability test results of optical fiber micro probe interferometer
+
+本小节旨在进行微探头式激光干涉仪的测量稳定性测试，稳定度测试平台如图5-21右侧所示，金属结构采用殷钢材料，具备高稳定特性，测试对象用UV胶固化。利用微探头式干涉仪进行稳定性测量，时长为1小时。结果如图5-21左侧所示。1小时内的漂移小于  $2.5\mathrm{nm}$ ，1分钟内的短期稳定性小于  $0.4\mathrm{nm}$  。因此，根据实验结果可知，本文实现了亚纳米分辨率和纳米精度的干涉仪。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/121e5b7098afcde58fe7355a573967218ec7b4733e01393f72eb5d77f182f7ef.jpg)  
+图5-22微探头式干涉仪位移测量比对实验装置  
+Fig. 5-22 Experimental device for measurement comparison of micro probe interferometer
+
+随后，进行微探头式干涉仪与商用超精密干涉比对测试实验，在该实验中比对干涉仪采用背对背式对比测量方式，测试实验图如图5-22所示，其中红色框框出的为本文搭建的微探头式超精密激光干涉仪实验样机，蓝色框框出的为用于比对的SIOS公司商用超精密干涉仪，黄色框框出的为位移测量比对平台。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/f0f8808456af52f2dc4b83bd72664f86f50c1863a7abe052dab7547521e51049.jpg)  
+(a) 两台用于比对的干涉仪的微位移测试结果
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/747cf392be2aa019840be6f960d3a1e6fd9f0967d151f784a062fa7ac8d10ced.jpg)  
+(a) Micro displacement test results of two interferometers used for comparison  
+(b) 两台用于比对的干涉仪的微位移偏差测试结果  
+(b) Micro displacement deviation test results of two interferometers used for comparison  
+图5-23微探头式干涉仪与商用干涉仪微位移测量比对实验结果  
+Fig. 5-23 Experimental results of micro displacement measurement comparison between micro probe interferometer and commercial interferometer
+
+首先，利用上述光纤干涉仪与商用超精密干涉仪比对平台，进行小范围位移的测试和比较。将纳米级位移台设置为移动  $3\mu \mathrm{m}$  。分别用本文搭建的微探头式干
+
+涉仪和 SIOS 商用干涉仪进行各自的测试。
+
+纳米位移台和两台用于比对的干涉仪的测试结果绘制在图5-23(a)中，干涉仪和位移台的测量结果之间的差异计算并绘制在图5-23(b)中。通过实验结果可以观测出，光纤干涉仪的微位移测量过程中的位移偏移为  $\pm 1\mathrm{nm}$ ，与商用超精密干涉仪的微位移测量性能一致。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/dcbe72de5fbdddbf4cbd974e6c0142b2604f6e42d7c822472da46e20f14e9497.jpg)  
+(a) 两台用于比对的干涉仪的大量程位移测试结果
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/2c0fe7cfb61ac5690eb35becdca36958de3788141fc88b2e64207d2fafe157cb.jpg)  
+(a) Large range displacement test results of two interferometers used for comparison  
+(b) 两台用于比对的干涉仪的大量程位移偏差测试结果  
+(b) Test results of large range displacement deviation of two interferometers used for comparison  
+图5-24微探头式干涉仪与商用干涉仪大量程位移测量比对实验结果  
+Fig. 5-24 Experimental results of large range displacement measurement comparison between micro probe interferometer and commercial interferometer
+
+随后，进行了大量程下微探头式干涉仪与商用超精密激光干涉仪位移试验和比较。将PI位移台设置为移动  $400\mathrm{mm}$ ，并使用本文提出的干涉仪和SIOS商用干涉仪分别进行测试。
+
+两台干涉仪的测试结果以及位移台的偏移量如图 5-24(a)所示。发现二者测量结果的偏移量趋势相似，这可能是由位移台的精度引起的。两个干涉仪测量值之间的差异如图 5-24(b)所示，据图可得微探头式干涉仪与商用超精密干涉仪的位移差在  $-65\mathrm{nm}$  和  $50\mathrm{nm}$  之间。在本实验中初始工作距设置为  $24\mathrm{mm}$ ，运动量程为  $400\mathrm{mm}$ ，结合实验 5.3.2 由于考虑到本系统设置的可工作的初始工作距为 24-400mm，因此该仪器量程为  $376\mathrm{mm}$ 。
+
+# 5.7 微探头式激光干涉仪不确定度和准确度分析结果
+
+微探头式激光干涉仪测量不确定度的来源包括：非线性误差、读数量化误差、激光频率波动误差、光路环境参数测量误差。
+
+高精度的激光干涉仪，其实验光路必须处于恒温恒湿的环境中，根据Edlen公式所表示的测量环境温度、大气压强和湿度对位移测量结果影响，激光干涉仪的线性测量模型可以表示为：
+
+$$
+L _ {\text {线 性}} = L + \left[ 9 3. 0 (T - 2 0) - 0. 2 6 8 3 (P - 9 9 3 7 0) + 0. 8 5 9 6 (H - 0. 5) \right] \times 1 0 ^ {- 8} L \tag {5-2}
+$$
+
+式中  $L$  ——激光干涉仪在标准测量环境条件测得的线性位移  $(\mathrm{m})$ ；
+
+$T$  ——测量光路的平均温度  $(^{\circ} \mathrm{C})$ ;
+
+$P$  测量光路的平均大气压强(Pa);
+
+$H$  测量光路中的相对湿度  $(\% \mathrm{RH})$  。
+
+由公式中所示的线性测量模型，可根据不确定度传播律对其测量标准不确定度进行分析如下：
+
+$$
+\begin{array}{l} u ^ {2} \left(L _ {\text {线 性}}\right) = u ^ {2} (L) + u ^ {2} (\delta n) + u ^ {2} \left(L _ {T}\right) + u ^ {2} \left(L _ {P}\right) + u ^ {2} \left(L _ {H}\right) \\ = u ^ {2} (L) + u ^ {2} (\delta n) + \left(9 3. 0 \times 1 0 ^ {- 8} L\right) ^ {2} u ^ {2} (T) \tag {5-3} \\ + \left(0. 2 6 8 3 \times 1 0 ^ {- 8} L\right) ^ {2} u ^ {2} (P) + \left(0. 8 5 9 6 \times 1 0 ^ {- 8} L\right) ^ {2} u ^ {2} (H) \\ \end{array}
+$$
+
+式中  $u(L)$  ——激光干涉仪的位移测量标准不确定度  $(\mathrm{m})$ ；
+
+$u(\delta n)$  ——Edlen公式不精确引入的位移测量标准不确定度(m);  
+$u\left(L_{T}\right)$  ——温度测量误差引入的位移测量不确定度  $(\mathrm{m})$ ；  
+$u\left(L_{P}\right)$  ——大气压强测量误差引入的位移测量不确定度(m);  
+$u\left(L_{H}\right)$  ——湿度测量误差引入的位移测量不确定度(m);  
+$u(T)$  ——光路温度的测量不确定度  $(^{\circ} \mathrm{C})$ ;  
+$u(P)$  ——光路大气压强的测量不确定度(Pa);  
+$u(H)$  ——光路中空气相对湿度的测量不确定度  $(\% \mathrm{RH})$  。
+
+1. 微探头激光干涉仪的位移测量不确定度：
+
+# 1.1. 读数量化误差引入的位移测量标准不确定度
+
+测量仪器的读数量化(测量分辨力)误差按照B类评定方法进行评定，根据中国计量院测试报告(报告编号：CDjc2022-20130,附录B)，仪器测量分辨力为 $0.4\mathrm{nm}$ ，读数量化误差以等概率出现在半宽度为  $0.2\mathrm{nm}$  的区间内，由B类评定方法可知读数量化误差导致的位移测量标准不确定度为  $0.2 / \sqrt{3} = 0.12\mathrm{nm}$  。
+
+# 1.2. 周期非线性误差引入的位移测量标准不确定度
+
+非线性误差按照 B 类评定方法进行评定，根据中国计量院测试报告(报告编号：CDjc2022-20130，附录 B)，仪器非线性误差数值为  $0.8\mathrm{nm}$ ，非线性误差周期性出现，由 B 类评定方法可知非线性误差导致的位移测量标准不确定度为  $0.8/\sqrt{3} = 0.46\mathrm{nm}$ 。
+
+# 1.3. 激光频率准确度引入的位移测量标准不确定度
+
+根据中国计量院校准证书(证书编号：CDcd2022-20007，附录A)，激光光源平均真空波长相对扩展不确定度为  $5 \times 10^{-8} (k = 2)$ ，激光光源波长标准不确定度为  $2.5 \times 10^{-8}$  可知激光波长准确度导致的位移测量标准不确定度为  $2.5 \times 10^{-8} L$ ， $L$  为工作长度。
+
+综上可得，微探头激光干涉仪的位移测量不确定度  $u(L)$  为：
+
+$$
+u (L) = \sqrt {u \left(L _ {1}\right) ^ {2} + u \left(L _ {2}\right) ^ {2} + u \left(L _ {3}\right) ^ {2}} = \sqrt {0 . 2 + \left(2 . 5 \times 1 0 ^ {- 8} L\right) ^ {2}} \tag {5-4}
+$$
+
+# 2. Edlen 公式误差引入的位移测量标准不确定度
+
+使用Edlen公式根据环境参数对位移测量结果进行补偿时，其模型自身的相对扩展不确定度为  $3 \times 10^{-8}(k = 3)$  。因此，由Edlen公式误差引入的位移测量标准不确定度为  $3 \times 10^{-8}L / 3 = 1 \times 10^{-8}L$  。
+
+# 3. 温度传感器测量误差引入的位移测量标准不确定度
+
+根据中国航空工业集团公司北京长城计量测试技术研究所(中航304所)校准证书(校准证书：GFJGJL1001220104155)，所使用的温度传感器，在  $17\sim 23^{\circ}C$  的温度范围内，经校准调试后温度测量的扩展不确定度  $U = 0.004^{\circ}\mathrm{C}(k = 2)$  。温度传感器测量误差引入的位移测量标准不确定度分量为  $0.002\times 93.0\times 10^{-8}L = 0.186\times 10^{-8}L$  。
+
+# 4. 大气压强传感器测量误差引入的位移测量标准不确定度
+
+根据中航 304 所校准证书(校准证书: GFJGJL1001220104127), 所使用的气
+
+压传感器，在  $90 \sim 110 \mathrm{kPa}$  的气压范围内，压强测量的扩展不确定度  $U = 0.003 \mathrm{kPa} (k = 2)$  。大气压强传感器测量误差引入位移测量标准不确定度分量为  $1.5 \times 0.2683 \times 10^{-8} L = 0.402 \times 10^{-8} L$  。
+
+# 5. 湿度传感器测量误差引入的位移测量标准不确定度
+
+根据中航304所校准证书(校准证书：GFJGJL1001220104054)，所使用的湿度传感器，湿度范围为  $10\% \sim 80\%$  的条件下，湿度测量的扩展不确定度 $U = 1\%(k = 2)$  。所使用的湿度传感器测量误差引入的位移测量标准不确定度分量为 $0.5\times 0.8596\times 10^{-8}L = 0.423\times 10^{-8}L$  。
+
+综上可得，不确定度合成表5-6，线性滑移标准测量不确定度为(5-5)，单位  $\mathrm{m}$
+
+$$
+\begin{array}{l} u \left(L _ {\text {线 性}}\right) = u ^ {2} (L) + u ^ {2} (\delta n) + u ^ {2} \left(L _ {T}\right) + u ^ {2} \left(L _ {P}\right) + u ^ {2} \left(L _ {H}\right) \tag {5-5} \\ = \sqrt {0 . 2 3 + 7 6 2 L ^ {2}} \times 1 0 ^ {- 9} \\ \end{array}
+$$
+
+表 5-6 微探头激光干涉仪线性位移测量不确定度合成表  
+Table 5-6 Uncertainty synthesis table of linear displacement measurement of micro probe laser interferometer  
+
+<table><tr><td>引入标准不确定度</td><td>不确定度来源</td><td>评定方法</td><td>标准不确定度(nm)</td></tr><tr><td rowspan="3">微探头式干涉仪的位移测量不确定度u(L)</td><td>量化误差(分辨力)</td><td>B类评定</td><td>0.12</td></tr><tr><td>非线性误差</td><td>B类评定</td><td>0.46</td></tr><tr><td>激光波长准确度</td><td>A类评定</td><td>25L</td></tr><tr><td>Edlen公式误差u(δn)</td><td>Edlen公式误差</td><td>A类评定</td><td>10L</td></tr><tr><td>环境温度测量误差u(LT)</td><td>环境温度测量误差</td><td>A类评定</td><td>1.86L</td></tr><tr><td>环境压强测量误差u(LP)</td><td>环境压强测量误差</td><td>A类评定</td><td>4.02L</td></tr><tr><td>环境湿度测量误差u(LH)</td><td>环境湿度测量误差</td><td>A类评定</td><td>4.23L</td></tr><tr><td></td><td colspan="2">线性位移的标准测量不确定度</td><td>√0.23+762L²</td></tr></table>
+
+微探头激光干涉仪，根据JB/T5610-2006激光干涉仪第4.5条[111]，激光干涉仪的准确度可由以下公式计算得出：
+
+$$
+\delta = \pm \left[ k + \sqrt {\left(0 . 0 5\right) ^ {2} + \left(\Delta \lambda / \lambda\right) ^ {2} + \left(0 . 9 2 9 \Delta t\right) ^ {2} + \left(0 . 0 0 2 7 \Delta p\right) ^ {2} + \left(0 . 0 0 0 4 2 \Delta f\right) ^ {2}} L \right] \tag {5-6}
+$$
+
+式中  $\delta$  ——激光干涉仪准确度  $(\mu \mathrm{m})$ ；
+
+$k$  ——激光干涉仪的分辨力  $(\mu \mathrm{m})$ ；
+
+$\Delta \lambda / \lambda$  ——激光波长的准确度(ppm);
+
+$\Delta t$  ——测量环境的空气温度不确定度  $(^{\circ} \mathrm{C})$ ；
+
+$\Delta p$  ——测量环境的空气气压不确定度(Pa);
+
+$\Delta f$  ——测量环境的空气湿度不确定度(Pa);
+
+$L$  测量长度  $(\mathrm{m})$  。
+
+对于项目所研制的激光干涉仪，波长的相对精度  $\Delta \lambda / \lambda$  ，据中国计量院校准证书，不确定度为  $5 \times 10^{-8} (k = 2)$  。测量环境空气温度传感器经中航304所校准，不确定度为  $0.004^{\circ} \mathrm{C} (k = 2)$  。测量环境空气温度传感器经中航304所校准，不确定度为  $3 \mathrm{~Pa} (k = 2)$  。测量环境空气湿度传感器经中航304所校准，不确定度为  $1 \% \mathrm{RH} (k = 2)$  ，由于水在  $20^{\circ} \mathrm{C}$  时的饱和蒸汽压为  $2.34 \mathrm{kPa}$  ，相对湿度  $1 \%$  相当于  $23.4 \mathrm{~Pa}$  。
+
+将上述参数代入公式，可以计算得到激光干涉仪的准确度为，单位为  $\mu \mathrm{m}$ ：
+
+$$
+\delta = \pm \left[ 0. 4 \times 1 0 ^ {- 3} + 5 \times 1 0 ^ {- 2} L \right] \tag {5-7}
+$$
+
+# 5.8干涉仪整机与国际同类领跑仪器核心参数对比
+
+根据本文叙述的核心方法单元，通过关键技术攻关，前后形成两代原理样机和仪器工作场景，如图5-25所示。
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/8a463e8e2a3b45b8f74dfe39b8d72879bf9ba4ee9af43507e991ccd84651c198.jpg)  
+图5-25光纤干涉仪产品样机开发
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/83bee9886f6714c022acaa8561a17f9a2ed871524ab559893f46eb6234dc78c1.jpg)  
+Fig. 5-25 Development of optical fiber interferometer prototype
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/6ce44ccba2f10e30f5d22c76c9213db7f45fe2cfd4836f0992d8d76e4510fb50.jpg)
+
+与国际同类型顶尖仪器 Attocube 和 Smaract 公司的商业化样机进行核心参数对比，包括探头尺寸，测量距离，测量分辨力，激光光源稳定度，非线性误差。
+
+表 5-7 整机核心参数比对  
+Table 5-7 Comparison of core parameters of the whole machine  
+
+<table><tr><td>同类仪器</td><td>探头尺寸</td><td>测量距离</td><td>实测分辨力</td><td>激光稳频</td><td>非线性误差</td></tr><tr><td>Smaract
+PICOSCALE
+V2[23]</td><td>Φ4mm×13mm
+(型号C04)</td><td>250mm</td><td>稳定度0.4nm
+(40mm工作距)</td><td>5E-8</td><td>3nm</td></tr><tr><td>Attocube
+IDS3010[38]</td><td>Φ14mm×17.4mm
+(型号M12/C1.6)</td><td>1000mm</td><td>标准偏差0.45nm
+(77mm工作距)</td><td>5E-8</td><td>4.9nm</td></tr><tr><td>本文研制
+仪器</td><td>Φ4.7mm×17mm</td><td>400mm</td><td>0.4nm
+(40mm工作距)</td><td>5E-8</td><td>0.8nm</td></tr></table>
+
+以 IDS3010 和 PICOSCALE V2 为代表，其中具体探头型号和数值如表 5-7 所
+
+示。由于上述产品缺少实际分辨力测试，都仅表明名义分辨力  $1\mathrm{pm}$ ，而名义分辨力并无实际意义，因此此处采用稳定度进行等效替代，PICOSCALE V2 干涉仪的  $1\mathrm{nm}$  的台阶分辨力测试结果，可以观测短期稳定度波动为  $0.4\mathrm{nm}^{[23]}$ ，IDS3010 在工作距  $77\mathrm{mm}$  下的稳定度标准偏差为  $0.45\mathrm{nm}^{[38]}$ 。
+
+通过图表5-7中参数的比对可得结论：本文研制的微探头激光干涉仪测量量程与国际先进水平总体保持一致，激光光源稳定度与国际先进水平一致，非线性误差与国际最先进水平减小超过3倍。
+
+# 5.9 本章小结
+
+本章搭建了相应的实验验证装置，首先完成了光纤干涉微小探头的设计结果测试，接下来对信号解调方法进行测试和比对。完成了光源大范围调谐单元的可行性验证以及大范围高速调谐下的稳频模型验证和光源中心频率稳定度测试。并对本文提出的周期非线性误差的粗修正和精细校正方法进行验证。然后搭建完整干涉仪样机与商用干涉仪进行实验测试比对以及稳定度和分辨力测试实验。最后，对干涉仪进行了标准不确定度分析以及与国际同类领跑仪器的核心参数比较。
+
+# 结论
+
+微探头传感器式激光干涉仪是新一代超精密激光干涉测量仪器的代表，与传统激光干涉仪相比，具有探头尺寸极小、装调方便、可隔离热污染和易实现嵌入式测量等显著优势，在光刻机掩模板滑移检测、高端测量装备内部元件位移检测、材料形变测量和科学研究等嵌入式位移测量场合具备极大潜力。本研究针对微探头动态位移传感最核心手段—激光干涉PGC测量技术在面向大量程测量时存在的科学问题和技术问题，分别从测量原理、测量基准和测量误差三方面展开，实现并搭建完整的高精度微探头式激光干涉仪，为我国高端光刻机研发提供基准级嵌入式在线测量手段，为纳米计量测试提供核心仪器。本文主要研究工作和结论如下：
+
+在微探头式激光干涉测量原理上，阐述传统微米级量程微探头式激光干涉测量方法以及拓展至百毫米级量程的方法原理壁垒。在微探头设计上，推导和仿真分析传统微探头法布里珀罗干涉仪的局限性，随后研究一种微棱镜式微探头结构的传感方法和模型，在传感头方面支撑大量程高精度测量。随后，为了解决经典PGC测量方法因光频内调制失配导致存在位移分辨力急剧下降直至测量失效的多个奇点、无法实现大量程问题，提出一种基于光频自适应调控的亚纳米分辨力大量程微探头干涉测量方法，建立大量程工作中测量奇点与光频内调制幅度映射关系，自适应调控激光光源光频内调制幅度，动态跟踪系统调制深度最佳工作点，使仪器在大量程范围内始终保持亚纳米位移分辨力。基于该测量原理完成微探头式干涉仪样机搭建，探头尺寸  $\Phi 4.7\mathrm{mm} \times 17\mathrm{mm}$ ，该仪器与商用超精密级激光干涉仪比对测试，实验结果表明，该仪器工作距为  $24\mathrm{mm}-400\mathrm{mm}$ ，测量量程  $376\mathrm{mm}$ ，有效测量分辨力  $0.4\mathrm{nm}$ ，与比对超精密干涉仪精度性能一致。
+
+在微探头式激光干涉测量基准上，阐述传统干涉仪与微探头式干涉仪区别和技术难度，根据测量原理分析，从光源调频和中心频率(测量基准)需求出发，阐述仪器测量特性与光源特性的关系，分析传统基于调谐光谱稳频的局限性，为了解决微探头激光干涉PGC测量基准难以兼顾大幅度高带宽调频和高精度稳频、导致大量程测量下难以获得高相对精度的问题，提出一种基于鉴频曲线重构的大幅度高带宽调频下高精度激光稳频方法，分析大幅度、高带宽调频，使稳频特征曲线畸变，稳频失锁的现象，建立鉴频特征曲线畸变模型和畸变矫正模型，利用矫正模型反馈调节相位补偿并重构鉴频曲线，明确锁定点与稳频基准点的对应关系，实现气体分子吸收基准点锁定跟踪，精准控制大范围高带宽调谐中心频率。实验结果表明，该方法可在1MHz调制带宽、2.61GHz最大调制幅度下将稳频相对精
+
+度从  $5 \times 10^{-7}$  提升至  $5 \times 10^{-8}$ , 与国际最高水平一致。
+
+在微探头式激光干涉测量误差校正上，作为干涉仪最大核心误差项一周期非线性误差的抑制与校正是决定设备能否实现纳米、亚纳米精度的关键。相较于传统激光干涉仪，微探头式干涉仪周期非线性误差在表现形式和数值大小上并不相同，表现形式上存在非线性特征缺失、消隐现象，误差数值通常为数十纳米量级，为此建立不同初始边界条件下微探头干涉仪周期非线性模型，据此计算载波相位延迟来局部复现周期非线性特征；针对位移小于半波长的特征缺失现象，利用温度调控激光移频以获得等效位移，来完整恢复周期非线性特征校准参数，将该误差抑制到亚纳米级。结合中国计量院位移测试结果和自主实验结果表明，该方法将微探头干涉仪非线性误差从数十nm抑制到0.8nm，比国际同类顶级仪器的3nm非线性误差提高3倍。
+
+本文主要的创新性研究成果包括以下三个方面：
+
+(1) 提出一种基于光频自适应调控的亚纳米分辨力大量程微探头干涉测量方法。自适应调控激光光源光频内调制幅度，动态跟踪系统调制深度最佳工作点，避免测量失效奇点，使仪器在大量程范围内始终保持亚纳米位移分辨力。实验结果表明，该方法可将位移量程从  $\mathrm{mm}$  量级提升至  $376\mathrm{mm}$ ，并在该量程内保持  $0.4\mathrm{nm}$  的有效位移分辨力。  
+(2) 提出一种基于鉴频曲线重构的大幅度高带宽调频下高精度激光稳频方法。在大幅度高带宽调制条件下，建立鉴频特征曲线畸变矫正模型，利用矫正模型重构鉴频曲线，明确锁定点与稳频基准点的对应关系，实现中心频率精准锁定。实验结果表明，该方法可在  $1\mathrm{MHz}$  调制带宽、 $2.61\mathrm{GHz}$  最大调制幅度下将中心频率精度从  $5\times 10^{-7}$  提升至  $5\times 10^{-8}$ 。  
+(3) 提出一种基于校正特征参数复现的周期非线性误差零位消除方法。建立不同初始边界条件下微探头干涉仪周期非线性模型，据此计算载波相位延迟来局部复现周期非线性特征，利用温度调控激光移频以获得等效位移，完整恢复特征校准参数，将非线性误差抑制到亚纳米级。实验结果表明，该方法将周期非线性误差从数十 nm 抑制到 0.8nm。
+
+随着研究工作的深入，尚存在以下两个方面的问题需要进一步的研究或改进：
+
+(1) 在大量程测量过程中实际位移会叠加伴生线位移和角位移，会对干涉信号强度产生影响，后续可以深入建模研究，进一步提高测量精度。  
+(2) 微探头式原理样机系统集成部分中，光电探测单元和信号处理单元电路板卡后续可以进行系统集成，提高系统精度，在电路设计方面进一步降低噪声。
+
+# 附录A
+
+# 中国计量科学研究院
+
+# 校准证书
+
+证书编号CDcd2022-20007
+
+客户名称 哈尔滨工业大学
+
+器具名称 波长调制中心稳频激光器
+
+型号/规格 UOI-MF-Laser
+
+出厂编号 20220617
+
+生产厂商 哈尔滨工业大学
+
+联络信息 黑龙江省哈尔滨市南岗区西大直街92号
+
+校准日期 2022年10月08日
+
+接收日期 2022年09月28日
+
+批准人：
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/5e2243b8a407fb75da5f747b3da772036223b142a55282bfdc4773ed5922c25c.jpg)
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/bd03c63ff67ad5c5284c02d66e4c89c2f0dd3b2f8b9f9759ac66be2f52613f68.jpg)
+
+发布日期： 2022年10月21日
+
+地址：北京北三环东路18号
+
+电话：010-64525569/74
+
+网址：http://www.nim.ac.cn
+
+邮编：100029
+
+传真：010-64271948
+
+电子邮箱：kehufuw@nim.ac.cn
+
+2019-jz-R0520
+
+第1页共3页
+
+# 中国计量科学研究院证书编号CDcd2022-20007
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/17361fec7024ff81143d870efd84af35cbabfe12240ab4f90a204f061401d6f5.jpg)
+
+中国计量科学研究院（NIM）是国家最高的计量科学研究中心和国家级法定计量技术机构。1999年授权签署了国际计量委员会（CIPM）《国家计量基(标)准和国家计量院签发的校准与测量证书互认协议》（CIPM MRA）。
+
+质量管理体系符合ISO/IEC17025标准，通过中国合格评定国家认可委员会（CNAS）和亚太计量规划组织（APMP）联合评审的校准和测量能力（CMCs）在国际计量局（BIPM）关键比对数据库中公布。
+
+2020年，NIM和CNAS就认可领域的技术评价活动签署了谅解备忘录，承认NIM的计量支撑作用和出具的校准/检测结果的溯源效力。
+
+校准结果不确定度的评估和表述均符合JFJ1059系列标准的要求。
+
+校准所依据/参照的技术文件（代号、名称）
+
+参照NIM-ZY-CD-CD-505稳频激光器校准方法
+
+校准环境条件及地点：
+
+温度：20
+
+地点：
+
+昌-19-0003
+
+湿度：53 %RH
+
+其它：
+
+校准使用的计量基（标）准装置（含标准物质）/主要仪器
+
+<table><tr><td>名称</td><td>测量范围</td><td>不确定度/准确度等级</td><td>证书编号</td><td>证书有效期至(YYYY-MM-DD)</td></tr><tr><td>时间频率系统</td><td>10MHz</td><td>1.0E-12</td><td>SPss2021-10107</td><td>2023-01-22</td></tr></table>
+
+2019-jz-R0520
+
+第2页共3页
+
+# 中国计量科学研究院
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/f2401b7cd20ab00b90ab9ce5d8552ef1f66834707fe84956d4b13b755650bfe9.jpg)
+
+证书编号 CDcd2022-20007
+
+# 校准结果
+
+1. 测量时间（3小时）内的平均真空波长（频率）值：
+
+$\lambda = 1532.20590\mathrm{nm}$ $(f = 1.95660686\mathrm{E} + 08\mathrm{MHz})$
+
+2. 测量时间（3小时）内的相对频率稳定度：
+
+0.1秒取样时间：2.8E-10
+
+1秒取样时间：2.9E-10
+
+10秒取样时间：1.1E-10
+
+100秒取样时间：4.1E-11
+
+1000秒取样时间：2.5E-11
+
+3. 平均真空波长相对扩展不确定度：
+
+$U_{\mathrm{r}}(\lambda) = 5.0\mathrm{E - }08$
+
+（k=2）
+
+以下空白
+
+声明：
+
+1. 我院仅对加盖“中国计量科学研究院校准专用章”的完整证书负责。  
+2. 本证书的校准结果仅对本次所校准的计量器具有效。
+
+校准员：王建波
+
+核验员：
+
+石春英
+
+2019-jz-R0520
+
+第3页共3页
+
+# 附录B
+
+# 中国计量科学研究院
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/ce2081d3a7f935878ccca7bfa0f0f5d95601614594dd635f40208bfeee4ea750.jpg)
+
+# 测试报告
+
+报告编号CDjc2022-20129
+
+客户名称 哈尔滨工业大学
+
+样品名称 微探头传感器式激光干涉仪
+
+型号/规格 HUE-F
+
+出厂编号 20220617
+
+生产厂商 哈尔滨工业大学
+
+客户地址 黑龙江省哈尔滨市南岗区西大直街92号
+
+测试日期 2022年10月10日
+
+批准人： 康岩辉
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/7056abfeb9b92f47ed80d41d76ce7b92f558b39cb2f8234fa1bdfe3440fcb78d.jpg)
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/ba50f8c7f34de2e1291920655e147786713e765c283070d9e347d264afa9f5fb.jpg)
+
+地址：北京北三环东路18号
+
+电话：010-64525569/74
+
+网址：http://www.nim.ac.cn
+
+邮编：100029
+
+传真：010-64271948
+
+电子邮箱：kehufuwu@nim.ac.cn
+
+2019-cs-R0520
+
+第1页共4页
+
+# 中国计量科学研究院
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/30a769fc6eca2af9bb2382ea2e4510d02e298bf5100767ec0ee5a3ad8cec2811.jpg)
+
+报告编号CDjc2022-20129
+
+中国计量科学研究院（NIM）是国家最高的计量科学研究中心和国家级法定计量技术机构。1999年授权签署了国际计量委员会（CIPM）《国家计量基(标)准和国家计量院签发的校准与测量证书互认协议》（CIPM MRA）。
+
+质量管理体系符合ISO/IEC17025标准，通过中国合格评定国家认可委员会（CNAS）和亚太计量规划组织（APMP）联合评审的校准和测量能力（CMCs）在国际计量局（BIPM）关键比对数据库中公布。
+
+2020年，NIM和CNAS就认可领域的技术评价活动签署了谅解备忘录，承认NIM的计量支撑作用和出具的校准/检测结果的溯源效力。
+
+测试所参考的技术文件（代号、名称）
+
+参照JG739-2005激光干涉仪检定规程
+
+测试环境条件及地点：
+
+温度：19.9 ℃
+
+湿度：61 % RH
+
+地点：
+
+其它：
+
+昌-20-1014
+
+1
+
+测试使用的计量基（标）准装置（含标准物质）/主要仪器  
+
+<table><tr><td>名称</td><td>测量范围</td><td>不确定度/ 准确度等级</td><td>报告编号</td><td>证书有效期至 (YYYY-MM-DD)</td></tr><tr><td>激光干涉仪</td><td>(0~40)m</td><td>MPE: \( \pm  {0.5} \times  {10}^{-6}L \)</td><td>CDlx2022-00302</td><td>2024-02-01</td></tr></table>
+
+2019-cs-R0520
+
+第2页共4页
+
+# 中国计量科学研究院
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/305ad085782438096231a88c096add0fc96eebc07ec092fee442ea434a149304.jpg)
+
+报告编号CDjc2022-20129
+
+# 测试结果
+
+# 1. 测量分辨力
+
+测试方法：位移台自动步进十步台阶，每步台阶高度为  $0.4\mathrm{nm}$  ，测量数据如下：
+
+<table><tr><td>序号</td><td>位移台位移(nm)</td><td>测量值(nm)</td></tr><tr><td>1</td><td>3.4</td><td>3.4</td></tr><tr><td>2</td><td>3.0</td><td>3.0</td></tr><tr><td>3</td><td>2.6</td><td>2.6</td></tr><tr><td>4</td><td>2.2</td><td>2.2</td></tr><tr><td>5</td><td>1.8</td><td>1.8</td></tr><tr><td>6</td><td>1.4</td><td>1.4</td></tr><tr><td>7</td><td>1.0</td><td>1.0</td></tr><tr><td>8</td><td>0.6</td><td>0.6</td></tr><tr><td>9</td><td>0.2</td><td>0.2</td></tr><tr><td>10</td><td>-0.2</td><td>-0.2</td></tr></table>
+
+由以上数据可知，该微探头传感器式激光干涉仪的有效测量分辨力为  $0.4\mathrm{nm}$ 。
+
+# 2. 测量量程
+
+该微探头传感器式激光干涉仪的测量量程为  $(0 - 6)\mu \mathrm{m}$
+
+-接下页
+
+2019-cs-R0520
+
+第3页共4页
+
+# 中国计量科学研究院
+
+![](https://cdn-mineru.openxlab.org.cn/result/2025-11-13/081a0d4d-40d0-4ef5-895d-c6a36eb4071b/2e83dcf04b90de9b21dd91d1e99ec819c2345ddf06ac298dee9b9bd1839e2c6d.jpg)
+
+报告编号 CDjc2022-20129
+
+# 测试结果
+
+3. 线性度  
+
+<table><tr><td>序号</td><td>标准值(nm)</td><td>测量数据(nm)</td><td>示值误差(nm)</td></tr><tr><td>1</td><td>0.0</td><td>0.0</td><td>0.0</td></tr><tr><td>2</td><td>664.4</td><td>664.1</td><td>-0.3</td></tr><tr><td>3</td><td>1331.5</td><td>1331.4</td><td>-0.1</td></tr><tr><td>4</td><td>1998.3</td><td>1996.4</td><td>-1.9</td></tr><tr><td>5</td><td>2663.5</td><td>2661.5</td><td>-2.0</td></tr><tr><td>6</td><td>3328.7</td><td>3326.9</td><td>-1.8</td></tr><tr><td>7</td><td>3996.5</td><td>3994.7</td><td>-1.8</td></tr><tr><td>8</td><td>4660.6</td><td>4660.4</td><td>-0.2</td></tr><tr><td>9</td><td>5325.4</td><td>5323.6</td><td>-1.8</td></tr><tr><td>10</td><td>5991.7</td><td>5991.3</td><td>-0.4</td></tr><tr><td>11</td><td>6655.8</td><td>6655.4</td><td>-0.4</td></tr></table>
+
+该微探头传感器式激光干涉仪测量结果的线性度为  $-0.03\%$
+
+注：线性度  $=$  最大偏差值/满量程输出
+
+以下空白
+
+声明：
+
+1. 我院仅对加盖“中国计量科学研究院测试专用章”的完整报告负责。  
+2. 本报告的测试结果仅对本次所测试的样品有效。
+
+测试员：
+
+核验员：康岩辉
+
+2019-cs-R0520
+
+第4页共4页
+
+# 参考文献
+
+[1] 简金辉, 焦锋. 超精密加工技术研究现状及发展趋势[J]. 机械研究与应用, 2009, (1): 1-5.  
+[2] Schitter G, Steininger J, Heuck F C, et al. Towards Fast AFM-Based Nanometrology and Nanomanufacturing[J]. International Journal of Nanomanufacturing, 2012, 8(5-6): 392-418.  
+[3] 李圣怡. 超精密加工技术与机床的新进展[J]. 航空精密制造技术, 2009, 45(2): 26-28.  
+[4] 吴云锋, 陈洁. 精密超精密加工技术综述[J]. 新技术新工艺, 2007, (6): 38-40.  
+[5] 张松松, 曾忠. 精密及超精密加工的现状及发展前景[J]. 机械工程师, 2006, (1): 28-30.  
+[6] Gao W, Kim S. -W, Bosse H, et al. Measurement Technologies for Precision Positioning[J]. CIRP Annals, 2015, 64(2): 773-796.  
+[7] 胡金春, 高阵雨, 成荣. 光刻机工件台六自由度超精密位移测量研究[J]. 中国基础科学, 2013, 15(04): 17-20.  
+[8] 袁琼雁, 王向朝. 国际主流光刻机研发的最新进展[J]. 激光与光电子学进展, 2007, (1): 57-64.  
+[9] Add, Asm, Byt. Recent Advances in Mechanical Micromachining[J]. CIRP Annals, 2006, 55(2): 745-753.  
+[10] Kang S, La J, Yoon H, et al. A synthetic heterodyne interferometer for small amplitude of vibration measurement[J]. Review of Scientific Instruments, 2008, 79(5): 6-12.  
+[11] Janssen T, Roy D. Nano-Science and Nano-Metrology for Societal Benefits[J]. MAPAN, 2013, 28(4): 237-238.  
+[12] Watchi J, Cooper S, Ding B L, et al. Contributed Review: A review of compact interferometers[J]. Review of Scientific Instruments, 2018, 89(12): 18-26.  
+[13] Nozato H, Kokuyama W, Ota A. Improvement and validity of shock measurements using heterodyne laser interferometer[J]. Measurement, 2016, 77: 67-72.  
+[14] 伍婷婷. 二维工作台多自由度同时测量系统的研制及实验研究[D]. 合肥工业大学, 2018.  
+[15] Yacoot A, Klapetek P, Valtr M, et al. Design and performance of a test rig for evaluation of nanopositioning stages[J]. Measurement Science and Technology, 2019, 30(3): 10-17.  
+[16] Min, Ming Y, Luo Y R, et al. Ultraprecision intersatellite laser interferometry[J].
+
+International Journal of Extreme Manufacturing, 2020, 2(2): 58-70.  
+[17] Li Y, Wang C, Wang L, et al. A laser interferometer prototype with pico-meter measurement precision for Taiji space gravitational wave detection mission in China [J]. Microgravity Science and Technology, 2020, 32(3): 331-338.  
+[18] Wadhwa N, Chen J G, Sellon J B, et al. Motion microscopy for visualizing and quantifying small motions[J]. Proceedings of the National Academy of Sciences of the United States of America, 2017, 114(44): 11639-11644.  
+[19] Hoskins J K, Newman R D, Spero R, et al. Experimental tests of the gravitational inverse-square law for mass separations from 2 to  $105~\mathrm{cm[J]}$ . Physical Review D, 1985, 32(12): 3084-3095.  
+[20] Mackenzie, Stanley A. On the Attractions of Crystalline and Isotropic Masses at Small Distances[J]. Phys. rev, 1895, 2(5): 321-343.  
+[21] Khaled K. Apparatus for determining a position[P]. EP2045572B1, 14 March. 2012.  
+[22] Siaudinyte, Lauryna, Molnar, et al. Multi dimensional grating interferometer based on fibre-fed measurement heads arranged in Littrow configuration[J]. Measurement Science & Technology, 2018, 29(5): 1-6.  
+[23] Smaract. High resolution optical displacement measurements of a piezo scanner[EB/OL]. 2018. https://www.smaract.com/files/media/categories/Optical%20Metrology/AppNotes/AN00023_PS_HighResolution-Measurement-Scanner.pdf  
+[24] 曹前进. 基于零差干涉相位测量的间距测量与控制研究[D]. 华中科技大学, 2017.  
+[25] Rao Y J. Recent progress in fiber-optic extrinsic Fabry-Perot interferometric sensors[J]. Optical Fiber Technology, 2006, 12(3): 227-237.  
+[26] Guo J, Yang C. Non-Contact Fiber Vibration Sensor Based on Intracavity Modulation of an Extrinsic Fabry-Perot Interferometer[J]. IEEE Sensors Journal, 2015, 15(12): 7229-7233.  
+[27] Wu, Bo. Hybrid-integrated Michelson fiber optic accelerometer[J]. Optical Engineering, 2004, 43(2): 313-318.  
+[28] Chen C, Ding G, Zhang D, et al. Michelson fiberoptic accelerometer[J]. Review of Scientific Instruments, 1998, 69(9): 3123-3126.  
+[29] Han Y, Liu B, Wu Y, et al. Ultra-compact silicon-microcap based improved Michelson interferometer high-temperature sensor[J]. Optics express, 2019, 29(5): 6703-6713.  
+[30] Zhang J, Sun H, Wang R, et al. Simultaneous Measurement of Refractive Index and Temperature Using a Michelson Fiber Interferometer with a Hi-Bi Fiber Probe[J]. IEEE Sensors Journal, 2013, 13(6): 2061-2065.  
+[31] 王泽锋，罗洪，胡永明. 干涉型光纤传感器信号检测技术的研究[J]. 应用光
+
+学，2007,28(1):86-91.  
+[32] Cai X, Luo J, Fu H, et al. Temperature measurement using a multi-wavelength fiber ring laser based on a hybrid gain medium and Sagnac interferometer[J]. Optics Express, 2020, 28(26): 39933-39944.  
+[33] Ni W, Ping L, Xin F, et al. Ultrathin graphene diaphragm-based extrinsic Fabry-Perot interferometer for ultra-wideband fiber optic acoustic sensing[J]. Optics Express, 2018, 26(16): 20758-20765.  
+[34] Wu S, Liang W, Chen X, et al. Flexible Optical Fiber Fabry-Perot Interferometer Based Acoustic and Mechanical Vibration Sensor[J]. Journal of Lightwave Technology, 2018, 36(11): 2216-2221.  
+[35] 张汉坤. 光纤法珀传感器解调技术研究[D]. 电子科技大学, 2013.  
+[36] Lin D, Jiang X, Xie F, et al. High stability multiplexed fiber interferometer and its application on absolute displacement measurement and on-line surface metrology[J]. Opt Express, 2004, 12(23): 5729-5734.  
+[37] 杨珂. 基于共光路干涉技术的光纤传感系统研究[D]. 安徽大学, 2012.  
+[38] Thurner K, Braun P F, Karrai K. Fabry-Perot interferometry for long range displacement sensing[J]. Review of scientific instruments, 2013, 84(9): 2155-2165.  
+[39] Moreno-Hernandez C J, Monzon-Hernandez D, Martinez-Rios A, et al. Long-Range Interferometric Displacement Sensing with Tapered Optical Fiber Tips[J]. IEEE Photonics Technology Letters, 2015, 27(4): 379-382.  
+[40] Klaus, Thurner, Francesca, et al. Fiber-based distance sensing interferometry[J]. Applied Optics, 2015, 54(10): 3051-3063.  
+[41] Zhang Y, Li Y, Tao W, et al. Fringe Visibility Enhanced Extrinsic Fabry-Perot Interferometer Using a Graded Index Fiber Collimator[J]. IEEE Photonics Journal, 2010, 2(3): 469-481.  
+[42] Liu W, Ren Q, Jia PG, et al. A least square fitting demodulation technique for the interrogation of optical fiber Fabry-Perot sensor with arbitrary reflectivity[J]. Applied Optics, 2020, 59(5): 1301-1306.  
+[43] Wu, Ying, Xia, et al. A Highly Precise Demodulation Method for Fiber Fabry-Perot Cavity Through Spectrum Reconstruction[J]. IEEE Photonics Technology Letters, 2018, 2(7): 459-471.  
+[44] Xie J, Wang F, Pan Y, et al. High resolution signal-processing method for extrinsic Fabry-Perot interferometric sensors[J]. Optical Fiber Technology, 2015, 22(3): 1-6.  
+[45] Qi Y, Chen W, Xie J, et al. A fast Maximum Likelihood Estimation algorithm for demodulating Fiber White-Light Interferometry[J]. Journal of Physics Conference Series, 2018, 1065.
+
+[46] Yu Z, Wang A. Fast White Light Interferometry Demodulation Algorithm for Low-Finesse Fabry-Pérot Sensors[J]. IEEE Photonics Technology Letters, 2015, 27(8): 817-820.  
+[47] Li C, Chen S, Zhu Y. Maximum Likelihood Estimation of Optical Path Length in Spectral Interferometry[J]. Journal of Lightwave Technology, 2017, 2(22): 423-428.  
+[48] Xinlei, Zhou, Qingxu, et al. Wide-Range Displacement Sensor Based on Fiber-Optic Fabry-Perot Interferometer for Subnanometer Measurement[J]. Sensors Journal, 2011, 11(7): 1602-1606.  
+[49] Liu Q, Li A, Y Liu, et al. TWDM-Assisted Active Quadrature Demodulation of Fiber-Optic Fabry-Perot Acoustic Sensor Network[J]. Journal of Lightwave Technology, 2020, 5(99): 437-443.  
+[50] Liu G, Zhu Y, Liu Z, et al. Passive quadrature demodulation of an ultrasonic fiber-optic interferometric sensor using a laser and an acousto-optic modulator[J]. Optics Letters, 2019, 44(11): 2756-2761.  
+[51] Bo D, Ming H, Wang A. Two-wavelength quadrature multipoint detection of partial discharge in power transformers using fiber Fabry-Perot acoustic sensors[J]. Proc Spie, 2012, 8370: 14-19.  
+[52] Mao X, Yuan S, Wang X, et al. Stabilized Fiber-Optic Fabry-Perot Acoustic Sensor Based on Improved Wavelength Tuning Technique[J]. Journal of Lightwave Technology, 2017, 7(99): 15-21.  
+[53] Ma J, Zhao M, Huang X, et al. Low cost, high performance white-light fiber-optic hydrophone system with a trackable working point[J]. Optics Express, 2016, 24(17): 19008-19017.  
+[54] Yu, Qingxu, Mao, et al. Stabilizing operation point technique based on the tunable distributed feedback laser for interferometric sensors[J]. Optics Communications: A Journal Devoted to the Rapid Publication of Short Contributions in the Field of Optics and Interaction of Light with Matter, 2016, 361: 17-20.  
+[55] Wang Q, Ma Z. Feedback-stabilized interrogation technique for optical Fabry-Perot acoustic sensor using a tunable fiber laser[J]. Optics & Laser Technology, 2013, 51(51): 43-46.  
+[56] Dandridge A, Tveten A B, Gialorenzi T G. Homodyne Demodulation Scheme for Fiber Optic Sensors Using Phase Generated Carrier[J]. IEEE Journal of Quantum Electronics, 1982, 18(10): 1647-1653.  
+[57] Wang L, Min Z, Mao X, et al. The arctangent approach of digital PGC demodulation for optic interferometric sensors[J]. Proceedings of SPIE-The International Society for Optical Engineering, 2006, 6292: 1-10.  
+[58] Yan L P, Chen B Y, Chen Z Q, et al. Phase-modulated dual-homodyne interferometer without periodic nonlinearity[J]. Measurement Science and
+
+Technology, 2017, 28(11): 7-18.  
+[59] Huang S C, Huang Y F, Hwang F H. An improved sensitivity normalization technique of PGC demodulation with low minimum phase detection sensitivity using laser modulation to generate carrier signal[J]. Sensors & Actuators A Physical, 2013, 191: 1-10.  
+[60] Minoni U, Sardini E, Gelmini E, et al. A high-frequency sinusoidal phase-modulation interferometer using an electro-optic modulator: Development and evaluation[J]. Review of Scientific Instruments, 1991, 62(11): 2579-2583.  
+[61] Lin Q, Chen L, Li S, et al. A high-resolution fiber optic accelerometer based on intracavity phase-generated carrier (PGC) modulation[J]. Measurement Science and Technology, 2010, 22(1): 015303.  
+[62] He J, Wang L, Li F, et al. An Ameliorated Phase Generated Carrier Demodulation Algorithm With Low Harmonic Distortion and High Stability[J]. Journal of Lightwave Technology, 2010, 28(22): 3258-3265.  
+[63] Huang S C, Lin H. Modified phase-generated carrier demodulation compensated for the propagation delay of the fiber[J]. Applied Optics, 2007, 46(31): 7594-7599.  
+[64] Dong Y, Hu PC, Ming R, et al. Correction of nonlinear errors from PGC carrier phase delay and AOIM in fiber-optic interferometers for nanoscale displacement measurement[J]. Optics express, 2020, 28(2): 2611-2624.  
+[65] Dandridge A, Tveten A B, Gialorenzi T G. Homodyne Demodulation Scheme for Fiber Optic Sensors Using Phase Generated Carrier[J]. IEEE Journal of Quantum Electronics, 1982, 18(10): 1647-1653.  
+[66] Christian T R, Frank P A, Houston B H. Real-time analog and digital demodulator for interferometric fiber optic sensors[J]. Proceedings of SPIE - The International Society for Optical Engineering, 1994, 2191.  
+[67] Wang K, Zhang M, Duan F, et al. Measurement of the phase shift between intensity and frequency modulations within DFB-LD and its influences on PGC demodulation in a fiber-optic sensor system[J]. Applied Optics, 2013, 52(29): 7194-7199.  
+[68] K. Karraiand P. F. Braun, Device and method for acquiring position with a confocal Fabry-Perot interferometer[P]. U.S. Patent: US20110211199A1. 01 September. 2010.  
+[69] Anton, V, Volko, et al. Phase Modulation Depth Evaluation and Correction Technique for the PGC Demodulation Scheme in Fiber-Optic Interferometric Sensors[J]. IEEE Sensors Journal, 2017, 17(13): 4143-4150.  
+[70] Xie J, Yan L, Chen B, et al. Extraction of Carrier Phase Delay for Nonlinear Errors Compensation of PGC Demodulation in an SPM Interferometer[J]. Journal of Lightwave Technology, 2019, 7(99): 176-185.  
+[71] Vitushkin L F, Germak A, D'Agostino G. Laser Displacement Interferometers
+
+with Subnanometer Resolution in Absolute Ballistic Gravimeters[J]. Measurement Techniques, 2012, 55(3): 221-228.  
+[72] Chen F, Mohideen U. Fiber Optic Interferometry for Precision Measurement of the Voltage and Frequency Dependence of the Displacement of Piezoelectric Tubes[J]. Review of Scientific Instruments, 2001, 72(7): 3100-3102.  
+[73] P. Zorabedian, Tunable External Cavity Semiconductor lasers[M]. New York: Academic, 1995.  
+[74] Affolderbach C, Mileti G. Tuneable Stabilised Diode Lasers for Compact Atomic Frequency Standards and Precision Wavelength References[J]. Optics & Lasers in Engineering, 2005, 43(3-5): 291-302.  
+[75] Buus J, Amann M, Blumenthal D. Tunable Laser Diodes and Related Optical Sources[M]. USA: Wiley Inter science, 2005.  
+[76] 张辉, 彭月祥, 戚二军. Nd:YVO4/KTP 环形倍频激光器三次谐波稳频碘吸收谱线超精细结构的研究[J]. 光谱学与光谱分析, 2005, 25(5): 3-8.  
+[77] 吴举才. 基于碘吸收谱外调制三次谐波解调的 Nd:YAG 激光器稳频技术研究 [D]. 哈尔滨工业大学, 2016.  
+[78] 曹延昌, 熊继军, 侯庆志. 可调谐半导体激光器的精密控制系统设计[J]. 激光技术, 2015, 39(3): 316-319.  
+[79] 万小平, 金雷, 陈爬延. 基于 MAX1968 的半导体激光温控电路设计[J]. 微计算机信息, 2006, 22(12): 65-66.  
+[80] Li C, Jiao D, Jia J, et al. Thermoelectric Cooling for Power Electronics Circuits: Modeling and Active Temperature Control[J]. IEEE Transactions on Industry Applications, 2014, 50(6): 3995-4005.  
+[81]涂娟.原子干涉仪用半导体激光器的智能稳频系统[D].中国科学院大学，2016.  
+[82] 罗京. 参考飞秒光频梳的半导体激光器偏频锁定技术研究[D]. 哈尔滨工业大学, 2018.  
+[83] 周开军, 赵华凤, 俞涛, 等.  $1.53 \mu \mathrm{m}$  光纤光栅外腔半导体激光器乙炔吸收稳频 [J]. 量子电子学报, 2005, 22(4): 604-605.  
+[84] Black E D. An Introduction to Pound-Drever-Hall Laser Frequency Stabilization[J]. American Journal of Physics, 2001, 69(1): 79-87.  
+[85] Gruet F, Pellaton M, Affolderbach C, et al. Compact and Frequency Stabilized Laser Heads for Rubidium Atomic Clocks[C]//Proceedings of International Conference on Space Optics(ICSO), 2012.  
+[86] 吴学健. 可调谐半导体激光器相移干涉硅球直径测量[D]. 清华大学, 2014.  
+[87] Wang J, Gao J, Yang B D, et al. Comparison of frequency locking of 780 nm diode laser via rubidium saturated absorption and polarization spectroscopies[J]. Chinese Optics, 2011, 4(3): 305-312.
+
+[88] Wei, Gong, Xin, et al. Method for wavelength stabilization of pulsed difference frequency laser at  $1572\mathrm{nm}$  for CO_2 detection lidar[J]. Optics Express, 2015, 23(5): 6151-6170.  
+[89] Ji J W, Cheng H N, Zhang Z, et al. Automatic laser frequency stabilization system for transportable 87Rb fountain clock[J]. Acta Optica Sinica, 2020, 40(22): 163-169.  
+[90] Lu D, Yang Q L, Wang H, et al. Review of semiconductor distributed feedback lasers in the optical communication band[J]. Chinese J, Lasers, 2020, 47(7): 11-29.  
+[91] Mei J X, Wang L, Tan T, et al. Research on new method of frequency stabilization of DFB Laser based on second harmonic characteristics[J]. Spectroscopy and Spectral Analysis, 2019, 39 (10): 2989-2992.  
+[92] Vu T T, Higuchi M, Aketagawa M. Accurate displacement-measuring interferometer with wide range using an I2 frequency-stabilized laser diode based on sinusoidal frequency modulation[J]. Measurement Science & Technology, 2016, 27(10): 105201-105212.  
+[93] 初文豪. 光纤干涉仪光源的高带宽调频及中心频率稳定技术研究[D]. 哈尔滨工业大学, 2020.  
+[94] Lu S, Cheng R, Yang K M, et al. Real-time correction of periodic nonlinearity in homodyne detection for scanning beam interference lithography[J]. Optical Engineering, 2018, 57(10): 8-17.  
+[95] 胡红波, 于梅. 零差激光干涉仪正交相位误差的分析[J]. 光电工程, 2012, 39(12): 55-62.  
+[96] 李立艳, 吴冰, 苑勇贵等. 单频激光干涉仪非线性误差补偿方法研究[J]. 光学学报, 2011, 31(7): 246-252.  
+[97] 杨军, 刘志海, 苑立波. 波片对偏振激光干涉仪非线性误差的影响[J]. 光子学报, 2008(2): 364-369.  
+[98] 刘彬彬, 苑勇贵, 王新星等. 偏振激光干涉仪的非线性误差实时校正方法[J]. 光学学报, 2010, 30(9): 2585-2589.  
+[99] Tian C, Wang L, Min Z, et al. Performance improvement of PGC method by using lookup table for optical seismometer[J]. Proceedings of SPIE - The International Society for Optical Engineering, 2009, 7503:750348-750348-4.  
+[100] Jia P G, Wang D H. Self-calibrated non-contact fibre-optic Fabry-Perot interferometric vibration displacement sensor system using laser emission frequency modulated phase generated carrier demodulation scheme[J]. Measurement Science & Technology, 2012, 23(11): 115201-115209.  
+[101] Wu X, Ran T, Zhang Q, et al. Eliminating additional laser intensity modulation with an analog divider for fiber-optic interferometers[J]. Optics Communications,
+
+2012, 285(5): 738-741.  
+[102] 雷祥洲. 基于波长调制正交相位测量的激光干涉测距研究[D]. 华中科技大学, 2019.  
+[103] Shihua Z, Liping Y, Benyong C, et al. Real-time phase delay compensation of PGC demodulation in sinusoidal phase-modulation interferometer for nanometer displacement measurement[J]. Optics Express, 2017, 25(1): 472-478.  
+[104] Nikitenko A N, Plotnikov M Y, Volkov A V, et al. PGC-Atan demodulation scheme with the carrier phase delay compensation for fiber-optic interferometric sensors[J]. IEEE Sensors Journal, 2018, 8(99): 756-762.  
+[105] Heydemann P L. Determination and correction of quadrature fringe measurement errors in interferometers[J]. Applied optics, 1981, 20(19): 3382-3384.  
+[106] Dai G L, Pohlenz F, Danzebrink H U, et al. Improving the performance of interferometers in metrological scanning probe microscopes[J]. Measurement Science and Technology, 2004, 15(2): 444-450.  
+[107] Guo T, Chen J P, Dontsov D, et al. Improved homodyne laser interferometer used in micro-vibration analysis[C]. 2nd International Symposium on Advanced Optical Manufacturing and Testing Technologies, Pts 1 and 2, 2006.  
+[108] Haijin, Fu, Ke, et al. Homodyne Laser Vibrometer With Detectability of Nanoscale Vibration and Adaptability to Reflectivity[J]. IEEE Transactions on Instrumentation and Measurement, 2018, 69(2): 542-548.  
+[109] Liping Y, Zhouqiang C, Benyong C, et al. Precision PGC demodulation for homodyne interferometer modulated with a combined sinusoidal and triangular signal[J]. Optics Express, 2018, 26(4): 4818-4829.  
+[110] Zhang S, Chen B, Yan L, et al. Real-time normalization and nonlinearity evaluation methods of the PGC-arctan demodulation in an EOM-based sinusoidal phase modulating interferometer[J]. Optics Express, 2018, 26(2): 605-617.  
+[111] JB/T 5610-2006, 激光干涉仪[S]. 2006.  
+[112] JJG 739-2005, 激光干涉仪检定规程[S]. 2005.  
+[113] NIM-ZY-CD-CD-505, 稳频激光器校准方法[S]. 2012.
+
+# 攻读博士学位期间发表的论文及其它成果
+
+# （一）发表的学术论文(与本学位论文直接相关)
+
+[1] Yisi Dong, Pengcheng Hu*, Haijin Fu, Hongxing Yang, Ruitao Yang and Jiubin Tan. Long range dynamic displacement: Precision PGC with sub-nanometer resolution in LWSM interferometer [J]. Photonics Research. (SCI收录，DOI号为10.1364/PRJ.442057, 2021年影响因子7.254, 他引5次)  
+[2] Yisi Dong, Pengcheng Hu*, Ming Ran, Haijin Fu, Hongxing Yang and Ruitao Yang. Correction of nonlinear errors from PGC carrier phase delay and AOIM in fiber-optic interferometers for nanoscale displacement measurement[J]. Optics Express. (SCI收录，DOI号为10.1364/OE.383400, 2021年影响因子3.833,他引11次)  
+[3] Yisi Dong, Pengcheng Hu*, Ming Ran, Zhitao Le, Hajjin Fu, Hongxing Yang and Ruitao Yang. Phase modulation depth setting technique of a phase-generated-carrier under AOIM in fiber-optic interferometer with laser frequency modulation[J]. Optics Express. (SCI收录，DOI号为10.1364/OE.403448,2021年影响因子3.833,他引11次)  
+[4] Chen Zhang, Yisi Dong, Pengcheng Hu*, Hajjin Fu, Hongxing Yang, Ruitao Yang and Limin Zou. Embedded micro-probe fiber optic interferometer with low nonlinearity against light intensity disturbance[J]. Optics Express. (SCI收录, DOI号为10.1364/OE.458089, 2021年影响因子3.833, 他引1次)
+
+# （二）申请及已获得的专利(与本学位论文直接相关)
+
+[1] Pengcheng Hu, Yisi Dong, Ruitao Yang, Zhitao Le. Nonlinear error correction method for fiber-optic Michelson interferometer (国际). 2020. 公开号：WO/2021/082707  
+[2] 胡鹏程，董祎嗣，冉明，初文豪. 光纤迈克尔逊干涉测振仪非线性误差修正方法, (中国). 2019. 专利号：201911030986.6  
+[3] 胡鹏程，董祎嗣，杨睿韬，乐志涛. 光纤迈克尔逊干涉仪非线性误差修正方法, (中国). 2019. 专利号：201911036469.X  
+[4] 胡鹏程，董祎嗣，付海金，张洪铭. 相位生成载波反正切中载波相位延迟和伴生调幅消除方法, (中国). 2019. 专利号：201911036468.5  
+[5] 胡鹏程，董祎嗣，冉明，乐志涛. 光纤法布里珀罗干涉仪非线性误差修正方
+
+法, (中国). 2019. 专利号: 201911031866.8  
+[6] 胡鹏程，董祎嗣，杨宏兴，张洪铭. 相位生成载波微分交叉相乘载波延迟和伴生调幅消除方法, (中国). 2019. 专利号：201911031845.6  
+[7] 胡鹏程，董祎嗣，冉明，初文豪. 光纤法布里珀罗干涉测振仪非线性误差修正方法, (中国). 2019. 专利号：201911036474.0
+
+# （三）与本论文直接相关科研项目和参与情况
+
+[1] 国家02科技重大专项子课题：掩模板滑移抑制与实时测量技术研究，课题编号：2017ZX02101006-005  
+[2] 国家重点研发计划仪器专项：微探头传感器式激光干涉仪，项目编号：2022YFF0705800 项目骨干
+
+# （四）与本论文研制仪器直接相关获奖情况
+
+[1] 入选2022年度中国科协“科创中国”先导技术榜单  
+[2] 获得 2021 年中国(国际)传感器创新创业大赛 全国特等奖 (序 1)  
+[3] 获得2020年度中国仪器学术论坛优秀论文全国一等奖(序1)  
+[4] 获得2017年度中国研究生电子设计大赛 全国一等奖(序1)
+
+# （五）论文作者获得代表性奖励
+
+[1] 获得2022年度“叶声华奖学金”(全国共10名)  
+[2] 获得 2021 年度 “博士研究生国家奖学金”  
+[3] 获得2021年度哈工大“春雁英才计划”  
+[4] 获得2019年度哈工大“优秀博士生国际交流计划”(共10名)
+
+# 哈尔滨工业大学学位论文原创性声明和使用权限
+
+# 学位论文原创性声明
+
+本人郑重声明：此处所提交的学位论文《基于光频自适应调控的微探头式超精密激光干涉测量技术》，是本人在导师指导下，在哈尔滨工业大学攻读学位期间独立进行研究工作所取得的成果，且学位论文中除已标注引用文献的部分外不包含他人完成或已发表的研究成果。对本学位论文的研究工作做出重要贡献的个人和集体，均已在文中以明确方式注明。
+
+作者签名：壹祎嗣 日期：2023年3月22日
+
+# 学位论文使用权限
+
+学位论文是研究生在哈尔滨工业大学攻读学位期间完成的成果，知识产权归属哈尔滨工业大学。学位论文的使用权限如下：
+
+（1）学校可以采用影印、缩印或其他复制手段保存研究生上交的学位论文，并向国家图书馆报送学位论文；（2）学校可以将学位论文部分或全部内容编入有关数据库进行检索和提供相应阅览服务；（3）研究生毕业后发表与此学位论文研究成果相关的学术论文和其他成果时，应征得导师同意，且第一署名单位为哈尔滨工业大学。
+
+保密论文在保密期内遵守有关保密规定，解密后适用于此使用权限规定。
+
+本人知悉学位论文的使用权限，并将遵守有关规定。
+
+作者签名：董祎嗣 日期：2023年3月22日
+
+导师签名：胡鹏程 日期：2023年3月22日
+
+# 致谢
+
+本论文在胡鹏程教授的指导下完成，依然记得去年的这个时候开始构思论文架构的场景，一遍一遍的推倒重来，在本就匮乏的语言下绞尽脑汁的去思考。在论文撰写的一年里，有一半时间与胡老师线上沟通，有三分之一的时间在疫情隔离，很开心自己在磨砺中成长了很多。感谢老师的细心指导，不仅在科研工作中，更是生活和做人上，从2013年大一学期的第一面一直到现在九年有余，亦师亦友，这是我的期盼。
+
+感谢谭久彬院士的启发式引导，最初攻读博士的念头在心中萌芽就来自于您本科的讲座，依旧记得，您说的做个仪器人，刻苦攻关，仪器报国，做个对国家和社会有用的人。
+
+感谢我的联合培养导师香港理工大学靳伟教授，感谢您在光纤传感领域基础和前沿发展的教诲，感恩和您共事的时光，您的科学研究严谨的态度和敢做敢想的气魄值得我学习。
+
+感谢团队老师包括付海金老师、杨宏兴老师、杨睿韬老师，于亮老师和邢旭老师对于课题的建议和指导。感谢我的微探头式干涉仪小团队的所有成员，师弟师妹们，包括冉明师兄、初文豪师弟、张晨师妹、乐志涛师弟、张洪铭师弟、骆文瑞师弟和李雯雯师妹，手机里仍然存有我们凌晨一起奋斗的照片，依旧记得我们课题攻关相伴到第二天大早的画面，看到太阳升起，说不出的感动，依旧记得实验样机成功后三个大男孩激动到哭泣的画面，前后三代原理样机的搭建，充满了我们的汗水和艰辛，无需多言仅有感谢。
+
+感谢我的父亲董德礼和我的母亲王淑梅，感谢您们的养育，我的个子一点点长大，您们的头发一点点的变白，渐渐的走路也跟不上我的步伐。小时候内心的梦想是成为一个了不起的人，长大了我的梦想变小了，仅希望父母亲人健康快乐，离家人近一些，一家人的笑容是我永远的动力。
+
+很多很多想要感谢的人，再次祝愿大家一切都好，平安快乐，好运常伴。
+
+# 个人简历
+
+董祎嗣，男，汉族，1995年03月03日出生于黑龙江省七台河市。
+
+2013年9月~2017年7月，就读于哈尔滨工业大学测控技术与仪器专业，于2017年7月获得工学学士学位。  
+2017年9月~至今，就读于哈尔滨工业大学仪器科学与技术学科，攻读博士学位(硕博连读)。  
+2019年8月，于英国国家物理实验室和牛津大学进行短期学术交流。  
+2021年9月~至今，于香港理工大学电机工程系进行联合培养博士学位攻读。
